@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/enjaz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/enjaz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CareersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CareersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanysDetailsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanysDetailsController.php" afterDir="false" />
@@ -195,7 +196,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/wamp64/www/enjaz",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -231,7 +232,7 @@
       <workItem from="1712427560664" duration="85283000" />
       <workItem from="1713348346708" duration="66652000" />
       <workItem from="1713875070261" duration="49590000" />
-      <workItem from="1714299894468" duration="23164000" />
+      <workItem from="1714299894468" duration="23777000" />
     </task>
     <servers />
   </component>
