@@ -195,7 +195,7 @@ if($request->emp_num==''){
     $maidHistory->maid_id  =$request->emp_id;
     $maidHistory->agents_id  =$request->agent_id;
     $maidHistory->agents_name = $request->agents_name;
-    $maidHistory->Duration = $request->Duration;
+    $maidHistory->Duration = $request->countss;
     $maidHistory->str_date = Carbon::now();
 
     $maidHistory->Created_by = Auth::user()->name;

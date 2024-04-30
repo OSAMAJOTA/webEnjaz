@@ -521,6 +521,7 @@
                                                                             <th class="border-bottom-0"> <b>تاريخ  الانهاء</b></th>
                                                                             <th class="border-bottom-0"><b>مدة العمل بالايام </b></th>
                                                                             <th class="border-bottom-0"><b>تم الانشاء بواسطة</b> </th>
+                                                                            <th class="border-bottom-0"><b> تقييم </b> </th>
 
 
                                                                         </tr>
@@ -535,7 +536,7 @@
                                                                                 <td><a href="/contract_detils/{{$x->contract_id }}" >{{$x->contract_id }}</a></td>
                                                                                 <td><a href="" >{{$x->agents_name}}</a></td>
                                                                                 <td>{{$x->created_at}}</td>
-                                                                                <td>{{$x->Duration}}</td>
+                                                                                <td>{{$x->Duration}} يوم</td>
                                                                                 <td>{{$x->str_date}}</td>
                                                                                 <td>{{$x->end_date}}</td>
                                                                                     <?php
@@ -553,6 +554,25 @@
                                                                                 @endif
 
                                                                                 <td>{{$x->Created_by}}</td>
+
+                                                                                @if($x->maid_rate==1)
+
+                                                                                    <td>  <span class="btn-sm disabled btn-success">ممتاذ</span></td>
+
+
+                                                                                @elseif($x->maid_rate==2)
+
+                                                                                    <td>  <span class="btn-sm disabled btn-info">جيد</span></td>
+
+
+                                                                                @else
+
+                                                                                    <td>  <span class="btn-sm disabled btn-danger">سيئ</span></td>
+
+
+                                                                                @endif
+
+
 
                                                                             </tr>
 

@@ -24,6 +24,7 @@ class CreateMaidHistoriesTable extends Migration
             $table->foreign('agents_id')->references('id')->on('agents')->onDelete('cascade');
             $table->string('agents_name')->nullable();
             $table->string('Duration')->nullable();
+            $table->string('maid_rate')->nullable();
             $table->date('str_date')->nullable();
             $table->date('end_date')->nullable();
             $table->string('Created_by', 999);

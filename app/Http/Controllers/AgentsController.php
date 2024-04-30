@@ -17,8 +17,8 @@ class AgentsController extends Controller
 {
     public function export()
     {
-        return Excel::download(new AgentsExport, 'العملاء.xlsx');
-
+       // return Excel::download(new AgentsExport, 'العملاء.xlsx');
+        return Excel::download(new AgentsExport, 'ten-file.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
     /**
      * Display a listing of the resource.

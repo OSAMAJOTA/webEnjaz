@@ -378,7 +378,7 @@
 
                                 <tr>
                                  <td> <a href="/contract_detils/{{$x->id }}">{{$x->id}}</a></td>
-                                    <td>{{$x->agents_name}}</td>
+                                    <td><a href="/agent_details/{{$x->agent_id}}"> {{$x->agents_name}}</a></td>
                                     <td>{{$x->agent_phone1}}</td>
                                     <td>{{$x->Duration}}</td>
                                     <td>{{$x->Created_by}}</td>

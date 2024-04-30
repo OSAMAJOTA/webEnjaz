@@ -65,14 +65,15 @@ class MaidMovmoentController extends Controller
        $contract_type=$get_contracts->typ;
        $agents_name=$get_contracts->agents_name;
        $agents_id=$get_contracts->agent_id;
-       $Duration=$get_contracts->Duration;
+       $countss=$get_contracts->countss;
        maidHistory::create([
            'contract_type' =>$contract_type,//
            'contract_id' => $request->id,//
            'maid_id' => $request->emp_new_id,
+
            'agents_id' => $agents_id,
            'agents_name' => $agents_name,
-           'Duration' => $Duration,
+           'Duration' => $countss,
            'str_date' => Carbon::now(),
            'Created_by' => (Auth::user()->name),
 
@@ -83,6 +84,7 @@ class MaidMovmoentController extends Controller
            'status' => 'غير نشط',
            'end_reson' => $request->end_reson,
            'end_date' => Carbon::now(),
+
 
        ]);
 // تغيير بيانات العاملة الجديدة في العقد
@@ -115,7 +117,7 @@ class MaidMovmoentController extends Controller
        $history_end_maid = maidHistory::where('maid_id',$request->maids_id);
        $history_end_maid->update([
 
-
+           'maid_rate' => $request->maid_rate,
            'end_date' =>Carbon::now(),
 
        ]);

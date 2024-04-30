@@ -3,7 +3,9 @@
 namespace App\Exports;
 
 use App\agents;
+use App\maids;
 use Maatwebsite\Excel\Concerns\FromCollection;
+
 
 class AgentsExport implements FromCollection
 {
@@ -12,8 +14,8 @@ class AgentsExport implements FromCollection
     */
     public function collection()
     {
-        return agents::all();
-        //return agents::select('invoice_number', 'invoice_Date', 'Due_date','Section', 'product', 'Amount_collection','Amount_Commission', 'Rate_VAT', 'Value_VAT','Total', 'Status', 'Payment_Date','note')->get();
+       // return maids::all();
+        return agents::select('*')->get();
 
     }
 }

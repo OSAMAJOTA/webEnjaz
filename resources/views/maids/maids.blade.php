@@ -666,7 +666,7 @@
                     </form>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
+                    <form action="">
                         <button class="btn btn-success btn-block">
 
                             <i
@@ -676,7 +676,7 @@
                     </form>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
+                    <form action="">
                         <button class="btn btn-success btn-block">
 
                             <i
@@ -686,7 +686,7 @@
                     </form>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
+                    <form action="">
                         <button class="btn btn-success btn-block">
 
                             <i
@@ -696,7 +696,7 @@
                     </form>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
+                    <form action="">
                         <button class="btn btn-success btn-block">
 
                             <i
@@ -706,7 +706,7 @@
                     </form>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
+                    <form action="">
                         <button class="btn btn-success btn-block">
 
                             <i

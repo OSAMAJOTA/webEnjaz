@@ -456,7 +456,7 @@
                                                                                     <form action="rentcont/{{$x->id}}/">
                                                                                     <p><button class="btn-primary-gradient">  إضــافة عقد تشغيل  </button></p>
                                                                                     </form>
-                                                                                    <p><button class="btn-primary-gradient">  اضافة اتصال  </button></p>
+                                                                                    <p><button class="btn-primary-gradient">  اضافة ملاحظة  </button></p>
                                                                                     <p><button class="btn-danger-gradient">  حظر  </button></p>
 
                                                                                 </div>
@@ -500,13 +500,33 @@
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="tab{{$x->id+700003}}">
-                                                            <div class="alert alert-warning" role="alert">
-                                                                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                                <strong>لا يوجد</strong> عقود تشغيل
-                                                            </div>
+                                                                <?php
+                                                                $contract=\App\contract::select('*')->where('agent_id',$x->id)->get()
+                                                                ?>
+
+                                                            <table class="table">
+                                                                <tbody><tr>
+                                                                    <td><b>رقم العقد </b></td>
+                                                                    <td><b>اسم العاملة </b></td>
+                                                                    <td><b> مدة العقد</b></td>
+                                                                    <td><b> تاريخ الاضافة</b></td>
+                                                                    <td><b>حالة العقد</b> </td>
+
+                                                                </tr>
+                                                                @foreach ($contract as $a)
+
+                                                                    <td><b><a href="/contract_detils/{{$a->id }}"> {{$a->id}}</a></b></td>
+                                                                    <td><b><a href="/maidsDetails/{{$a->maids_id}}"> {{$a->emp_name}}</a></b></td>
+                                                                    <td><b>{{$a->Duration}} </b></td>
+                                                                    <td><b>{{$a->created_at}} </b></td>
+                                                                    <td><b>{{$a->status}} </b></td>
+
+
+                                                                    </tr>
+                                                                @endforeach
+                                                                </tbody></table>
                                                         </div>
+
                                                         <div class="tab-pane" id="tab{{$x->id+800004}}">
                                                             <div class="alert alert-info" role="alert">
                                                                 <button aria-label="Close" class="close" data-dismiss="alert" type="button">

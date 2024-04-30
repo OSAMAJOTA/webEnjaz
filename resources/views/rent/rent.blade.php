@@ -368,10 +368,9 @@
                                                 <div class="col-sm-6 col-md-2">
                                                     <button class="btn btn-primary-gradient btn-block">
 
+<a href="/Export_agents">
 
-
-                                                        <i
-                                                            class="fas fa-print"></i>&nbsp; طباعة</a>
+                                                        <i class="fas fa-print"></i>&nbsp; طباعة</a>
 
                                                     </button>
                                                 </div>
@@ -830,7 +829,7 @@
                                                         <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>
 
                                                             سبب الانهاء</label>
-                                                        <select name="end_reson" id="end_reson" class="form-control"  required>
+                                                        <select name="end_reson" id="end_reson" class="form-control"  required onchange="rate_maid()">
                                                             <!--placeholder-->
                                                             <option value=""selected >حدد السبب</option>
                                                             <option value="اضافة عاملة للعقد" >اضافة عاملة للعقد</option>
@@ -843,6 +842,24 @@
 
 
                                                         </select>
+                                                        <div id="rate">
+
+                                                            <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>
+
+                                                                تقييم العاملة الاولي</label>
+                                                            <select name="maid_rate" id="maid_rate" class="form-control"  required>
+                                                                <!--placeholder-->
+                                                                <option value="" selected >حدد درجة التقييم </option>
+                                                                <option value="1" >ممتاز</option>
+                                                                <option value="2" >جيد</option>
+                                                                <option value="3" >سيئ</option>
+
+
+
+                                                            </select>
+                                                        </div>
+
+
                                                         <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>رقم العاملة الجديدة </label>
                                                         <input type="text" class="form-control" id="emp_num" name="emp_num" value="" required  onkeyup="emp_numm()" >
                                                         <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>اسم العاملة   </label>
@@ -1084,6 +1101,27 @@
 
 
                                                 </script>
+
+                                                <script>
+                                                    function rate_maid(){
+                                                   var reson= document.getElementById("end_reson").value ;
+                                                   if(reson=='اضافة عاملة للعقد'){
+                                                       $('#rate').hide();
+                                                       $('#maid_rate').prop('required',false);
+                                                   }else {
+                                                       $('#rate').show();
+                                                       $('#maid_rate').prop('required',true);
+                                                   }
+
+
+
+                                                    }
+
+
+
+                                                </script>
+
+
                                                 <script>
                                                     $(document).ready(function() {
 
