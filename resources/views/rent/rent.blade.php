@@ -368,9 +368,9 @@
                                                 <div class="col-sm-6 col-md-2">
                                                     <button class="btn btn-primary-gradient btn-block">
 
-<a href="/Export_agents">
 
-                                                        <i class="fas fa-print"></i>&nbsp; طباعة</a>
+
+                                                        <i class="fas fa-print"></i>&nbsp; طباعة
 
                                                     </button>
                                                 </div>
@@ -924,7 +924,7 @@
                                                                     <input type="hidden" name="id" id="id" value="">
                                                                     <label for="recipient-name" class="col-form-label"> تاريخ السداد الاول :</label>
                                                                     <input class="form-control" name="exp_sadad1" id="exp_sadad1" type="text" readonly>
-                                                                    <label for="recipient-name" class="col-form-label">اسم تاريخ السداد الجديد :</label>
+                                                                    <label for="recipient-name" class="col-form-label"> تاريخ السداد الجديد :</label>
                                                                     <input class="form-control" name="exp_sadad2" id="exp_sadad2" type="date">
                                                                 </div>
 

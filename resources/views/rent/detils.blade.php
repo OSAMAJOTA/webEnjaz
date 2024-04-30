@@ -553,8 +553,37 @@
                                                 </div>
                                                 <div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
                                                     <div class="panel-body border">
-                                                        <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words </p>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+
+                                                        <div class="table-responsive mt-15">
+                                                            <table class="table center-aligned-table mb-0 table table-hover"
+                                                                   style="text-align:center">
+                                                                <thead>
+                                                                <tr class="text-dark">
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col"> سبب التحديث</th>
+                                                                    <th scope="col">بواسطة</th>
+                                                                    <th scope="col">تاريخ العملية</th>
+
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <?php $i = 0; ?>
+                                                                @foreach ($history as $a)
+                                                                        <?php $i++; ?>
+                                                                    <tr>
+                                                                        <td>{{ $i }}</td>
+                                                                        <td>{{ $a->update_reson }}</td>
+                                                                        <td>{{ $a->Created_by }}</td>
+                                                                        <td>{{ $a->created_at }}</td>
+
+
+                                                                    </tr>
+                                                                @endforeach
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -562,6 +591,7 @@
                                                 <div class="panel-heading1  bg-primary">
                                                     <h4 class="panel-title1">
                                                         <a class="accordion-toggle mb-0 collapsed" data-toggle="collapse" data-parent="#accordion11" href="#collapseFive2" aria-expanded="false"> الشكاوي <i class="fe fe-arrow-left ml-2"></i></a>
+
                                                     </h4>
                                                 </div>
                                                 <div id="collapseFive2" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">

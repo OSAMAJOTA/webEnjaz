@@ -6,6 +6,7 @@ use App\agents;
 use App\careers;
 use App\companys;
 use App\contract;
+use App\contract_history;
 use App\Durations;
 use App\items;
 use App\maidHistory;
@@ -95,6 +96,14 @@ if($request->emp_num==''){
         'Created_by' => (Auth::user()->name),
 
     ]);
+    // اضافة تحديثات العقد
+    $contract_id = contract::latest()->first()->id;
+    $contract_history = new contract_history();
+    $contract_history->update_reson ='تم اضافة عقد التشغيل';
+    $contract_history->contract_id = $contract_id;
+    $contract_history->Created_by = Auth::user()->name;
+
+    $contract_history->save();
 
 
 
@@ -163,6 +172,16 @@ if($request->emp_num==''){
         'Created_by' => (Auth::user()->name),
 
     ]);
+// اضافة تحديثات العقد
+    $contract_id = contract::latest()->first()->id;
+    $contract_history = new contract_history();
+    $contract_history->update_reson ='تم اضافة عقد التشغيل';
+    $contract_history->contract_id = $contract_id;
+    $contract_history->Created_by = Auth::user()->name;
+
+    $contract_history->save();
+
+
     $connected_con_id = contract::latest()->first()->id;
     //تغير حالة العاملة الي مربوطة بعقد
     $change_maid_connect = maids::findOrFail($request->emp_id);
@@ -354,6 +373,9 @@ if($request->emp_num==''){
             'Created_by' => (Auth::user()->name),
 
         ]);
+
+
+
         session()->flash('chang_sadad');
 
         return redirect('/rent');}

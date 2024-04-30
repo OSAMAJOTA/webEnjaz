@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\contract;
+use App\contract_comment;
+use App\contract_history;
 use App\maid_movmoent;
 use App\maids;
 use App\maidHistory;
@@ -60,6 +62,8 @@ class MaidMovmoentController extends Controller
            'Created_by' => (Auth::user()->name),
 
        ]);
+
+
        //  اضافة هستوري العاملة الجديدة
        $get_contracts = DB::table("contracts")->where("id", $request->id)->first();
        $contract_type=$get_contracts->typ;
@@ -119,6 +123,25 @@ class MaidMovmoentController extends Controller
 
            'maid_rate' => $request->maid_rate,
            'end_date' =>Carbon::now(),
+
+       ]);
+
+// اضافة تحديثات العقد
+       $contract_history = new contract_history();
+       $contract_history->update_reson ='تم تغير العاملة في عقد التشغيل';
+       $contract_history->contract_id = $request->id;
+       $contract_history->Created_by = Auth::user()->name;
+
+       $contract_history->save();
+
+
+
+       // اضافة ملاحظه بتغير العاملة
+
+       contract_comment::create([
+           'comment' => 'تم اضافة العمالة جديدة  في العقد',
+           'contract_id' => $request->id,
+           'Created_by' => (Auth::user()->name),
 
        ]);
 

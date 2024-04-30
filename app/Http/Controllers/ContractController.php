@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\contract;
 use App\contract_comment;
+use App\contract_history;
 use App\contractAttachments;
 use App\maid_movmoent;
 use Illuminate\Http\Request;
@@ -102,12 +103,14 @@ class ContractController extends Controller
 
     public function contract_detils($id)
     {
+
+        $history=contract_history::where('contract_id', $id)->get();
         $comment=contract_comment::where('contract_id', $id)->get();
         $contract = contract::where('id', $id)->first();
         $maid_movment=maid_movmoent::where('contract_id', $id)->get();
 
         $attachments = contractAttachments::where('contract_id', $id)->get();
-       return view('rent.detils',compact('contract','attachments','comment','maid_movment'));
+       return view('rent.detils',compact('contract','attachments','comment','maid_movment','history'));
     }
 
 

@@ -6,33 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="2a18863c-13d9-443f-ac83-6b0dc4624e14" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/AgentsExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/AgentsExport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaidMovmoentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaidMovmoentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_04_28_123331_create_maid_histories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_04_28_123331_create_maid_histories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/agents/agents.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agents/agents.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/maids/maids.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/maids/maids.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/maids/maids_detils.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/maids/maids_detils.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/ContentLength.rst" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/ContentLength.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/FlySystem.rst" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/FlySystem.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/psalm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/psalm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/Exception/FileSizeIncorrectException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/Exception/SimulationFileUnknownException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/OperationMode.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/ZipStream.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/ZipStream.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/test/Assertions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/test/ZipStreamTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/test/ZipStreamTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +201,7 @@
       <workItem from="1713348346708" duration="66652000" />
       <workItem from="1713875070261" duration="49590000" />
       <workItem from="1714299894468" duration="33778000" />
-      <workItem from="1714411009962" duration="2231000" />
+      <workItem from="1714411009962" duration="5206000" />
     </task>
     <servers />
   </component>
