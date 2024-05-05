@@ -522,6 +522,7 @@
                                                                             <th class="border-bottom-0"><b>مدة العمل بالايام </b></th>
                                                                             <th class="border-bottom-0"><b>تم الانشاء بواسطة</b> </th>
                                                                             <th class="border-bottom-0"><b> تقييم </b> </th>
+                                                                            <th class="border-bottom-0"><b>عدد النجوم</b> </th>
 
 
                                                                         </tr>
@@ -550,7 +551,7 @@
                                                                                 @if($x->end_date)
                                                                                     <td><b>{{$days_count+1}} يوم</b></td>
                                                                                 @else
-                                                                                    <td><b>--</b></td>
+                                                                                  <td class="text-center"> <div class="dot-label bg-success ml-1"></div></td>
                                                                                 @endif
 
                                                                                 <td>{{$x->Created_by}}</td>
@@ -564,10 +565,30 @@
 
                                                                                     <td>  <span class="btn-sm disabled btn-info">جيد</span></td>
 
-
+                                                                                @elseif($x->maid_rate==3)
+                                                                                    <td>  <span class="btn-sm disabled btn-danger">سيئ</span></td>
                                                                                 @else
 
-                                                                                    <td>  <span class="btn-sm disabled btn-danger">سيئ</span></td>
+                                                                                    <td>  <span class="btn-sm ">--</span></td>
+
+
+                                                                                @endif
+
+                                                                                @if($x->maid_rate==1)
+
+                                                                                    <td>  <span class="btn-sm "><img src="/assets/img/5star.png" width="150px" height="30px"></span></td>
+
+
+                                                                                @elseif($x->maid_rate==2)
+
+                                                                                    <td>  <span class="btn-sm "><img src="/assets/img/3star.png" width="150px" height="40px"></span></td>
+
+                                                                                @elseif($x->maid_rate==3)
+
+                                                                                    <td>  <span class="btn-sm "><img src="/assets/img/1star.png" width="150px" height="30px"></span></td>
+                                                                                @else
+
+                                                                                    <td>  <span class="btn-sm ">--</span></td>
 
 
                                                                                 @endif

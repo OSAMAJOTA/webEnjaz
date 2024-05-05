@@ -143,7 +143,7 @@
                                     <li><a class="slide-item" href="{{ url('/' . $page='offers') }}">عروض واسعار التشغيل </a></li>
                                 @endcan
                                 @can('العملاء')
-                                    <li><a class="slide-item" href="{{ url('/' . $page='#') }}"> العمالة المتاحه </a></li>
+                                    <li><a class="slide-item" href="{{ url('/' . $page='avavailable_maid') }}"> العمالة المتاحه </a></li>
                                 @endcan
 
                             </ul>

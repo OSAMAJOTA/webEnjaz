@@ -20,6 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('avavailable_maid', 'AvavailableMaidController');
+Route::resource('end_contract', 'EndContractController');
+
 Route::get('/getemp_name/{id}', 'RentControllerController@getemp_name');
 Route::get('/ser_cont/{id}', 'RentControllerController@ser_cont');
 Route::resource('change_emp', 'MaidMovmoentController');

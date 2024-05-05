@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateContractsTable extends Migration
@@ -53,6 +54,10 @@ class CreateContractsTable extends Migration
 
             $table->decimal('tot',8,2)->nullable();
 
+            $table->date('end_contract_date')->nullable();
+            $table->string('end_comment', 999)->nullable();
+            $table->string('end_reson', 999)->nullable();
+            $table->string('end_by', 999)->nullable();
 
 
             $table->string('Created_by', 999);
@@ -67,6 +72,10 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('contracts');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+
     }
 }

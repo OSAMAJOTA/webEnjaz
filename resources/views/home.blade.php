@@ -395,6 +395,7 @@
             </div>
         </div>
     </div>
+
     <!-- row closed -->
 
     <!-- row opened -->

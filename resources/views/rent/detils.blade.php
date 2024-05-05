@@ -318,6 +318,9 @@
 
                                                         </tbody>
                                                     </table>
+
+
+                                                    @if($contract-> man_discount>0)
                                                     <div class="col-md-12" style="margin-top:20px">
                                                         <h4 class="m-t-0 header-title-small"><b>خصومات الادارة على العقد</b></h4>
                                                         <table class="table table-striped m-0">
@@ -330,15 +333,19 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
+                                                            @foreach($man_discount as $dis)
                                                             <tr>
-                                                                <td>400.4</td>
-                                                                <td>18/04/2024 06:28:43 م</td>
-                                                                <td></td>
-                                                                <td>اسم الموظف</td>
+                                                                <td>{{$dis->man_discount}}</td>
+                                                                <td>{{$dis->created_at}}</td>
+                                                                <td>{{$dis->comment}}</td>
+                                                                <td>{{$dis->Created_by}}</td>
                                                             </tr>
+                                                            @endforeach
                                                             </tbody>
                                                         </table>
-                                                    </div>                                    </div>
+                                                    </div>
+                                                    @endif
+                                                </div>
                                                 <div class="col-md-6 m-b-25">
                                                     <div class="m-t-0 header-title-small"><b>اجمالى العقد</b></div>
                                                     <div class="text-center">

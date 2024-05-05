@@ -7,10 +7,19 @@
     <list default="true" id="2a18863c-13d9-443f-ac83-6b0dc4624e14" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaidMovmoentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaidMovmoentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaidsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaidsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_03_19_204157_create_contracts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_03_19_204157_create_contracts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_04_17_120128_create_contract_attachments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_04_17_120128_create_contract_attachments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/agents/agents.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agents/agents.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main-header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main-header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/maids/maids_detils.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/maids/maids_detils.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rent/rentcont.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/rentcont.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
@@ -201,7 +210,7 @@
       <workItem from="1713348346708" duration="66652000" />
       <workItem from="1713875070261" duration="49590000" />
       <workItem from="1714299894468" duration="33778000" />
-      <workItem from="1714411009962" duration="5206000" />
+      <workItem from="1714411009962" duration="40591000" />
     </task>
     <servers />
   </component>
@@ -223,7 +232,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/routes/web.php</url>
-          <line>41</line>
+          <line>44</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

@@ -457,7 +457,9 @@
                                                                                     <p><button class="btn-primary-gradient">  إضــافة عقد تشغيل  </button></p>
                                                                                     </form>
                                                                                     <p><button class="btn-primary-gradient">  اضافة ملاحظة  </button></p>
-                                                                                    <p><button class="btn-danger-gradient">  حظر  </button></p>
+
+                                                                                    <a class="btn-danger-gradient" data-target="#modaldemo5" data-toggle="modal" href="">حظر </a>
+
 
                                                                                 </div>
                                                                             </div>
@@ -563,6 +565,17 @@
     </div>
     </div>
     <!-- main-content closed -->
+    </div>
+    <div class="modal" id="modaldemo5">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content tx-size-sm">
+                <div class="modal-body tx-center pd-y-20 pd-x-20">
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                    <h4 class="tx-danger mg-b-20">هل متأكد من عملية حظر العميل</h4>
+                    <p class="mg-b-20 mg-x-20">عند حظر العميل لا يمكن اضافة عقد تشغيل او توسط للعميل.</p><button aria-label="Close" class="btn ripple btn-danger pd-x-25" data-dismiss="modal" type="button">نعم</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 

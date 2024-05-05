@@ -14,6 +14,7 @@ use App\maidHistory;
 use App\maids;
 use App\contract_comment;
 use App\maid_movmoent;
+use App\man_discount;
 use App\nationalities;
 use App\RentController;
 use App\contractAttachments;
@@ -96,6 +97,17 @@ if($request->emp_num==''){
         'Created_by' => (Auth::user()->name),
 
     ]);
+
+    //اذا يوجد خصم مدير
+    if($request->man_discount>0){
+        $contract_id = contract::latest()->first()->id;
+        $contract_man_dis = new man_discount();
+        $contract_man_dis->man_discount =$request->man_discount;
+        $contract_man_dis->contract_id = $contract_id;
+        $contract_man_dis->Created_by = Auth::user()->name;
+
+        $contract_man_dis->save();
+    }
     // اضافة تحديثات العقد
     $contract_id = contract::latest()->first()->id;
     $contract_history = new contract_history();
@@ -172,6 +184,16 @@ if($request->emp_num==''){
         'Created_by' => (Auth::user()->name),
 
     ]);
+    //اذا يوجد خصم مدير
+    if($request->man_discount>0){
+        $contract_id = contract::latest()->first()->id;
+        $contract_man_dis = new man_discount();
+        $contract_man_dis->man_discount =$request->man_discount;
+        $contract_man_dis->contract_id = $contract_id;
+        $contract_man_dis->Created_by = Auth::user()->name;
+
+        $contract_man_dis->save();
+    }
 // اضافة تحديثات العقد
     $contract_id = contract::latest()->first()->id;
     $contract_history = new contract_history();

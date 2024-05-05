@@ -732,11 +732,21 @@
 
 
                                 document.getElementById("tot").value = sumq;
+                                var new_t=sumq;
 
 
 
+                                var emp_salary=parseFloat(document.getElementById("emp_salary").value);
+                                var emp_tot=new_t-emp_salary;
 
+                            var new_cost=parseFloat(emp_tot/1.15).toFixed(2);
 
+                                var new_vat=parseFloat(new_t-new_cost-emp_salary).toFixed(2);
+
+                            document.getElementById("cost").value = new_cost;
+
+                            document.getElementById("vat_cost").value = new_vat;
+                            document.getElementById("tota").value = new_cost;
 
                             }
 

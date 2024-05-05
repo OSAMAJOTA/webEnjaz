@@ -116,7 +116,26 @@
 
             </script>
 
+
+
         @endif
+
+            @if (session()->has('end_contract'))
+                <script>
+                    window.onload = function() {
+                        notif({
+                            msg: "تم انهاء عقد التشغيل بنجاح",
+                            type: "success"
+                        })
+                    }
+
+                </script>
+
+
+
+            @endif
+
+
             @if (session()->has('change_emp'))
                 <script>
                     window.onload = function() {
@@ -408,10 +427,11 @@
                                                 </div>
                                             </div>
 
+                                        <div class="col-xl-12">
 
                                         @foreach($contract as $x)
-        <div class="col-xl-12">
-            <div class="card">
+
+                                                <div class="card">
 
 
 
@@ -471,9 +491,12 @@
 
 
                                             <div class="text-center">
-
-                                                <h1 class="text-success" style=" color: #075e15 !important;
+                                           @if($x->status=='ساري')
+                                                    <h1 class="text-success" style=" color: #075e15 !important;
     font-weight: bold;">{{$x->status }}</h1>
+                                                @elseif($x->status=='منتهي')
+                                                <h1 class="text-success" style=" color: #5b0f0f !important; font-weight: bold;">{{$x->status }}</h1>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -559,7 +582,9 @@
                                                 <td class="text-danger"><b>{{$x->exp_sadad }}</b></td>
                                             </tr>
                                             @endif
+                                            @if($x->status=='ساري')
                                             <tr>
+
                                               <td>
                                                     <a href="#Open_ManagerDiscount" onclick="Open_ManagerDiscount(15101,5585,600.3,600.3,0);" title="اضافة خصم مدير على العقد" data-plugin="custommodal" data-animation="blur" data-overlayspeed="100" data-overlaycolor="#36404a">
                                                         <i class="fa fa-plus m-r-5"></i>
@@ -567,7 +592,7 @@
                                                     </a></td>
 
                                             </tr>
-
+                                            @endif
                                             </tbody></table>
 
 
@@ -579,13 +604,17 @@
                                 <h4 class="m-t-0 header-title-small"><b>ادارة العمالة</b> </h4>
 
                                 <p> رقم العاملة : <b>
+                                        @if($x->status=='ساري')
                                         <a href="maidsDetails/{{$x->maids_id }}">
                                             <h5 class="text-custom font-60">      {{$x->emp_num }}</h5>
                                         </a>
+                                        @endif
 
 
                                     </b></p>
-                                <h4 class="m-t-0 m-b-0"><a href="maidsDetails/{{$x->maids_id }}">{{$x->emp_name }}</a></h4>
+                                @if($x->status=='ساري')
+                                <h4 class="m-t-0 m-b-0"><a href="maidsDetails/{{$x->maids_id }}" title="">{{$x->emp_name }}</a></h4>
+                                @endif
                                 <span class="fa fa-id-card-o m-r-5 m-l-5"></span>                    <br>
                                 <ul class="list-group control m-b-2 user-list">
 
@@ -620,7 +649,8 @@
                                 </ul>
 
                             </div>
-
+                            <!-- بداية العمود الاخير-->
+                            @if($x->status=='ساري')
                             <div class="col-md-2 hideApplicant">
 
                                 <ul class="list-group control m-b-0 user-list">
@@ -674,10 +704,11 @@
                                     </li>
 
                                     <li class="list-group-itemm">
-                                        <a href="#" onclick="OpenPopUp('con_15101',EditContractFinsh,new Array(15101,'2024/04/10'),this)" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
-                                            <i class="fa fa-edit-square-o"></i>
-                                            <span>انهاء العقد</span>
-                                        </a>
+                                        <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#end_contract"   data-id="{{ $x->id }}" data-end_contract_date="{{ $x->end_date }}"  data-maid_id="{{ $x->maids_id }}"  >
+
+
+
+                                            <span>انهاء العقد</span> </a>&nbsp;
                                     </li>
 
                                 </ul>
@@ -715,13 +746,51 @@
 
                                 </div>
 
-                            </div>
+
                         </div>
+                            @elseif($x->status=='منتهي')
+                                <div class="col-md-2 hideApplicant">
+
+                                    <p class="text-info font-bold">تم انهاء العقد</p>
+                                    <table class="table">
+                                        <tbody><tr>
+                                            <td>بواسطة</td>
+                                            <td> {{$x->end_by}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>سبب الانهاء</td>
+                                            <td>{{$x->end_reson}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>تاريخ الانهاء</td>
+                                            <td>{{$x->end_contract_date}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ملحوظة</td>
+
+
+
+                                            <td>{{$x->end_comment}} </td>
+                                        </tr>
+                                        </tbody></table>
+                                    <!--  استرجاع  مبلغ للعميل فى  كل الحالات-->
+                                </div>
+                            @endif
+
+                            <!-- نهاية العمود الاخير-->
                     </div>
                 </div>
+                                @if($x->status=='منتهي')
+                                <div class="btn btn-info hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: rgba(53, 184, 224, 0.15) !important;color:#35b8e0 !important;">
+                                    <i class="fa fa-window-close m-r-5"></i><span>تم انهاء العقد  </span>
+                                </div>
+                                @endif
                 <!-- نهاية الكرت-->
-            </div>
-        </div>
+
+                            </div>
+                    </div>
 
                                         @endforeach
 
@@ -933,6 +1002,14 @@
                                                             <button type="submit" class="btn btn-primary">تاكيد</button>
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
                                                         </div>
+
+
+                                                        <div class="card" style="width: 18rem;">
+                                                            <img class="card-img-top" src="..." alt="Card image cap">
+                                                            <div class="card-body">
+                                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                            </div>
+                                                        </div>
                                                         </form>
                                                     </div>
 
@@ -943,6 +1020,68 @@
 
                                                 </div>
                                             </div>
+
+                                            <!-- Container closed -->
+                                            <div class="modal" id="end_contract">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content modal-content-demo">
+                                                        <div class="modal-header">
+                                                            <h6 class="modal-title"> انهاء العقد  </h6><button aria-label="Close" class="close" data-dismiss="modal"
+                                                                                                             type="button"><span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ route('end_contract.store') }}" method="post">
+                                                                {{ csrf_field() }}
+
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">تاريخ نهاية العقد المتوقع</label>
+                                                                    <input type="date" class="form-control text-center" id="end_contract_date" name="end_contract_date" readonly>
+                                                                    <label for="exampleInputEmail1">تاريخ نهاية العقد الفعلي</label>
+                                                                    <input type="date" class="form-control text-center" id="end_contract_date2" name="end_contract_date2" required>
+                                                                    <input type="text" name="id" id="id" value="" hidden="hidden">
+                                                                    <input type="text" name="maid_id" id="maid_id" value="" hidden="hidden">
+                                                                    <label for="exampleInputEmail1">  سبب الانهاء </label>
+                                                                <select class="form-control" name="end_reson" id="end_reson" required>
+                                                                    <option value="لا شئ">لا شئ</option>
+                                                                    <option value="انتهاء العقد بسبب انتهاء مدة العقد مع العميل">انتهاء العقد بسبب انتهاء مدة العقد مع العميل</option>
+                                                                    <option value="عدم حاجة العميل للعامل لإغراض معينة(سفر العميل -عدم حاجة العاملة)">عدم حاجة العميل للعامل لإغراض معينة(سفر العميل -عدم حاجة العاملة)</option>
+                                                                    <option value="لا يوجد سبب">لا يوجد سبب</option>
+                                                                    <option value="احرى">احرى</option>
+
+
+                                                                </select>
+                                                                    <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>
+
+                                                                        تقييم العاملة في العقد</label>
+                                                                    <select name="maid_rate" id="maid_rate" class="form-control"  required>
+                                                                        <!--placeholder-->
+                                                                        <option value="" selected >حدد درجة التقييم </option>
+                                                                        <option value="1" >ممتاز</option>
+                                                                        <option value="2" >جيد</option>
+                                                                        <option value="3" >سيئ</option>
+
+
+
+                                                                    </select>
+                                                                    <label for="exampleInputEmail1"> ملاحظات </label>
+                                                                    <textarea id="end_comment" name="end_comment" class="form-control">لا يوجد </textarea>
+
+
+                                                                </div>
+
+
+
+
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-success">تاكيد</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
     <!-- main-content closed -->
 @endsection
@@ -1029,6 +1168,23 @@
                                                         var modal = $(this)
                                                         modal.find('.modal-body #id').val(id);
                                                         modal.find('.modal-body #exp_sadad1').val(exp_sadad);
+
+
+                                                    })
+                                                </script>
+                                                <script>
+                                                    $('#end_contract').on('show.bs.modal', function(event) {
+                                                        var button = $(event.relatedTarget)
+                                                        var id = button.data('id')
+                                                        var end_contract_date = button.data('end_contract_date')
+                                                        var maid_id = button.data('maid_id')
+
+
+
+                                                        var modal = $(this)
+                                                        modal.find('.modal-body #id').val(id);
+                                                        modal.find('.modal-body #maid_id').val(maid_id);
+                                                        modal.find('.modal-body #end_contract_date').val(end_contract_date);
 
 
                                                     })
@@ -1131,6 +1287,16 @@
                                                     });
 
 
+                                                </script>
+                                                <script type = "text/javascript">
+                                                    function show() {
+                                                        document.getElementById('img1').style.visibility = 'visible';
+                                                    }
+                                                </script>
+                                                <script type = "text/javascript">
+                                                    function hide() {
+                                                        document.getElementById('img1').style.visibility = 'hidden';
+                                                    }
                                                 </script>
 
 @endsection

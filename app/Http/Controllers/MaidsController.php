@@ -42,7 +42,7 @@ return view('maids.maids',compact('maids','maids_count2'));
     }
     public function showDetails($id)
     {
-        $maidHistory=maidHistory::where('maid_id', $id)->get();
+        $maidHistory=maidHistory::where('maid_id', $id)->get()->sortByDesc("id");
         $maids=maids::where('id', $id)->first();
         return view('maids.maids_detils',compact('maids','maidHistory'));
 
