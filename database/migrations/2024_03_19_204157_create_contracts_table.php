@@ -58,8 +58,8 @@ class CreateContractsTable extends Migration
             $table->string('end_comment', 999)->nullable();
             $table->string('end_reson', 999)->nullable();
             $table->string('end_by', 999)->nullable();
-
-
+            $table->string('remaining_days', 999)->nullable();
+            $table->string('late_days', 999)->nullable();
             $table->string('Created_by', 999);
             $table->timestamps();
         });

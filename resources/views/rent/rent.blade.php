@@ -752,6 +752,22 @@
                                 <div class="col-md-2 hideApplicant">
 
                                     <p class="text-info font-bold">تم انهاء العقد</p>
+                                    @if($x->late_days>0)
+                                    <a class="modal-effect  btn btn-warning btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+
+
+                                        <i class="fa fa-cash-register m-r-5"></i>
+                                        <span>دفع غرامة التأخير</span> </a>&nbsp;
+                                    @endif
+                                    @if($x->remaining_days>0)
+                                        <a class="modal-effect  btn btn-info btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+
+
+                                            <i class="fa fa-cash-register m-r-5"></i>
+                                            <span>استرداد مبلغ للعميل</span> </a>&nbsp;
+                                    @endif
+
+
                                     <table class="table">
                                         <tbody><tr>
                                             <td>بواسطة</td>
@@ -766,7 +782,18 @@
                                             <td>تاريخ الانهاء</td>
                                             <td>{{$x->end_contract_date}}</td>
                                         </tr>
-
+                                        @if($x->late_days>0)
+                                            <tr>
+                                                <td>عدد ايام التأخير</td>
+                                                <td>{{$x->late_days}}</td>
+                                            </tr>
+                                        @endif
+                                        @if($x->remaining_days>0)
+                                            <tr>
+                                                <td>عدد الايام المتبقية </td>
+                                                <td>{{$x->remaining_days}}</td>
+                                            </tr>
+                                        @endif
                                         <tr>
                                             <td>ملحوظة</td>
 
@@ -787,6 +814,20 @@
                                     <i class="fa fa-window-close m-r-5"></i><span>تم انهاء العقد  </span>
                                 </div>
                                 @endif
+
+                        @if($x->late_days>0)
+                            <br>
+                            <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #cba844;color:#cba844;">
+                                <i class="fa fa-window-close m-r-5"></i><span> يوجد غرامة تأخير علي العقد </span>
+                            </div>
+                        @endif
+
+                        @if($x->remaining_days>0)
+                            <br>
+                            <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #527589;color:#527589;">
+                                <i class="fa fa-window-close m-r-5"></i><span> يوجد استرداد مبلغ للعميل  </span>
+                            </div>
+                        @endif
                 <!-- نهاية الكرت-->
 
                             </div>
@@ -1037,7 +1078,7 @@
                                                                     <label for="exampleInputEmail1">تاريخ نهاية العقد المتوقع</label>
                                                                     <input type="date" class="form-control text-center" id="end_contract_date" name="end_contract_date" readonly>
                                                                     <label for="exampleInputEmail1">تاريخ نهاية العقد الفعلي</label>
-                                                                    <input type="date" class="form-control text-center" id="end_contract_date2" name="end_contract_date2" required>
+                                                                    <input type="date" class="form-control text-center" id="end_contract_date2" name="end_contract_date2"  onchange="count_day()" required>
                                                                     <input type="text" name="id" id="id" value="" hidden="hidden">
                                                                     <input type="text" name="maid_id" id="maid_id" value="" hidden="hidden">
                                                                     <label for="exampleInputEmail1">  سبب الانهاء </label>
@@ -1065,6 +1106,10 @@
                                                                     </select>
                                                                     <label for="exampleInputEmail1"> ملاحظات </label>
                                                                     <textarea id="end_comment" name="end_comment" class="form-control">لا يوجد </textarea>
+                                                                    <H3 hidden>عدد ايام التاخير</H3>
+                                                                    <input type="text" id="late_days" name="late_days" hidden >
+                                                                    <H3 hidden>عدد ايام المتبقية في العقد</H3>
+                                                                    <input type="text" id="remaining_days" name="remaining_days" hidden >
 
 
                                                                 </div>
@@ -1276,7 +1321,7 @@
 
 
                                                 </script>
-
+                                                    count_day
 
                                                 <script>
                                                     $(document).ready(function() {
@@ -1298,5 +1343,45 @@
                                                         document.getElementById('img1').style.visibility = 'hidden';
                                                     }
                                                 </script>
+                                                    <script>
+                                                        function count_day(){
+
+
+                                                            const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                                                            const firstDate = new Date(document.getElementById("end_contract_date").value);
+                                                            const secondDate = new Date(document.getElementById("end_contract_date2").value);
+                                                            if(firstDate > secondDate){
+
+                                                                const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+
+                                                                document.getElementById("late_days").value =0;
+                                                                document.getElementById("remaining_days").value =diffDays;
+
+                                                            }
+                                                            else{
+
+                                                                    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+
+
+
+                                                                    document.getElementById("late_days").value =diffDays;
+                                                                    document.getElementById("remaining_days").value =0;
+                                                                }
+                                                           var late= document.getElementById("late_days").value;
+                                                            var remaining =document.getElementById("remaining_days").value;
+                                                           if(late>0){
+                                                               alert("سيتم تطبيق غرامة تأخير علي  العميل")
+                                                           }else if(remaining>0){
+                                                               alert("سيتم تطبيق سياسة استرداد مبلغ للعميل")
+                                                           }else{
+
+                                                            }
+
+
+                                                        }
+
+
+                                                    </script>
+
 
 @endsection

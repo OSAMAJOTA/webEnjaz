@@ -48,6 +48,8 @@ class EndContractController extends Controller
             'end_contract_date' => $request->end_contract_date2,
             'end_comment' => $request->end_comment,
             'end_reson' => $request->end_reson,
+            'late_days' => $request->late_days,
+            'remaining_days' => $request->remaining_days,
             'end_by' => Auth::user()->name,
 
 
