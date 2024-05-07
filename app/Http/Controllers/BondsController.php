@@ -14,7 +14,7 @@ class BondsController extends Controller
      */
     public function index()
     {
-        //
+      return view('bonds.general_bonds');
     }
 
     /**

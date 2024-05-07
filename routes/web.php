@@ -19,7 +19,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//السندات
 
+Route::resource('general_bonds', 'BondsController');
+
+//السندات
 Route::resource('avavailable_maid', 'AvavailableMaidController');
 Route::resource('end_contract', 'EndContractController');
 

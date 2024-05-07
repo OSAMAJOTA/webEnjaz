@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\agents;
+use App\Bonds;
 use App\careers;
 use App\companys;
 use App\contract;
@@ -141,6 +142,35 @@ if($request->emp_num==''){
 
     }
 
+    if($request->sadad>0){
+
+
+        $contract_id = contract::latest()->first()->id;
+        $name_agent=$request->agents_name;
+        $total=$request->sadad;
+        $typ=$request->sadad_typ;
+        $comment_bonds='عقد تشغيل رقم'.' '.$contract_id.' '.'عن العميل'. ' '.$name_agent.' '.'باجمالي مبلغ'.' '.$total.' '.'طريقة السداد'.' '.$typ;
+        $bonds = new Bonds();
+        $bonds->bonds_type = 'سند قبض عقد';
+        $bonds->bonds_type_id = 1;
+        $bonds->catch_type = $request->sadad_typ;
+        $bonds->bonds_vat = $request->sadad_vat;
+        $bonds->bonds_cost = $request->sadad_co;
+        $bonds->bonds_total = $request->sadad;
+
+        $bonds->bonds_vat_ar = $request->sadad_vat_ar;
+        $bonds->bonds_cost_ar = $request->sadad_co_ar;
+        $bonds->bonds_total_ar = $request->sadad_ar;
+
+
+        $bonds->comment  = $comment_bonds;
+
+        $bonds->contract_id  = $contract_id;
+        $bonds->Created_by = Auth::user()->name;
+
+        $bonds->save();
+    }
+
 
     $contract_id = contract::latest()->first()->id;
     session()->flash('add_contract');
@@ -184,6 +214,36 @@ if($request->emp_num==''){
         'Created_by' => (Auth::user()->name),
 
     ]);
+    if($request->sadad>0){
+
+
+        $contract_id = contract::latest()->first()->id;
+        $name_agent=$request->agents_name;
+        $total=$request->sadad;
+        $typ=$request->sadad_typ;
+        $comment_bonds='عقد تشغيل رقم'.$contract_id.'عن العميل'.$name_agent.'باجمالي مبلغ'.$total.'طريقة السداد'.$typ;
+        $bonds = new Bonds();
+        $bonds->bonds_type = 'سند قبض عقد';
+        $bonds->bonds_type_id = 1;
+
+        $bonds->catch_type = $request->sadad_typ;
+        $bonds->bonds_vat = $request->sadad_vat;
+        $bonds->bonds_cost = $request->sadad_co;
+        $bonds->bonds_total = $request->sadad;
+
+
+        $bonds->bonds_vat_ar = $request->sadad_vat_ar;
+        $bonds->bonds_cost_ar = $request->sadad_co_ar;
+        $bonds->bonds_total_ar = $request->sadad_ar;
+
+
+
+        $bonds->comment = $comment_bonds;
+        $bonds->contract_id  = $contract_id;
+        $bonds->Created_by = Auth::user()->name;
+
+        $bonds->save();
+    }
     //اذا يوجد خصم مدير
     if($request->man_discount>0){
         $contract_id = contract::latest()->first()->id;

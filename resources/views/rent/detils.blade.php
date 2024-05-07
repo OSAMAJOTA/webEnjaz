@@ -362,7 +362,7 @@
                                                         <div class="row">
                                                             <div class="widget-detail-1 col-md-4">
 
-                                                                <h2 class="p-t-10 m-b-0"> {{ $contract-> sadad}}</h2>
+                                                                <h2 class="p-t-10 m-b-0"> <b>{{ $contract-> sadad}}</b></h2>
                                                                 <p class="text-muted">تم سداد</p>
                                                             </div>
                                                             <div class="widget-detail-1 col-md-4">
@@ -371,7 +371,7 @@
                                                             </div>
 
                                                             <div class="widget-detail-1 col-md-4 ">
-                                                                <h2 class="p-t-10 m-b-0 text-danger "> {{ $contract-> rest}} </h2>
+                                                                <h2 class="p-t-10 m-b-0 text-danger "><b>{{ $contract-> rest}}</b>  </h2>
                                                                 <p class="text-muted">المتبقى للدفع</p>
                                                             </div>
                                                         </div>
@@ -435,7 +435,82 @@
                                     </div>
                                     <div class="col-md-12">
                                         <h4 class="m-t-0 header-title-small"><b> السندات  </b></h4>
+                                        <div class="example">
+                                            <div class="panel panel-primary tabs-style-2">
+                                                <div class=" tab-menu-heading">
+                                                    <div class="tabs-menu1">
+                                                        <!-- Tabs -->
+                                                        <ul class="nav panel-tabs main-nav-line">
+                                                            <li><a href="#tab4" class="nav-link active" data-toggle="tab"> السندات</a></li>
+                                                            <li><a href="#tab5" class="nav-link" data-toggle="tab"> إضافة سند</a></li>
 
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body tabs-menu-body main-content-body-right border">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="tab4">
+                                                            <div class="table-responsive mt-15">
+                                                                <table class="table center-aligned-table mb-0 table table-hover"
+                                                                       style="text-align:center">
+                                                                    <thead>
+                                                                    <tr class="text-dark">
+                                                                        <th scope="col"><b>رقم السند</b></th>
+                                                                        <th scope="col"><b> نوع السند</b></th>
+                                                                        <th scope="col"><b> نوع القبض</b></th>
+                                                                        <th scope="col"><b>المبلغ</b> </th>
+                                                                        <th scope="col"> <b>المبلغ مكتوب</b></th>
+                                                                        <th scope="col"><b> تاريخ الانشاء</b></th>
+                                                                        <th scope="col"><b>ملاحظات</b> </th>
+                                                                        <th scope="col"><b>العمليات</b></th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                    @foreach ($bonds as $bonds)
+
+                                                                        <tr>
+                                                                            <td style="font-size: 13px">{{  $bonds->id }}</td>
+                                                                            <td style="font-size: 13px">{{ $bonds->bonds_type }}</td>
+                                                                            <td style="font-size: 13px">{{ $bonds->catch_type }}</td>
+                                                                            <td style="font-size: 13px"> {{ $bonds->bonds_total }}</td>
+                                                                            <td style="font-size: 13px">{{ $bonds->bonds_total_ar }}</td>
+                                                                            <td style="font-size: 13px">{{ $bonds->created_at }}</td>
+                                                                            <td style="font-size: 13px">{{ $bonds->comment }}</td>
+                                                                            <td colspan="2" style="font-size: 15px">
+
+                                                                                <a class="btn btn-outline-success btn-sm"
+                                                                                   href=""
+                                                                                   role="button"><i class="fas fa-eye"></i>&nbsp;
+                                                                                    عرض</a>
+
+                                                                                <a class="btn btn-outline-info btn-sm"
+                                                                                   href=""
+                                                                                   role="button"><i
+                                                                                        class="fas fa-download"></i>&nbsp;
+                                                                                    تحميل</a>
+
+
+
+
+
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                    </tbody>
+
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab5">
+                                                    تحت الاجراء
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
 

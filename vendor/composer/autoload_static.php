@@ -609,6 +609,7 @@ class ComposerStaticInit6558f74828bca9ebecac73d90cea4b1a
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\AvavailableMaidController' => __DIR__ . '/../..' . '/app/Http/Controllers/AvavailableMaidController.php',
+        'App\\Http\\Controllers\\BondsController' => __DIR__ . '/../..' . '/app/Http/Controllers/BondsController.php',
         'App\\Http\\Controllers\\CallCenterController' => __DIR__ . '/../..' . '/app/Http/Controllers/CallCenterController.php',
         'App\\Http\\Controllers\\CareersController' => __DIR__ . '/../..' . '/app/Http/Controllers/CareersController.php',
         'App\\Http\\Controllers\\CompanysAttachmentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompanysAttachmentsController.php',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bonds;
 use App\contract;
 use App\contract_comment;
 use App\contract_history;
@@ -107,11 +108,12 @@ class ContractController extends Controller
         $man_discount=man_discount::where('contract_id', $id)->get();
         $history=contract_history::where('contract_id', $id)->get();
         $comment=contract_comment::where('contract_id', $id)->get();
+        $bonds=Bonds::where('contract_id', $id)->get();
         $contract = contract::where('id', $id)->first();
         $maid_movment=maid_movmoent::where('contract_id', $id)->get();
 
         $attachments = contractAttachments::where('contract_id', $id)->get();
-       return view('rent.detils',compact('contract','attachments','comment','maid_movment','history','man_discount'));
+       return view('rent.detils',compact('contract','attachments','comment','maid_movment','history','man_discount','bonds'));
     }
 
 

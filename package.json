@@ -27,6 +27,7 @@
         "@flowdegree/arabic-strings": "^2.0.0",
         "arabic-name-to-en": "^1.0.6",
         "arajs": "^1.0.13",
-        "html2pdf.js": "^0.10.1"
+        "html2pdf.js": "^0.10.1",
+        "tafgeetjs": "^2.1.0"
     }
 }

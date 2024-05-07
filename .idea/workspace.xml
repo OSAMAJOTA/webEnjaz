@@ -5,14 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a18863c-13d9-443f-ac83-6b0dc4624e14" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/assets/plugins/tafgeet/Tafqeet.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EndContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EndContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_03_19_204157_create_contracts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_03_19_204157_create_contracts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BondsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BondsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_06_104558_create_bonds_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_05_06_104558_create_bonds_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/main-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main-sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rent/rentcont.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/rentcont.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/platform_check.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +210,7 @@
       <workItem from="1713348346708" duration="66652000" />
       <workItem from="1713875070261" duration="49590000" />
       <workItem from="1714299894468" duration="33778000" />
-      <workItem from="1714411009962" duration="52432000" />
+      <workItem from="1714411009962" duration="69528000" />
     </task>
     <servers />
   </component>
@@ -222,7 +232,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/routes/web.php</url>
-          <line>44</line>
+          <line>48</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

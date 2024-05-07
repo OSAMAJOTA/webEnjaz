@@ -338,6 +338,10 @@
                                 <input type="text" class="form-control" id="sadad" name="sadad" value="" onkeyup="mydsadad()"  required>
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> المتبقي </label>
                                 <input type="number" class="form-control" id="rest" name="rest" value="0"  readonly >
+                                <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> ضريبة مبلغ السداد </label>
+                                <input type="number" class="form-control" id="sadad_vat" name="sadad_vat" value="0"  readonly >
+                                <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>  القيمة </label>
+                                <input type="number" class="form-control" id="sadad_co" name="sadad_co" value="0"  readonly >
 
 
                             </div>
@@ -358,7 +362,11 @@
                                        data-price="" data-toggle="modal"
                                        href="#exampleModal2" title="تعديل"><i class="las la-pen">تاريخ السداد المتوقع</i></a>
                                     <input type="date" class="form-control" id="exp_sadad" name="exp_sadad" value=""  >
+
 </div>
+                                    <input type="text" class="form-control" id="sadad_ar" name="sadad_ar" value=""  >
+                                    <input type="text" class="form-control" id="sadad_co_ar" name="sadad_co_ar" value=""  >
+                                    <input type="text" class="form-control" id="sadad_vat_ar" name="sadad_vat_ar" value=""  >
 
                                 </div>
                                 </div>
@@ -668,6 +676,7 @@
                     </script>
 
                     <script>
+
                         function  mydsadad() {
 
 
@@ -689,7 +698,48 @@
 
                              document.getElementById("rest").value = sumq;
                              document.getElementById("rest2").value = sumq;
+
+
+
                              document.getElementById("sadad2").value = sadad;
+                             var sadad_vat=sadad-(sadad/1.15);
+                             var sadad_co=sadad/1.15;
+
+                             document.getElementById("sadad_co").value = parseFloat(sadad_co).toFixed(2);
+                             document.getElementById("sadad_vat").value = parseFloat(sadad_vat).toFixed(2);
+
+
+
+                                // تحويل اجمالي السداد الي نص
+                             var sadad_ar = document.getElementById("sadad2").value.split(".");
+
+                             if (sadad_ar.length == 2){
+                                 document.getElementById ("sadad_ar").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_ar[1])+' '+'هللة فقط لا غير'  ;
+                             }
+                             else if (sadad_ar.length == 1){
+                                 document.getElementById ("sadad_ar").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي فقط لا غير' ;
+                             }
+
+                             // تحويل قيمة السداد الي نص
+                             var sadad_co = document.getElementById("sadad_co").value.split(".");
+
+                             if (sadad_co.length == 2){
+                                 document.getElementById ("sadad_co_ar").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_co[1])+' '+'هللة فقط لا غير'  ;
+                             }
+                             else if (sadad_co.length == 1){
+                                 document.getElementById ("sadad_ar").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي فقط لا غير' ;
+                             }
+                             // تحويل ضريبة السداد الي نص
+                             var sadad_vat = document.getElementById("sadad_vat").value.split(".");
+
+                             if (sadad_vat.length == 2){
+                                 document.getElementById ("sadad_vat_ar").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_vat[1])+' '+'هللة فقط لا غير'  ;
+                             }
+                             else if (sadad_vat.length == 1){
+                                 document.getElementById ("sadad_vat_ar").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي فقط لا غير' ;
+                             }
+
+
                              if(sumq > 0 ){
 
                                  $('#exp').show();
@@ -785,6 +835,10 @@
 
 
                     </script>
+
+
+
+
                     <script>
 
                         function no_emp(){
@@ -821,6 +875,22 @@
 
                     </script>
 
+                    <script src="{{ URL::asset('assets/plugins/tafgeet/Tafqeet.js') }}"></script>
+
+                    <script>
+                        function main (){
+                            var fraction = document.getElementById("txt").value.split(".");
+
+                            if (fraction.length == 2){
+                                document.getElementById ("sadad_ar").value =  tafqeet (fraction[0]) + " فاصلة " + tafqeet (fraction[1] );
+                            }
+                            else if (fraction.length == 1){
+                                document.getElementById ("sadad_ar").value =  tafqeet (fraction[0])+'ريال فقط لا غير';
+                            }
+                        }
+                    </script>
+
+
 
                     <!--Internal Fileuploads js-->
                     <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
@@ -834,5 +904,6 @@
                     <!--Internal  Notify js -->
                     <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
                     <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+                    <script src="{{ URL::asset('assets/plugins/tafgeet/Tafqeet.js') }}"></script>
                     <!--Internal  Form-elements js-->
 @endsection

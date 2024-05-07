@@ -22,6 +22,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\AvavailableMaidController' => $baseDir . '/app/Http/Controllers/AvavailableMaidController.php',
+    'App\\Http\\Controllers\\BondsController' => $baseDir . '/app/Http/Controllers/BondsController.php',
     'App\\Http\\Controllers\\CallCenterController' => $baseDir . '/app/Http/Controllers/CallCenterController.php',
     'App\\Http\\Controllers\\CareersController' => $baseDir . '/app/Http/Controllers/CareersController.php',
     'App\\Http\\Controllers\\CompanysAttachmentsController' => $baseDir . '/app/Http/Controllers/CompanysAttachmentsController.php',

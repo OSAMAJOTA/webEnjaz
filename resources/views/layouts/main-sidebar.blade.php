@@ -195,7 +195,7 @@
                                     @endcan
                                     <ul class="sub-slide-menu">
                                         @can('أسماء الموظفين')
-                                            <li><a class="sub-slide-item" href="{{ url('/' . $page='#') }}">السندات العامة</a></li>
+                                            <li><a class="sub-slide-item" href="{{ url('/' . $page='general_bonds') }}">السندات العامة</a></li>
                                             <li><a class="sub-slide-item" href="{{ url('/' . $page='#') }}">سندات الاصول الثابته </a></li>
                                         @endcan
 
