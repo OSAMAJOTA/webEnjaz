@@ -10,6 +10,7 @@
     <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -33,8 +34,23 @@
             </ul>
         </div>
     @endif
+    @if (session()->has('add_bonds'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "تم اضافة سند قبض بنجاح",
+                    type: "success"
+                })
+            }
+
+        </script>
+
+
+
+    @endif
     <!-- row -->
     <div class="row">
+
 
         @if (session()->has('Add'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -442,7 +458,9 @@
                                                         <!-- Tabs -->
                                                         <ul class="nav panel-tabs main-nav-line">
                                                             <li><a href="#tab4" class="nav-link active" data-toggle="tab"> السندات</a></li>
+                                                            @if($contract-> rest>0)
                                                             <li><a href="#tab5" class="nav-link" data-toggle="tab"> إضافة سند</a></li>
+                                                            @endif
 
                                                         </ul>
                                                     </div>
@@ -504,7 +522,71 @@
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="tab5">
-                                                    تحت الاجراء
+                                                            <form action="{{ route('general_bonds.store') }}" method="post" enctype="multipart/form-data" id="myForm"
+                                                                  autocomplete="off">
+                                                                {{ csrf_field() }}
+                                                                <div class="col-md-12">
+                                                               <div class="row">
+                                                                   <div class="col-md-3">
+                                                                       <label class="text-info">بيانات السند</label>
+                                                                       <select class="form-control" name="" id="" required>
+                                                                           <option class="form-control" value="">حدد نوع السند</option>
+                                                                           <option class="form-control">سند قبض عقد</option>
+                                                                       </select>
+
+                                                                   </div>
+                                                                   <div class="col-md-3">
+                                                                       <label class="text-black-50">المتبقي علي العقد</label>
+                                                                       <input type="number" class="form-control" name="rest_in_cont" id="rest_in_cont" value="{{ $contract-> rest}}" readonly/>
+                                                                       <label class="text-black-50" hidden>المتبقي علي الاساسي</label>
+                                                                       <input type="number" class="form-control" name="rest_in_cont2" id="rest_in_cont2" value="{{ $contract-> rest}}" hidden />
+
+                                                                   </div>
+
+                                                               </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-md-3">
+                                                                            <label class="text-black-50">نوع القبض</label>
+                                                                            <select class="form-control" name="sadad_typ" id="sadad_typ" required>
+                                                                                <option class="form-control" value=""></option>
+                                                                                <option class="form-control" value="نقدآ">نقدآ</option>
+                                                                                <option class="form-control" value="تحويل">تحويل</option>
+                                                                            </select>
+
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <label class="text-black-50">المبلغ</label>
+                                                                            <input type="number" class="form-control" value="0.00" required name="sadad_cont" id="sadad_cont" onkeyup="check_and_ar()"/>
+                                                                            <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span> ضريبة مبلغ السداد </label>
+                                                                            <input type="number" class="form-control" id="sadad_vat" name="sadad_vat" value="0"  readonly hidden >
+                                                                            <label for="inputName" class="control-label"hidden > <span class="text-danger font-bold"></span>  القيمة </label>
+                                                                            <input type="number" class="form-control" id="sadad_co" name="sadad_co" value="0"  readonly hidden>
+                                                                            <input type="number" class="form-control" id="contract_id" name="contract_id" value="{{ $contract->id}}"  readonly hidden>
+
+                                                                            <input type="text" class="form-control" id="sadad_ar" name="sadad_ar" value="" readonly hidden>
+                                                                            <input type="text" class="form-control" id="sadad_co_ar" name="sadad_co_ar" value=""  readonly hidden>
+                                                                            <input type="text" class="form-control" id="sadad_vat_ar" name="sadad_vat_ar" value=""  readonly hidden>
+                                                                            <input type="text" class="form-control" id="agents_name" name="agents_name" value="{{$contract->agents_name}}" readonly required hidden >
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6">
+
+                                                                            <button class="btn btn-success ">حفظ</button>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                               </div>
+
+                                                            </form>
+
                                                         </div>
 
                                                     </div>
@@ -885,7 +967,8 @@
     <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
     <!--Internal  Datatable js -->
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
-
+                        <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+                        <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
 
 
@@ -915,4 +998,60 @@
         })
 
     </script>
+                        <script>
+                            function check_and_ar(){
+                                var  rest_in_cont= document.getElementById('rest_in_cont').value;
+                                var  rest_in_cont2 = document.getElementById('rest_in_cont2').value;
+                                var sadad_cont= document.getElementById('sadad_cont').value;
+                                var test_value=rest_in_cont2-sadad_cont;
+                                if(test_value<0){
+                                    alert('لا يمكن اضافة مبلغ اكبر من القيمة المتبقية علي العقد')
+                                    document.getElementById('sadad_cont').value='0.00';
+                                    document.getElementById('rest_in_cont').value=rest_in_cont2;
+                                }else{
+                                    document.getElementById('rest_in_cont').value=rest_in_cont2-sadad_cont;
+                                    var sadad_vat=parseFloat(sadad_cont-(sadad_cont/1.15)).toFixed(2)
+
+                                        document.getElementById('sadad_vat').value=sadad_vat;
+                                    var sadad_co=parseFloat(sadad_cont/1.15).toFixed(2);
+                                    document.getElementById('sadad_co').value=sadad_co;
+
+
+
+
+
+                                    // تحويل اجمالي السداد الي نص
+                                    var sadad_ar = document.getElementById("sadad_cont").value.split(".");
+
+                                    if (sadad_ar.length == 2){
+                                        document.getElementById ("sadad_ar").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_ar[1])+' '+'هللة فقط لا غير'  ;
+                                    }
+                                    else if (sadad_ar.length == 1){
+                                        document.getElementById ("sadad_ar").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي فقط لا غير' ;
+                                    }
+
+                                    // تحويل قيمة السداد الي نص
+                                    var sadad_co = document.getElementById("sadad_co").value.split(".");
+
+                                    if (sadad_co.length == 2){
+                                        document.getElementById ("sadad_co_ar").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_co[1])+' '+'هللة فقط لا غير'  ;
+                                    }
+                                    else if (sadad_co.length == 1){
+                                        document.getElementById ("sadad_ar").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي فقط لا غير' ;
+                                    }
+                                    // تحويل ضريبة السداد الي نص
+                                    var sadad_vat = document.getElementById("sadad_vat").value.split(".");
+
+                                    if (sadad_vat.length == 2){
+                                        document.getElementById ("sadad_vat_ar").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_vat[1])+' '+'هللة فقط لا غير'  ;
+                                    }
+                                    else if (sadad_vat.length == 1){
+                                        document.getElementById ("sadad_vat_ar").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي فقط لا غير' ;
+                                    }
+
+                                }
+
+                            }
+                        </script>
+                        <script src="{{ URL::asset('assets/plugins/tafgeet/Tafqeet.js') }}"></script>
 @endsection

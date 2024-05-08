@@ -364,9 +364,9 @@
                                     <input type="date" class="form-control" id="exp_sadad" name="exp_sadad" value=""  >
 
 </div>
-                                    <input type="text" class="form-control" id="sadad_ar" name="sadad_ar" value=""  >
-                                    <input type="text" class="form-control" id="sadad_co_ar" name="sadad_co_ar" value=""  >
-                                    <input type="text" class="form-control" id="sadad_vat_ar" name="sadad_vat_ar" value=""  >
+                                    <input type="text" class="form-control" id="sadad_ar" name="sadad_ar" value="" hidden >
+                                    <input type="text" class="form-control" id="sadad_co_ar" name="sadad_co_ar" value=""  hidden>
+                                    <input type="text" class="form-control" id="sadad_vat_ar" name="sadad_vat_ar" value=""  hidden>
 
                                 </div>
                                 </div>

@@ -64,6 +64,8 @@ class UserController extends Controller
 
         $user = User::create($input);
         $user->assignRole($request->input('roles_name'));
+
+
         return redirect()->route('users.index')
             ->with('success','تم اضافة المستخدم بنجاح');
     }

@@ -95,7 +95,7 @@ class EndContractController extends Controller
 
         session()->flash('end_contract');
 
-        return redirect('/rent');
+        return back();
     }
 
     /**

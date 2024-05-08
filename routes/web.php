@@ -22,6 +22,7 @@ Auth::routes();
 //السندات
 
 Route::resource('general_bonds', 'BondsController');
+Route::get('/bonds_detils/{id}', 'BondsController@edit');
 
 //السندات
 Route::resource('avavailable_maid', 'AvavailableMaidController');

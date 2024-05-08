@@ -9,7 +9,7 @@ use App\companys;
 use App\contract;
 use App\contract_history;
 use App\Durations;
-use App\items;
+use App\User;
 use App\maidHistory;
 
 use App\maids;
@@ -19,7 +19,9 @@ use App\man_discount;
 use App\nationalities;
 use App\RentController;
 use App\contractAttachments;
+use App\user_treasure;
 use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -172,13 +174,35 @@ if($request->emp_num==''){
     }
 
 
+
+    // في حالة كان سند القبض نقدآ
+
+    if ($request->sadad_typ=='نقدآ')
+    {
+        //تعديل مبلغ الخزنة
+
+        $treasure = user_treasure::where('user_id',Auth::user()->id)->first();
+        $last_treasure=$treasure->treasure;
+
+        $sadad_to_treasure=$request->sadad;
+        $new_treasure=$last_treasure+$sadad_to_treasure;
+        $treasure->update([
+
+
+            'treasure' =>$new_treasure,
+
+        ]);
+    }
+
     $contract_id = contract::latest()->first()->id;
+
+
     session()->flash('add_contract');
 
     return redirect('/print_cont/'.$contract_id);
 
 
-
+//في حالة يوجد عامل في العقد
 }else{
 
 

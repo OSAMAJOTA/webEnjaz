@@ -14,6 +14,8 @@
 					</div>
                   <h1>osama</h1>
 					<div class="main-header-right">
+                        <?php $users=\App\user_treasure::where('user_id',Auth::user()->id)->first()  ?>
+                        <a href="" class=" btn btn-outline-primary btn-sm" style="font-weight: bold;font-size: 12PX" title="رصيد الخزينة"><i class="fa fa-money-check"></i>{{$users->treasure}} ريال</a>
 						<ul class="nav">
 							<li class="">
 								<div class="dropdown  nav-itemd-none d-md-flex">

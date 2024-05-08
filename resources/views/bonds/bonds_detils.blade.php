@@ -56,7 +56,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto"> المحاسبة</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/    السندات العامة</span>
+                <h4 class="content-title mb-0 my-auto"> المحاسبة</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/    <a href="/general_bonds">السندات العامة</a>/سند رقم {{$bonds->id}}</span>
             </div>
         </div>
 
@@ -104,263 +104,96 @@
 
         @endif
     </div>
-    <div class="row">
 
-    </div>
-    <div class="card-body">
-        <div class="panel-group1" id="accordion11">
-            <div class="panel panel-default  mb-4">
-                <div class="panel-heading1 bg-primary " style="background-color: #3a4d67  !important;">
-                    <h4 class="panel-title1">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion11" href="#collapseFour1" aria-expanded="false">فلاتر البحث<i class="fe fe-arrow-left ml-2"></i></a>
-                    </h4>
+
+    <div class="col-12 ">
+        <div class="card card-secondary">
+            <div class="card-header pb-0">
+                <h5 class="card-title mb-0 pb-0">بيانات السند رقم {{$bonds->id}} </h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+
+
+                    <table class="table table-striped m-0">
+                        <colgroup>
+                            <col width="1">
+                        </colgroup>
+
+                        <tbody>
+                        <tr>
+                            <td class="text-nowrap text-right">نوع السند</td>
+                            <td>
+                                {{$bonds->bonds_type}}       </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text text-right">نوع القبض</td>
+                            <td>
+                                <button class="text-black btn-success btn btn-sm "> {{$bonds->catch_type}}   </button>                                </td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-right">تاريخ الانشاء</td>
+                            <td> {{$bonds->created_at}}    </td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-right">تم الانشاء بواسطة</td>
+                            <td> {{$bonds->Created_by}}    </td>
+                        </tr>
+
+
+
+                        </tbody>
+                    </table>
                 </div>
-                <div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
-                    <div class="panel-body border">
-                        {{-- الصف الاول --}}
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label> المهنة
-                                </label>
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
-                                    </div>
-                                    <select class="form-control select2" name="status_id"   required>
 
+                <div class="col-sm-6">
+                    <h4 class="m-t-0 header-title-small"><b>قيمة السند</b></h4>
+                    <table class="table table-striped m-0">
+                        <colgroup>
+                            <col width="1">
+                        </colgroup>
 
-                                        <option value="" selected>
+                        <tbody>
+                        <tr>
+                            <td class="text-nowrap text-right" style="width:1px">القيمة</td>
+                            <td> <b>{{$bonds->bonds_cost}} </b></td>
+                        </tr>
 
-                                        </option>
-                                        <option value="الكل"> الكل </option>
-                                        <option value="بانتظارالتوجيه"> عاملة منزلية  </option>
-                                        <option value="بانتظار التواصل معه">  سائق خاص </option>
+                        <tr>
+                            <td class="text-nowrap text-right"></td>
+                            <td>{{$bonds->bonds_cost_ar}}</td>
+                        </tr>
 
+                        <tr>
+                            <td class="text-nowrap text-right">قيمة الضريبة</td>
+                            <td> <b>{{$bonds->bonds_vat}}</b></td>
+                        </tr>
 
-                                    </select>
+                        <tr>
+                            <td class="text-nowrap text-right"></td>
+                            <td>{{$bonds->bonds_vat_ar}}</td>
+                        </tr>
 
-                                </div><!-- input-group -->
-                            </div>
+                        <tr>
+                            <td class="text-nowrap text-right">اجمالى</td>
+                            <td> <b>{{$bonds->bonds_total}}</b></td>
+                        </tr>
 
+                        <tr>
+                            <td class="text-nowrap text-right"></td>
+                            <td>{{$bonds->bonds_total_ar}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-
-
-
-                            <div class="col-lg-3">
-                                <label> الجنسية</label>
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
-                                    </div>
-                                    <select class="form-control select2" name="status_id"   required>
-
-
-                                        <option value="" selected>
-
-                                        </option>
-                                        <option value="الكل"> الكل </option>
-                                        <option value="بانتظارالتوجيه">  بلجيكا</option>
-                                        <option value="بانتظار التواصل معه"> الفلبين </option>
-                                        <option value="تم التواصل معه">   اوغندا</option>
-                                        <option value="طلب زيارة منزلية"> اثيوبيا</option>
-                                        <option value="طلب  معاودة الاتصال في وقت لاحق">   مصر   </option>
-                                        <option value="محظور"> السودان</option>
-                                        ةغ
-                                    </select>
-
-                                </div><!-- input-group -->
-                            </div>
-
-                            <div class="col-lg-3">
-                                <label> مدة التشغيل</label>
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
-                                    </div>
-                                    <select class="form-control select2" name="status_id"   required>
-
-
-                                        <option value="" selected>
-
-                                        </option>
-                                        <option value="الكل"> 1 يوم </option>
-                                        <option value="بانتظارالتوجيه">  2 يوم</option>
-                                        <option value="بانتظار التواصل معه"> 3 يوم </option>
-                                        <option value="تم التواصل معه">   7 يوم </option>
-                                        <option value="طلب زيارة منزلية"> 15 يوم</option>
-                                        <option value="طلب  معاودة الاتصال في وقت لاحق">   شهر   </option>
-
-
-                                    </select>
-
-                                </div><!-- input-group -->
-                            </div>
-
-
-                        </div>
-                        {{-- الصف الثاني --}}
-
-
-
-
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary"> بحث</button>
-                            &nbsp;	&nbsp;	&nbsp;
-
-                            <button type="button" onclick="location.href='/agents'" class="btn btn-dark">الغاء </button>
-
-
-
-
-
-
-
-
-
-                        </div>
-
-                        <div class="row">
-
-
-
-
-
-                        </div>
-
-                    </div>
                 </div>
             </div>
-
-        </div>
-
-        <div class="example">
-            <div class="row row-xs wd-xl-80p">
-
-
-
-                <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
-                        <button class="btn btn-info btn-block">
-
-                            <i
-                                class="fas fa-plus"></i>&nbsp;  اضافة سند قبض
-
-                        </button>
-
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
-                        <button class="btn btn-danger btn-block">
-
-                            <i
-                                class="fas fa-plus"></i>&nbsp;  اضافة سند صرف
-
-                        </button>
-
-                    </form>
-                </div>
-
-
-
+            <div class="card-footer">
 
             </div>
-        </div>
-
-
-    </div>
-
-    <div class="card card-primary">
-
-        <div class="card-body text-primary ">
-            {{ $bonds->links() }}
-            <div class="text-danger   text-left ">
-                <h7>عدد السندات</h7>
-                <h3 class="">  <b>{{$bonds_count2}}</b> </h3>
-
-
-            </div>
-
         </div>
     </div>
-
-
-    @foreach($bonds as $x)
-        <!--   كرت العرض-->
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-
-
-                    </div>
-
-                </div>
-                <div class="card-body">
-                    <div class="panel-body table-responsive">
-
-                        <ul class="branchnameList">
-                            <li>
-                                <i class="fa fa-code-branch"></i>
-                                الانجاز المعتمد-نجران
-                            </li>
-
-
-
-
-
-
-
-
-                            <li class="bg-success">
-                                {{$x->catch_type}}             </li>
-                        </ul>
-
-                                <a href="/bonds_detils/{{$x->id}}">
-
-
-
-                                            <table class="table">
-                                                <tbody><tr>
-                                                    <td>رقم السند</td>
-                                                    <td>نوع السند</td>
-                                                    <td>المبلغ</td>
-                                                    <td>البيان</td>
-                                                    <td>تاريخ الانشاء</td>
-                                                    <td>رقم العقد</td>
-                                                    <td>ملاحظات</td>
-                                                    <td>بواسطة</td>
-                                                    <td>العمليات</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>{{$x->id }}  </b></td>
-                                                    <td><b>{{$x->bonds_type}} </b></td>
-                                                    <td><b>{{$x->bonds_total}} </b></td>
-                                                    <td><b>{{$x->bonds_total_ar}} </b></td>
-                                                    <td><b>{{$x->created_at}}  </b></td>
-                                                    <td><b><a href="/contract_detils/{{$x->contract_id }}"> {{$x->contract_id }}</a> </b></td>
-                                                    <td><b>{{$x->comment}} </b></td>
-                                                    <td><b>{{$x->Created_by}} </b></td>
-                                                    <td><b>--</b></td>
-
-                                                </tr>
-                                                </tbody></table>
-
-
-
-
-
-                                </a>
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
     <!--  نهاية كرت العرض-->
 
 
