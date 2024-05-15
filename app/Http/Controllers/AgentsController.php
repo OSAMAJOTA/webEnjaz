@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\contract;
+use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade;
+
 use Illuminate\Support\Facades\Notification;
 use App\agents;
 use App\companys;
@@ -13,13 +16,17 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+
 class AgentsController extends Controller
 {
     public function export()
     {
-       // return Excel::download(new AgentsExport, 'العملاء.xlsx');
-        return Excel::download(new AgentsExport, 'ten-file.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    return Excel::download(new AgentsExport, 'العملاء.xlsx');
+       // return Excel::download(new AgentsExport, 'ten-file.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
+
+
+
     /**
      * Display a listing of the resource.
      *

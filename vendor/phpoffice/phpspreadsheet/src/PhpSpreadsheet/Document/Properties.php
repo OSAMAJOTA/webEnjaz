@@ -107,7 +107,7 @@ class Properties
      */
     private $customProperties = [];
 
-    private  $hyperlinkBase = '';
+    private string $hyperlinkBase = '';
 
     /**
      * Create a new Document Properties instance.

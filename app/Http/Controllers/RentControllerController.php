@@ -21,6 +21,7 @@ use App\RentController;
 use App\contractAttachments;
 use App\user_treasure;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -177,6 +178,8 @@ if($request->emp_num==''){
 
     // في حالة كان سند القبض نقدآ
 
+
+
     if ($request->sadad_typ=='نقدآ')
     {
         //تعديل مبلغ الخزنة
@@ -235,6 +238,7 @@ if($request->emp_num==''){
         'man_discount' => $request->man_discount,  // تخفيض المدير
         'rest' => $request->rest,    // المتبقي
         'tot' => $request->tot,//الاجمالي
+
         'Created_by' => (Auth::user()->name),
 
     ]);

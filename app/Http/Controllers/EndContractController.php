@@ -43,6 +43,15 @@ class EndContractController extends Controller
     public function store(Request $request)
     {
         $end_contract = contract::where('id',$request->id);
+        $cost=$request->cost;
+            $countss=$request->countss;
+        $day_cost= $cost/$countss;
+        $late_days=$request->late_days;
+        $late_cost=ceil($late_days*$day_cost);
+        $remin=$request->remaining_days;
+        $retur_cost=ceil($remin*$day_cost);
+
+
         $end_contract->update([
             'status' => 'منتهي',
             'end_contract_date' => $request->end_contract_date2,
@@ -50,6 +59,10 @@ class EndContractController extends Controller
             'end_reson' => $request->end_reson,
             'late_days' => $request->late_days,
             'remaining_days' => $request->remaining_days,
+            'late_cost' => $late_cost,
+            'day_cost' => $day_cost,
+            'return_cost' => $retur_cost,
+
             'end_by' => Auth::user()->name,
 
 
@@ -93,9 +106,10 @@ class EndContractController extends Controller
 
 
 
-        session()->flash('end_contract');
+       session()->flash('end_contract');
 
-        return back();
+        return redirect('/rent');
+
     }
 
     /**

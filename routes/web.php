@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\DurationController;
 use Illuminate\Support\Facades\Route;
+use Dompdf\Dompdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     return view('loglog.login');
 });
 
 Auth::routes();
 //السندات
-
+Route::post('/serach_rent', 'ContractController@serach_rent');
+Route::resource('tree', 'AccountTreeController');
+Route::post('pay_return', 'BondsController@pay_return');
+Route::post('pay_penalty', 'BondsController@pay_penalty');
 Route::resource('general_bonds', 'BondsController');
 Route::get('/bonds_detils/{id}', 'BondsController@edit');
 
@@ -120,6 +126,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('online-user', [UserController::class, 'online']);
-Route::get('Export_agents', 'AgentsController@export');
+//Route::get('Export_agents', 'AgentsController@export');
+Route::get('/Export_agents', [AgentsController::class,'export']);
 
 Route::get('/{page}', 'AdminController@index');

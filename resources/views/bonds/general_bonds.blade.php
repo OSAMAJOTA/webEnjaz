@@ -288,7 +288,13 @@
     @foreach($bonds as $x)
         <!--   كرت العرض-->
         <div class="col-xl-12">
-            <div class="card">
+
+
+            @if( $x->bonds_type_id=='2' )
+                <div class="card" style="background-color: #b95959a8">
+                    @else
+                        <div class="card" >
+                            @endif
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
 
@@ -296,7 +302,11 @@
                     </div>
 
                 </div>
-                <div class="card-body">
+                            @if( $x->bonds_type_id=='2' )
+                                <div class="card-body" style="background-color: #b95959a8">
+                                    @else
+                                        <div class="card-body" >
+                                            @endif
                     <div class="panel-body table-responsive">
 
                         <ul class="branchnameList">
@@ -320,7 +330,7 @@
 
 
 
-                                            <table class="table">
+                                            <table class="table" >
                                                 <tbody><tr>
                                                     <td>رقم السند</td>
                                                     <td>نوع السند</td>

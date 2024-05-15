@@ -5,21 +5,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a18863c-13d9-443f-ac83-6b0dc4624e14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/bonds/bonds_detils.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exports/AgentsExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/AgentsExport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BondsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BondsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EndContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EndContractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RentControllerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_03_19_204157_create_contracts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_03_19_204157_create_contracts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/agents/agents.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agents/agents.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/bonds/general_bonds.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/bonds/general_bonds.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/main-header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main-header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main-sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/detils.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/rent/rentcont.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/rentcont.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rent/rent.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/BigDecimal.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/BigDecimal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/BigInteger.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/BigInteger.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/BigNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/BigNumber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/BigRational.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/BigRational.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/Exception/NumberFormatException.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/Exception/NumberFormatException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/Internal/Calculator.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/Internal/Calculator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/Internal/Calculator/BcMathCalculator.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/Internal/Calculator/BcMathCalculator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/Internal/Calculator/NativeCalculator.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/Internal/Calculator/NativeCalculator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/brick/math/src/RoundingMode.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/brick/math/src/RoundingMode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Container/Container.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Container/Container.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/ContentLength.rst" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/ContentLength.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/FlySystem.rst" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/guides/FlySystem.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/psalm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/psalm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/File.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/ZipStream.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/src/ZipStream.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/test/ZipStreamTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/maennchen/zipstream-php/test/ZipStreamTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Cell.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Cell.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Document/Properties.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Document/Properties.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/psr/http-factory/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/psr/http-factory/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/psr/http-factory/src/UploadedFileFactoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/psr/http-factory/src/UploadedFileFactoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/ramsey/uuid/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/ramsey/uuid/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/ramsey/uuid/src/Math/BrickMathCalculator.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/ramsey/uuid/src/Math/BrickMathCalculator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/console/Helper/ProgressBar.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/console/Helper/ProgressBar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/deprecation-contracts/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/deprecation-contracts/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/event-dispatcher/Debug/WrappedListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/event-dispatcher/Debug/WrappedListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/http-foundation/RedirectResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/http-foundation/RedirectResponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/http-kernel/ControllerMetadata/ArgumentMetadataFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/http-kernel/ControllerMetadata/ArgumentMetadataFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/http-kernel/DataCollector/DataCollector.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/http-kernel/DataCollector/DataCollector.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/http-kernel/DataCollector/RequestDataCollector.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/http-kernel/DataCollector/RequestDataCollector.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/http-kernel/DependencyInjection/RegisterControllerArgumentLocatorsPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/http-kernel/DependencyInjection/RegisterControllerArgumentLocatorsPass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/http-kernel/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/http-kernel/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/http-kernel/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/http-kernel/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/service-contracts/Attribute/SubscribedService.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/service-contracts/Attribute/SubscribedService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/service-contracts/ServiceSubscriberTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/service-contracts/ServiceSubscriberTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/service-contracts/Test/ServiceLocatorTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/service-contracts/Test/ServiceLocatorTestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/service-contracts/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/service-contracts/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/string/LazyString.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/string/LazyString.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/translation-contracts/Test/TranslatorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/translation-contracts/Test/TranslatorTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/translation-contracts/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/translation-contracts/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/translation/Loader/XliffFileLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Loader/XliffFileLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/translation/LocaleSwitcher.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/translation/LocaleSwitcher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/translation/Resources/bin/translation-status.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Resources/bin/translation-status.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/var-dumper/Caster/ReflectionCaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/symfony/var-dumper/Caster/ReflectionCaster.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +91,9 @@
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -156,6 +221,12 @@
       <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -166,21 +237,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/wamp64/www/enjaz/resources/views/bonds",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2023.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/health&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PhpStorm 2023.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\enjaz\resources\views\bonds" />
@@ -213,7 +284,10 @@
       <workItem from="1713875070261" duration="49590000" />
       <workItem from="1714299894468" duration="33778000" />
       <workItem from="1714411009962" duration="69539000" />
-      <workItem from="1715092969563" duration="26004000" />
+      <workItem from="1715092969563" duration="27225000" />
+      <workItem from="1715419853248" duration="15221000" />
+      <workItem from="1715506639153" duration="8742000" />
+      <workItem from="1715591573798" duration="24416000" />
     </task>
     <servers />
   </component>
@@ -235,7 +309,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/routes/web.php</url>
-          <line>49</line>
+          <line>120</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

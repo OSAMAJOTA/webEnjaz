@@ -14,8 +14,8 @@ class AgentsExport implements FromCollection
     */
     public function collection()
     {
-       // return maids::all();
-        return agents::select('*')->get();
+       return maids::all();
+
 
     }
 }

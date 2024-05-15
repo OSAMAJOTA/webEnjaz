@@ -135,6 +135,37 @@
 
             @endif
 
+            @if (session()->has('late_bonds'))
+                <script>
+                    window.onload = function() {
+                        notif({
+                            msg: "تم سداد غرامة تأخير عقد التشغيل بنجاح",
+                            type: "success"
+                        })
+                    }
+
+                </script>
+
+
+
+            @endif
+
+            @if (session()->has('return_bonds'))
+                <script>
+                    window.onload = function() {
+                        notif({
+                            msg: "تم استرداد  المبلغ للعميل  بنجاح",
+                            type: "success"
+                        })
+                    }
+
+                </script>
+
+
+
+            @endif
+
+
 
             @if (session()->has('change_emp'))
                 <script>
@@ -179,59 +210,38 @@
                                                         <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion11" href="#collapseFour1" aria-expanded="false">فلاتر البحث<i class="fe fe-arrow-left ml-2"></i></a>
                                                     </h4>
                                                 </div>
-                                                <form action="/Search_agents" method="POST" role="search" autocomplete="off">
+                                                <form action="/serach_rent" method="POST" role="search" autocomplete="off">
                                                     {{ csrf_field() }}
                                                     <div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
                                                         <div class="panel-body border">
+
                                                             {{-- الصف الاول --}}
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label> الإسم عربي</label>
+                                                                    <label> رقم العقد </label>
                                                                     <div class="input-group sm ">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
-                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="text">
+                                                                        </div><input aria-describedby="basic-addon1"  class="form-control" placeholder="" type="text" name="cont_num">
                                                                     </div><!-- input-group -->
                                                                 </div>
 
                                                                 <div class="col-lg-3">
-                                                                    <label> رقم الهوية</label>
+                                                                    <label>الإسم عربي</label>
                                                                     <div class="input-group mb-4">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
-                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" name="id_num" placeholder="" type="text">
+                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" name="agent_name" placeholder="" type="text">
                                                                     </div><!-- input-group -->
                                                                 </div>
 
                                                                 <div class="col-lg-3">
-                                                                    <label> الجوال</label>
+                                                                    <label> حالة العقد</label>
                                                                     <div class="input-group mb-4">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
-                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="text">
-                                                                    </div><!-- input-group -->
-                                                                </div>
-
-                                                                <div class="col-lg-3">
-                                                                    <label>البريد الالكترونى</label>
-                                                                    <div class="input-group mb-4">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
-                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="text">
-                                                                    </div><!-- input-group -->
-                                                                </div>
-
-                                                            </div>
-                                                            {{-- الصف الثاني --}}
-
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label> الجنسية</label>
-                                                                    <div class="input-group mb-4">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
                                                                         </div>
-                                                                        <select class="form-control select2" name=""   >
+                                                                        <select class="form-control select2" name="cont_status"   >
 
 
                                                                             <option value="" >
@@ -243,64 +253,65 @@
                                                                             <option value="طلب زيارة منزلية"> اثيوبيا</option>
                                                                             <option value="طلب  معاودة الاتصال في وقت لاحق">   مصر   </option>
                                                                             <option value="محظور"> السودان</option>
-                                                                            ةغ
+
                                                                         </select>
+                                                                    </div><!-- input-group -->
+                                                                </div>
+
+                                                                <div class="col-lg-3">
+                                                                    <label>جوال / الهاتف</label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
+                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="text" name="agent_phone">
+                                                                    </div><!-- input-group -->
+                                                                </div>
+
+                                                            </div>
+                                                            {{-- الصف الثاني --}}
+
+                                                            <div class="row">
+                                                                <div class="col-lg-3">
+                                                                    <label> البريد الالكترونى</label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
+                                                                        </div>
+                                                                        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="text" name="agent_email">
 
                                                                     </div><!-- input-group -->
                                                                 </div>
 
                                                                 <div class="col-lg-3">
-                                                                    <label>عملاء مدينين
+                                                                    <label> رقم الهوية
                                                                     </label>
                                                                     <div class="input-group mb-4">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
                                                                         </div>
-                                                                        <select class="form-control select2" name=""   >
-
-
-                                                                            <option value="" selected>
-
-                                                                            </option>
-                                                                            <option value="الكل"> الكل </option>
-                                                                            <option value="بانتظارالتوجيه">  المدينين </option>
-                                                                            <option value="بانتظار التواصل معه">  المسدد </option>
-
-                                                                            ةغ
-                                                                        </select>
+                                                                        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="text" name="agent_id">
 
                                                                     </div><!-- input-group -->
                                                                 </div>
 
                                                                 <div class="col-lg-3">
-                                                                    <label> عملاء بدون عقود</label>
+                                                                    <label> تاريخ الانشاء</label>
                                                                     <div class="input-group mb-4">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
                                                                         </div>
-                                                                        <select class="form-control select2" name=""   >
-
-
-                                                                            <option value="" selected>
-
-                                                                            </option>
-                                                                            <option value="الكل"> الكل </option>
-                                                                            <option value="بانتظارالتوجيه">  لديهم عقود </option>
-                                                                            <option value="بانتظار التواصل معه"> بدون عقد </option>
-
-
-                                                                        </select>
+                                                                        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="date" name="create_date">
 
                                                                     </div><!-- input-group -->
                                                                 </div>
 
                                                                 <div class="col-lg-3">
-                                                                    <label> مستوى التقيم</label>
+                                                                    <label> الجنسية</label>
                                                                     <div class="input-group mb-4">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
                                                                         </div>
-                                                                        <select class="form-control select2" name=""   >
+                                                                        <select class="form-control select2" name="nash"   >
 
 
                                                                             <option value="" selected>
@@ -317,22 +328,96 @@
                                                                 </div>
 
                                                             </div>
+
+                                                            {{-- الصف الثالث --}}
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label>عميل مهم</label>
-                                                                    <div class="input-group mb-4">
+                                                                    <label>الوظيفة</label>
+                                                                    <div class="input-group sm ">
                                                                         <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
-                                                                        </div>
-                                                                        <select class="form-control select2" name=""   >
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
+                                                                        </div>  <select class="form-control select2" name="work"   >
 
 
                                                                             <option value="" selected>
 
                                                                             </option>
+                                                                            <option value="الكل"> جيد </option>
+                                                                            <option value="بانتظارالتوجيه"> ممتاز </option>
+                                                                            <option value="بانتظار التواصل معه">   سئ</option>
+                                                                            <option value="تم التواصل معه"> محظور </option>
+
+                                                                        </select>
+                                                                    </div><!-- input-group -->
+                                                                </div>
+
+                                                                <div class="col-lg-3">
+                                                                    <label>تم الانشاء بواسطة</label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
+                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" name="create_by" placeholder="" type="text">
+                                                                    </div><!-- input-group -->
+                                                                </div>
+
+                                                                <div class="col-lg-3">
+                                                                    <label> ينتهي بعد</label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-tags"></i></span>
+                                                                        </div><input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="ادخل عدد الايام " type="text" name="end_after">
+                                                                    </div><!-- input-group -->
+                                                                </div>
+
+                                                                <div class="col-lg-3">
+                                                                    <label> النوع</label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
+                                                                        </div>
+                                                                        <select class="form-control select2" name="typ"   >
+
+
+                                                                            <option value="" >
+                                                                            </option>
                                                                             <option value="الكل"> الكل </option>
-                                                                            <option value="بانتظارالتوجيه"> هام </option>
-                                                                            <option value="بانتظار التواصل معه"> غير مهم</option>
+                                                                            <option value="بانتظارالتوجيه">  بلجيكا</option>
+                                                                            <option value="بانتظار التواصل معه"> الفلبين </option>
+                                                                            <option value="تم التواصل معه">   اوغندا</option>
+                                                                            <option value="طلب زيارة منزلية"> اثيوبيا</option>
+                                                                            <option value="طلب  معاودة الاتصال في وقت لاحق">   مصر   </option>
+                                                                            <option value="محظور"> السودان</option>
+
+                                                                        </select>
+
+                                                                    </div><!-- input-group -->
+                                                                </div>
+
+                                                            </div>
+                                                            {{-- الصف الرابع --}}
+
+                                                            <div class="row">
+
+
+                                                                <div class="col-lg-3">
+                                                                    <label> تاريخ نهاية العقد
+                                                                    </label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
+                                                                        </div>
+                                                                        <select class="form-control select2" name="end_typ"   >
+
+
+                                                                            <option value="" >
+                                                                            </option>
+                                                                            <option value="الكل"> الكل </option>
+                                                                            <option value="بانتظارالتوجيه">  بلجيكا</option>
+                                                                            <option value="بانتظار التواصل معه"> الفلبين </option>
+                                                                            <option value="تم التواصل معه">   اوغندا</option>
+                                                                            <option value="طلب زيارة منزلية"> اثيوبيا</option>
+                                                                            <option value="طلب  معاودة الاتصال في وقت لاحق">   مصر   </option>
+                                                                            <option value="محظور"> السودان</option>
 
                                                                         </select>
 
@@ -340,18 +425,21 @@
                                                                 </div>
 
                                                                 <div class="col-lg-3">
-                                                                    <label> المسوق</label>
+                                                                    <label> الحالة المالية</label>
                                                                     <div class="input-group mb-4">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
                                                                         </div>
-                                                                        <select class="form-control select2" name=""   >
+                                                                        <select class="form-control select2" name="mony_status"   >
 
 
                                                                             <option value="" selected>
 
                                                                             </option>
                                                                             <option value="الكل"> الكل </option>
+                                                                            <option value="بانتظارالتوجيه">  لديهم عقود </option>
+                                                                            <option value="بانتظار التواصل معه"> بدون عقد </option>
+
 
                                                                         </select>
 
@@ -360,7 +448,44 @@
 
 
 
+                                                                <div class="col-lg-3">
+                                                                    <label> حالة اختيار العمالة</label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
+                                                                        </div>
+                                                                        <select class="form-control select2" name="maid_status"   >
+
+
+                                                                            <option value="" >
+                                                                            </option>
+                                                                            <option value="الكل"> الكل </option>
+                                                                            <option value="بانتظارالتوجيه">  بلجيكا</option>
+                                                                            <option value="بانتظار التواصل معه"> الفلبين </option>
+                                                                            <option value="تم التواصل معه">   اوغندا</option>
+                                                                            <option value="طلب زيارة منزلية"> اثيوبيا</option>
+                                                                            <option value="طلب  معاودة الاتصال في وقت لاحق">   مصر   </option>
+                                                                            <option value="محظور"> السودان</option>
+
+                                                                        </select>
+
+                                                                    </div><!-- input-group -->
+                                                                </div>
+
+                                                                <div class="col-lg-3">
+                                                                    <label> تاريخ نهاية العقد
+                                                                    </label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
+                                                                        </div>
+                                                                        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder=""  type="date" name="end_date">
+
+                                                                    </div><!-- input-group -->
+                                                                </div>
                                                             </div>
+                                                            {{-- الصف الخامس --}}
+
 
 
                                                             <div class="d-flex justify-content-center">
@@ -445,7 +570,7 @@
 
 
                     ?>
-                @if($days_count<3)
+                @if($start<$now or $x->status=='منتهي' or $days_count < 3 )
                     <div class="card-body" style="background-color: #ffd4d4a8">
                         @else
                             <div class="card-body" >
@@ -458,7 +583,7 @@
                                 {{$x->companys_name }}
                             </li>
 
-                            @if($start<$now)
+                            @if($start<$now or $x->status=='منتهي')
                                 <li class="bg-danger">
                                     <i class="fa-solid fa-timer"></i>
                                     فترة العقد انتهت
@@ -704,7 +829,7 @@
                                     </li>
 
                                     <li class="list-group-itemm">
-                                        <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#end_contract"   data-id="{{ $x->id }}" data-end_contract_date="{{ $x->end_date }}"  data-maid_id="{{ $x->maids_id }}"  >
+                                        <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#end_contract"   data-id="{{ $x->id }}" data-end_contract_date="{{ $x->end_date }}"  data-cost="{{ $x->cost }}" data-countss="{{ $x->countss }}" data-maid_id="{{ $x->maids_id }}"  >
 
 
 
@@ -752,15 +877,15 @@
                                 <div class="col-md-2 hideApplicant">
 
                                     <p class="text-info font-bold">تم انهاء العقد</p>
-                                    @if($x->late_days>0)
-                                    <a class="modal-effect  btn btn-warning btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+                                    @if($x->late_days>0 and $x->late_cost>0 )
+                                    <a class="modal-effect  btn btn-warning btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#penalty"   data-id="{{ $x->id }}" data-late_days="{{ $x->late_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}"  >
 
 
                                         <i class="fa fa-cash-register m-r-5"></i>
                                         <span>دفع غرامة التأخير</span> </a>&nbsp;
                                     @endif
-                                    @if($x->remaining_days>0)
-                                        <a class="modal-effect  btn btn-info btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+                                    @if($x->remaining_days>0 and $x->return_cost>0 )
+                                        <a class="modal-effect  btn btn-info btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#return"   data-id="{{ $x->id }}" data-remaining_days="{{ $x->remaining_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}" data-return_cost="{{ $x->return_cost }}"   >
 
 
                                             <i class="fa fa-cash-register m-r-5"></i>
@@ -782,13 +907,13 @@
                                             <td>تاريخ الانهاء</td>
                                             <td>{{$x->end_contract_date}}</td>
                                         </tr>
-                                        @if($x->late_days>0)
+                                        @if($x->late_cost>0)
                                             <tr>
                                                 <td>عدد ايام التأخير</td>
                                                 <td>{{$x->late_days}}</td>
                                             </tr>
                                         @endif
-                                        @if($x->remaining_days>0)
+                                        @if($x->return_cost>0)
                                             <tr>
                                                 <td>عدد الايام المتبقية </td>
                                                 <td>{{$x->remaining_days}}</td>
@@ -815,14 +940,14 @@
                                 </div>
                                 @endif
 
-                        @if($x->late_days>0)
+                        @if($x->late_days>0 and $x->late_cost>0)
                             <br>
                             <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #cba844;color:#cba844;">
                                 <i class="fa fa-window-close m-r-5"></i><span> يوجد غرامة تأخير علي العقد </span>
                             </div>
                         @endif
 
-                        @if($x->remaining_days>0)
+                        @if($x->remaining_days>0 and $x->return_cost>0)
                             <br>
                             <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #527589;color:#527589;">
                                 <i class="fa fa-window-close m-r-5"></i><span> يوجد استرداد مبلغ للعميل  </span>
@@ -1110,6 +1235,9 @@
                                                                     <input type="text" id="late_days" name="late_days" hidden >
                                                                     <H3 hidden>عدد ايام المتبقية في العقد</H3>
                                                                     <input type="text" id="remaining_days" name="remaining_days" hidden >
+                                                                    <input type="text" id="countss" name="countss" hidden="hidden" >
+                                                                    <input type="text" id="cost" name="cost" hidden="hidden" >
+
 
 
                                                                 </div>
@@ -1127,6 +1255,154 @@
                                                 </div>
                                             </div>
 
+                                                <!-- Container closed -->
+                                                <div class="modal" id="penalty">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content modal-content-demo">
+                                                            <div class="modal-header">
+                                                                <h6 class="modal-title">    دفع غرامة تأخير  </h6><button aria-label="Close" class="close" data-dismiss="modal"
+                                                                                                                   type="button"><span aria-hidden="true">&times;</span></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/pay_penalty" method="post">
+                                                                    {{ csrf_field() }}
+
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <label for="exampleInputEmail1">اجمالي العقد</label>
+                                                                                <input type="text" class="form-control text-center" id="tot" name="tot" readonly>
+                                                                                <label for="exampleInputEmail1">عدد ايام العقد</label>
+                                                                                <input type="text" class="form-control text-center" id="countss" name="countss" readonly>
+                                                                                <input type="text" name="id" id="id" value="" hidden="hidden">
+
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <label for="exampleInputEmail1">عدد ايام التأخير</label>
+                                                                                <input type="text" class="form-control text-center" id="late_days" name="late_days" readonly>
+                                                                                <label for="exampleInputEmail1">تكلفة اليوم</label>
+                                                                                <input type="text" class="form-control text-center" id="day_cost" name="day_cost" readonly>
+                                                                                <input type="text" name="id" id="id" value="" hidden="hidden">
+                                                                                <input type="text" name="agents_name" id="agents_name" value="" hidden>
+
+
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                            <label for="exampleInputEmail1">مبلغ الغرامة</label>
+                                                                            <input type="number" class="form-control text-center" id="late_cost" name="late_cost" readonly >
+                                                                            <label for="exampleInputEmail1"> مبلغ السداد </label>
+                                                                            <input type="number" class="form-control text-center" id="sadad" name="sadad" onkeyup="mydsadad()" required >
+
+                                                                        <label for="exampleInputEmail1"> طريقة السداد  </label>
+                                                                        <select class="form-control" name="catch_type" id="catch_type" required>
+                                                                            <option value=""> حدد طريقة السداد</option>
+                                                                            <option value="نقدآ">نقدآ</option>
+                                                                            <option value="تحويل">تحويل</option>
+                                                                        </select>
+                                                                            <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span> ضريبة مبلغ السداد </label>
+                                                                            <input type="number" class="form-control" id="sadad_vat" name="sadad_vat" value="0"  readonly hidden >
+                                                                            <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span>  القيمة </label>
+                                                                            <input type="number" class="form-control" id="sadad_co" name="sadad_co" value="0"  readonly hidden >
+
+                                                                            <input type="text" class="form-control" id="sadad_ar" name="sadad_ar" value="" hidden >
+                                                                            <input type="text" class="form-control" id="sadad_co_ar" name="sadad_co_ar" value="" hidden >
+                                                                            <input type="text" class="form-control" id="sadad_vat_ar" name="sadad_vat_ar" value="" hidden >
+
+
+
+                                                                    </div>
+
+
+
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-success">تاكيد</button>
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                                                    </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Container closed -->
+                                                <div class="modal" id="return">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content modal-content-demo">
+                                                            <div class="modal-header">
+                                                                <h6 class="modal-title">   استرداد مبلغ للعميل    </h6><button aria-label="Close" class="close" data-dismiss="modal"
+                                                                                                                          type="button"><span aria-hidden="true">&times;</span></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/pay_return" method="post">
+                                                                    {{ csrf_field() }}
+
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <label for="exampleInputEmail1">اجمالي العقد</label>
+                                                                                    <input type="text" class="form-control text-center" id="tot" name="tot" readonly>
+                                                                                    <label for="exampleInputEmail1">عدد ايام العقد</label>
+                                                                                    <input type="text" class="form-control text-center" id="countss" name="countss" readonly>
+                                                                                    <input type="text" name="id" id="id" value="" hidden="hidden">
+
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <label for="exampleInputEmail1">عدد الايام المتبقية</label>
+                                                                                    <input type="text" class="form-control text-center" id="remaining_days" name="remaining_days" readonly>
+                                                                                    <label for="exampleInputEmail1">تكلفة اليوم</label>
+                                                                                    <input type="text" class="form-control text-center" id="day_cost" name="day_cost" readonly>
+                                                                                    <input type="text" name="id" id="id" value="" hidden="hidden">
+                                                                                    <input type="text" name="agents_name" id="agents_name" value="" hidden>
+
+
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                            <label for="exampleInputEmail1">مبلغ الاسترداد</label>
+                                                                            <input type="number" class="form-control text-center" id="return_cost" name="return_cost" readonly >
+                                                                            <label for="exampleInputEmail1"> مبلغ السداد </label>
+                                                                            <input type="number" class="form-control text-center" id="sadad1" name="sadad1" onkeyup="mysarf()" required >
+
+                                                                            <label for="exampleInputEmail1"> طريقة السداد  </label>
+                                                                            <select class="form-control" name="catch_type1" id="catch_type1" required>
+                                                                                <option value=""> حدد طريقة الاسترداد</option>
+                                                                                <option value="نقدآ">نقدآ</option>
+                                                                                <option value="تحويل">تحويل</option>
+                                                                            </select>
+                                                                            <label for="inputName" class="control-label"  hidden> <span class="text-danger font-bold"></span> ضريبة مبلغ السداد </label>
+                                                                            <input type="number" class="form-control" id="sadad_vat1" name="sadad_vat1" value="0"  readonly hidden >
+                                                                            <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span>  القيمة </label>
+                                                                            <input type="number" class="form-control" id="sadad_co1" name="sadad_co1" value="0"  readonly hidden >
+
+                                                                            <input type="text" class="form-control" id="sadad_ar1" name="sadad_ar1" value="" hidden >
+                                                                            <input type="text" class="form-control" id="sadad_co_ar1" name="sadad_co_ar1" value="" hidden >
+                                                                            <input type="text" class="form-control" id="sadad_vat_ar1" name="sadad_vat_ar1" value="" hidden >
+
+
+
+                                                                        </div>
+
+
+
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-success">تاكيد</button>
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
     <!-- main-content closed -->
 @endsection
@@ -1157,6 +1433,58 @@
 
 
 
+                                                    <script>
+                                                        $('#return').on('show.bs.modal', function(event) {
+                                                            var button = $(event.relatedTarget)
+                                                            var id = button.data('id')
+                                                            var remaining_days = button.data('remaining_days')
+                                                            var tot = button.data('tot')
+                                                            var countss = button.data('countss')
+                                                            var late_cost = button.data('late_cost')
+                                                            var day_cost = button.data('day_cost')
+                                                            var agents_name = button.data('agents_name')
+                                                            var return_cost = button.data('return_cost')
+
+
+                                                            var modal = $(this)
+                                                            modal.find('.modal-body #id').val(id);
+                                                            modal.find('.modal-body #remaining_days').val(remaining_days);
+                                                            modal.find('.modal-body #tot').val(tot);
+                                                            modal.find('.modal-body #countss').val(countss);
+                                                            modal.find('.modal-body #late_cost').val(late_cost);
+                                                            modal.find('.modal-body #day_cost').val(day_cost);
+                                                            modal.find('.modal-body #agents_name').val(agents_name);
+                                                            modal.find('.modal-body #return_cost').val(return_cost);
+
+
+                                                        })
+                                                    </script>
+
+
+                                                    <script>
+                                                        $('#penalty').on('show.bs.modal', function(event) {
+                                                            var button = $(event.relatedTarget)
+                                                            var id = button.data('id')
+                                                            var late_days = button.data('late_days')
+                                                            var tot = button.data('tot')
+                                                            var countss = button.data('countss')
+                                                            var late_cost = button.data('late_cost')
+                                                            var day_cost = button.data('day_cost')
+                                                            var agents_name = button.data('agents_name')
+
+
+                                                            var modal = $(this)
+                                                            modal.find('.modal-body #id').val(id);
+                                                            modal.find('.modal-body #late_days').val(late_days);
+                                                            modal.find('.modal-body #tot').val(tot);
+                                                            modal.find('.modal-body #countss').val(countss);
+                                                            modal.find('.modal-body #late_cost').val(late_cost);
+                                                            modal.find('.modal-body #day_cost').val(day_cost);
+                                                            modal.find('.modal-body #agents_name').val(agents_name);
+
+
+                                                        })
+                                                    </script>
 
 
     <script>
@@ -1223,12 +1551,16 @@
                                                         var id = button.data('id')
                                                         var end_contract_date = button.data('end_contract_date')
                                                         var maid_id = button.data('maid_id')
+                                                        var countss = button.data('countss')
+                                                        var cost = button.data('cost')
 
 
 
                                                         var modal = $(this)
                                                         modal.find('.modal-body #id').val(id);
                                                         modal.find('.modal-body #maid_id').val(maid_id);
+                                                        modal.find('.modal-body #cost').val(cost);
+                                                        modal.find('.modal-body #countss').val(countss);
                                                         modal.find('.modal-body #end_contract_date').val(end_contract_date);
 
 
@@ -1321,7 +1653,7 @@
 
 
                                                 </script>
-                                                    count_day
+
 
                                                 <script>
                                                     $(document).ready(function() {
@@ -1382,6 +1714,116 @@
 
 
                                                     </script>
+                                                    <script>
+
+                                                        function  mydsadad() {
 
 
+
+                                                            var sadad = parseFloat(document.getElementById("sadad").value);
+
+                                                                var sadad_vat=sadad-(sadad/1.15);
+                                                                var sadad_co=sadad/1.15;
+
+                                                                document.getElementById("sadad_co").value = parseFloat(sadad_co).toFixed(2);
+                                                                document.getElementById("sadad_vat").value = parseFloat(sadad_vat).toFixed(2);
+
+
+
+                                                                // تحويل اجمالي السداد الي نص
+                                                                var sadad_ar = document.getElementById("sadad").value.split(".");
+
+                                                                if (sadad_ar.length == 2){
+                                                                    document.getElementById ("sadad_ar").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_ar[1])+' '+'هللة فقط لا غير'  ;
+                                                                }
+                                                                else if (sadad_ar.length == 1){
+                                                                    document.getElementById ("sadad_ar").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي فقط لا غير' ;
+                                                                }
+
+                                                                // تحويل قيمة السداد الي نص
+                                                                var sadad_co = document.getElementById("sadad_co").value.split(".");
+
+                                                                if (sadad_co.length == 2){
+                                                                    document.getElementById ("sadad_co_ar").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_co[1])+' '+'هللة فقط لا غير'  ;
+                                                                }
+                                                                else if (sadad_co.length == 1){
+                                                                    document.getElementById ("sadad_ar").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي فقط لا غير' ;
+                                                                }
+                                                                // تحويل ضريبة السداد الي نص
+                                                                var sadad_vat = document.getElementById("sadad_vat").value.split(".");
+
+                                                                if (sadad_vat.length == 2){
+                                                                    document.getElementById ("sadad_vat_ar").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_vat[1])+' '+'هللة فقط لا غير'  ;
+                                                                }
+                                                                else if (sadad_vat.length == 1){
+                                                                    document.getElementById ("sadad_vat_ar").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي فقط لا غير' ;
+                                                                }
+
+
+
+
+
+
+                                                        }
+
+
+
+                                                    </script>
+                                                    <script>
+
+                                                        function  mysarf() {
+
+
+
+                                                            var sadad = parseFloat(document.getElementById("sadad1").value);
+
+                                                            var sadad_vat=sadad-(sadad/1.15);
+                                                            var sadad_co=sadad/1.15;
+
+                                                            document.getElementById("sadad_co1").value = parseFloat(sadad_co).toFixed(2);
+                                                            document.getElementById("sadad_vat1").value = parseFloat(sadad_vat).toFixed(2);
+
+
+
+                                                            // تحويل اجمالي السداد الي نص
+                                                            var sadad_ar = document.getElementById("sadad1").value.split(".");
+
+                                                            if (sadad_ar.length == 2){
+                                                                document.getElementById ("sadad_ar1").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_ar[1])+' '+'هللة فقط لا غير'  ;
+                                                            }
+                                                            else if (sadad_ar.length == 1){
+                                                                document.getElementById ("sadad_ar1").value =  tafqeet (sadad_ar[0])+' '+'ريال سعودي فقط لا غير' ;
+                                                            }
+
+                                                            // تحويل قيمة السداد الي نص
+                                                            var sadad_co = document.getElementById("sadad_co1").value.split(".");
+
+                                                            if (sadad_co.length == 2){
+                                                                document.getElementById ("sadad_co_ar1").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_co[1])+' '+'هللة فقط لا غير'  ;
+                                                            }
+                                                            else if (sadad_co.length == 1){
+                                                                document.getElementById ("sadad_ar1").value =  tafqeet (sadad_co[0])+' '+'ريال سعودي فقط لا غير' ;
+                                                            }
+                                                            // تحويل ضريبة السداد الي نص
+                                                            var sadad_vat = document.getElementById("sadad_vat1").value.split(".");
+
+                                                            if (sadad_vat.length == 2){
+                                                                document.getElementById ("sadad_vat_ar1").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي'+' و ' + tafqeet (sadad_vat[1])+' '+'هللة فقط لا غير'  ;
+                                                            }
+                                                            else if (sadad_vat.length == 1){
+                                                                document.getElementById ("sadad_vat_ar1").value =  tafqeet (sadad_vat[0])+' '+'ريال سعودي فقط لا غير' ;
+                                                            }
+
+
+
+
+
+
+                                                        }
+
+
+
+                                                    </script>
+
+                                                    <script src="{{ URL::asset('assets/plugins/tafgeet/Tafqeet.js') }}"></script>
 @endsection

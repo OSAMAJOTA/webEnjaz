@@ -289,14 +289,14 @@
                                     <div class="example">
                                         <div class="row row-xs wd-xl-80p">
                                             <div class="col-sm-6 col-md-2">
-                                                <button class="btn btn-primary-gradient btn-block">
+                                                <a href="/Export_agents" class="btn btn-primary-gradient btn-block">
 
 
 
                                                 <i
                                                     class="fas fa-print"></i>&nbsp; طباعة</a>
 
-                                                </button>
+
                                             </div>
 
 

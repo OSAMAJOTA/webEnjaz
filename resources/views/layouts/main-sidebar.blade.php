@@ -180,6 +180,7 @@
                                     @endcan
                                     <ul class="sub-slide-menu">
                                         @can('أسماء الموظفين')
+                                            <li><a class="sub-slide-item" href="{{ url('/' . $page='tree') }}">شجرة الحسابات</a></li>
                                             <li><a class="sub-slide-item" href="{{ url('/' . $page='#') }}">الايرادات والمنصرفات</a></li>
                                             <li><a class="sub-slide-item" href="{{ url('/' . $page='#') }}"> تقرير ارباح وتكاليف العقود </a></li>
 

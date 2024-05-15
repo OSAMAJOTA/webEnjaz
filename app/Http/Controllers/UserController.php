@@ -1,9 +1,13 @@
 <?php
 namespace App\Http\Controllers;
+use App\contract;
 use App\employees;
+use App\man_discount;
+use App\user_treasure;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -65,6 +69,12 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles_name'));
 
+        $user_id = User::latest()->first()->id;
+        $user_tr = new user_treasure();
+        $user_tr->treasure =0;
+        $user_tr->user_id = $user_id;
+
+        $user_tr->save();
 
         return redirect()->route('users.index')
             ->with('success','تم اضافة المستخدم بنجاح');

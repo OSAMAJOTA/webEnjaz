@@ -560,7 +560,7 @@
                                                                             <input type="number" class="form-control" value="0.00" required name="sadad_cont" id="sadad_cont" onkeyup="check_and_ar()"/>
                                                                             <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span> ضريبة مبلغ السداد </label>
                                                                             <input type="number" class="form-control" id="sadad_vat" name="sadad_vat" value="0"  readonly hidden >
-                                                                            <label for="inputName" class="control-label"hidden > <span class="text-danger font-bold"></span>  القيمة </label>
+                                                                            <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span>  القيمة </label>
                                                                             <input type="number" class="form-control" id="sadad_co" name="sadad_co" value="0"  readonly hidden>
                                                                             <input type="number" class="form-control" id="contract_id" name="contract_id" value="{{ $contract->id}}"  readonly hidden>
 
