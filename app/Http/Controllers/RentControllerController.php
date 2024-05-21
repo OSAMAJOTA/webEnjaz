@@ -11,9 +11,10 @@ use App\contract_history;
 use App\Durations;
 use App\employees;
 use App\Exports\rentExport;
+use App\Notifications\mail_contract;
 use App\User;
 use App\maidHistory;
-
+use Illuminate\Support\Facades\Notification;
 use App\maids;
 use App\contract_comment;
 use App\maid_movmoent;
@@ -211,7 +212,8 @@ if($request->emp_num==''){
     }
 
     $contract_id = contract::latest()->first()->id;
-
+    //$user=User::first();
+    //Notification::send($user,new mail_contract($contract_id));
 
     session()->flash('add_contract');
 
@@ -364,25 +366,10 @@ if($request->emp_num==''){
         $request->pic->move(public_path('Attachments_contract/' . $contract_number), $imageName);
 
     }
-//sms
-    $basic  = new \Vonage\Client\Credentials\Basic("37ab1b48", "zRZzGJhIbalEfr8V");
-    $client = new \Vonage\Client($basic);
-
-    $response = $client->sms()->send(
-        new \Vonage\SMS\Message\SMS("966563199294",'enjazm', ' تم اضافة عقد تشغيل')
-    );
-
-    $message = $response->current();
-
-    if ($message->getStatus() == 0) {
-        echo "The message was sent successfully\n";
-    } else {
-        echo "The message failed with status: " . $message->getStatus() . "\n";
-    }
-
-    //end sms
-
     $contract_id = contract::latest()->first()->id;
+   //$user=User::first();
+  // Notification::send($user,new mail_contract($contract_id));
+
     session()->flash('add_contract');
 
     return redirect('/print_cont/'.$contract_id);

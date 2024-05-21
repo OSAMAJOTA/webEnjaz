@@ -44,9 +44,9 @@ Route::resource('treasures', 'UserTreasureController');
 
 
 // عقود التشغيل
-
+Route::get('/rentupdate/{id}', 'ContractController@edit');
 Route::resource('end_contract', 'EndContractController');
-
+Route::post('/contract_update', 'ContractController@update');
 Route::get('/getemp_name/{id}', 'RentControllerController@getemp_name');
 Route::get('/ser_cont/{id}', 'RentControllerController@ser_cont');
 Route::get('/print_cont/{id}', 'RentControllerController@print_contract');

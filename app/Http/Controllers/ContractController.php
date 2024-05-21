@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\agents;
 use App\Bonds;
 use App\careers;
+use App\companys;
 use App\contract;
 use App\contract_comment;
 use App\contract_history;
 use App\contractAttachments;
+use App\Durations;
 use App\employees;
 use App\maid_movmoent;
+use App\maids;
 use App\man_discount;
 use App\nationalities;
 use Carbon\Carbon;
@@ -68,9 +72,17 @@ class ContractController extends Controller
      * @param  \App\contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function edit(contract $contract)
+    public function edit($id)
     {
-        //
+        $companys=companys::all();
+        $maids=maids::all();
+        $Durations=Durations::all();
+        $nationalities=nationalities::all();
+        $careers=careers::select('*')->where('show','=',1)->get();
+        $contract=contract::select('*')->where('id',$id)->first();
+
+
+      return view('rent.rentUpdate',compact('Durations','nationalities','careers','maids','companys','contract'));
     }
 
     /**
@@ -82,7 +94,29 @@ class ContractController extends Controller
      */
     public function update(Request $request, contract $contract)
     {
-        //
+        $contract = contract::find($request->cont_id);
+
+        $contract->update([
+            'typ' => $request->typ,
+            'nash' => $request->nash,
+            'Duration' => $request->Duration,
+            'start_date' => $request->start_date,
+            'sadad_typ' => $request->sadad_typ,
+            'WORK' => $request->WORK,
+            'end_date' => $request->end_date,
+            'emp_salary' => $request->emp_salary,
+            'tamin' => $request->tamin,
+            'vat_cost' => $request->vat_cost,
+            'cost' => $request->cost,
+            'countss' => $request->countss,
+            'man_discount' => $request->man_discount,
+            'tot' => $request->tot,
+
+        ]);
+        $cont_id=$request->cont_id;
+
+        session()->flash('edit','تم تعديل العقد بنجاج');
+        return redirect('/rentupdate/'.$cont_id);
     }
 
     /**
@@ -275,7 +309,15 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
 }
 //النوع
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
-    echo "//النوع";
+    $contract=contract::select('*')->orderBy('id', 'desc')->paginate(7);
+
+    $contract_count=contract::select('*')->get();
+    $contract_count2=$contract_count->count();
+    $nationalities=nationalities::all();
+    $careers=careers::select('*')->where('show','=',1)->get();
+    $employees=employees::all();
+
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
 }
 //تاريخ نهاية العقد
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -317,7 +359,30 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
 }
 //حالة اختيار العاملة
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status&&$request->end_date==''){
-    echo "حالة اختيار العامل";
+
+    $stutas=$request->maid_status;
+    if($stutas==1){
+        $contract=contract::select('*')->where('emp_num','=',null)->orderBy('id', 'desc')->paginate(7);
+
+        $contract_count=contract::select('*')->where('emp_num','=',null)->get();
+        $contract_count2=$contract_count->count();
+        $nationalities=nationalities::all();
+        $careers=careers::select('*')->where('show','=',1)->get();
+        $employees=employees::all();
+
+        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    }else{
+        $contract=contract::select('*')->where('emp_num','<>','')->orderBy('id', 'desc')->paginate(7);
+
+        $contract_count=contract::select('*')->where('emp_num','<>','')->get();
+        $contract_count2=$contract_count->count();
+        $nationalities=nationalities::all();
+        $careers=careers::select('*')->where('show','=',1)->get();
+        $employees=employees::all();
+
+        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+
+    }
 }
 // تاريخ نهاية العقد
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date){

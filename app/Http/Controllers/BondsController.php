@@ -306,7 +306,10 @@ class BondsController extends Controller
 
     public function revenues()
     {
-     return view('bonds.revenues');
+        $Bonds=Bonds::all();
+        $income=Bonds::select('*')->where('bonds_type_id','=','1')->get()->sum('bonds_total');
+        $outcome=Bonds::select('*')->where('bonds_type_id','=','2')->get()->sum('bonds_total');
+     return view('bonds.revenues',compact('Bonds','income','outcome'));
     }
 
 }

@@ -296,7 +296,7 @@
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-list"></i></span>
                                                                         </div>
-                                                                        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="date" name="create_date">
+                                                                        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="" type="date" name="create_date" id="range">
 
                                                                     </div><!-- input-group -->
                                                                 </div>
@@ -443,13 +443,8 @@
 
                                                                             <option value="" >
                                                                             </option>
-                                                                            <option value="الكل"> الكل </option>
-                                                                            <option value="بانتظارالتوجيه">  بلجيكا</option>
-                                                                            <option value="بانتظار التواصل معه"> الفلبين </option>
-                                                                            <option value="تم التواصل معه">   اوغندا</option>
-                                                                            <option value="طلب زيارة منزلية"> اثيوبيا</option>
-                                                                            <option value="طلب  معاودة الاتصال في وقت لاحق">   مصر   </option>
-                                                                            <option value="محظور"> السودان</option>
+                                                                            <option value="1">لم يتم اختيار عاملة  </option>
+                                                                            <option value="2">  تم اختيار عاملة</option>
 
                                                                         </select>
 
@@ -816,7 +811,7 @@
                                         @endif
                                     </li>
                                     <li class="list-group-itemm">
-                                        <a href="/ar-sa/RentContract/Modify/15101" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                                        <a href="/rentupdate/{{$x->id}}" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
                                             <i class="fa fa-edit"></i>
                                             <span>تعديل</span>
                                         </a>
@@ -1818,6 +1813,16 @@
 
 
                                                     </script>
+                                                <script>
+
+                                                    import mobiscroll from "@mobiscroll/javascript-lite";
+
+                                                    $( document ).ready(function() {
+                                                        mobiscroll.datepicker('#range', {
+                                                            select: 'range'
+                                                        });
+                                                    });
+                                                </script>
 
                                                     <script src="{{ URL::asset('assets/plugins/tafgeet/Tafqeet.js') }}"></script>
 @endsection

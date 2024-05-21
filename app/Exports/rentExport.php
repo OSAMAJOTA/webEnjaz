@@ -51,8 +51,9 @@ class rentExport implements FromCollection,WithHeadings,WithEvents,WithStyles
     {
         return [
 
+
             BeforeSheet::class  =>function(BeforeSheet $event){
-                $event->getDelegate()->setRightToLeft(true)->getRowDimension('2')->setRowHeight(40)->setAutoSize(true);
+                $event->getDelegate()->setRightToLeft(true);
             }
         ];
     }
@@ -60,9 +61,10 @@ class rentExport implements FromCollection,WithHeadings,WithEvents,WithStyles
 
     public function styles(Worksheet $sheet)
     {
+
         return [
             // Style the first row as bold text.
-            1    => ['font' => ['bold' => true]],
+            2    => ['font' => ['bold' => true]],
 
 
         ];

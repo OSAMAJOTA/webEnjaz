@@ -12,6 +12,7 @@
 						<div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
 							<img src="{{URL::asset('assets/img/media/lockscreen.png')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
 						</div>
+
 					</div>
 				</div>
 				<!-- The content half -->

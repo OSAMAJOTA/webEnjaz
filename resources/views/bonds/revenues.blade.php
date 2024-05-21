@@ -233,44 +233,96 @@
 
         </div>
 
-        <div class="example">
-            <div class="row row-xs wd-xl-80p">
 
-
-
-                <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
-                        <button class="btn btn-info btn-block">
-
-                            <i
-                                class="fas fa-plus"></i>&nbsp;--
-
-                        </button>
-
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-2">
-                    <form action="add_offer">
-                        <button class="btn btn-danger btn-block">
-
-                            <i
-                                class="fas fa-plus"></i>&nbsp;  //
-
-                        </button>
-
-                    </form>
-                </div>
-
-
-
-
-            </div>
-        </div>
 
 
     </div>
 
 
+    <div class="col-12">
+        <div class="card card-secondary">
+            <div class="card-header pb-0">
+
+            </div>
+            <div class="card-body text-secondary">
+                <li class="row title nohover">
+                    <div class="col-md-1" style="font-weight: bold">#</div>
+                    <div class="col-md-2 text-left" style="font-weight: bold">رقم السند</div>
+                    <div class="col-md-5" style="font-weight: bold">البيان</div>
+                    <div class="col-md-1 text-right" style="font-weight: bold">نقدا</div>
+                    <div class="col-md-1 text-right" style="font-weight: bold">تحويل</div>
+
+                </li>
+            </div>
+
+        </div>
+        <?php $i=0; ?>
+        @foreach($Bonds as $Bonds)
+                <?php $i++ ?>
+        <div class="card card-info">
+            <div class="card-header pb-0">
+
+            </div>
+@if($Bonds->bonds_type_id==1)
+                <div class="card-body text-secondary" >
+                    @else
+                <div class="card-body text-secondary" style="background-color: #fdc1c1a8;">
+                    @endif
+                    <li class="row title nohover">
+                        <div class="col-md-1">{{$i}}</div>
+                        <div class="col-md-2 text-left">{{$Bonds->id}}</div>
+                        <div class="col-md-5"> {{$Bonds->comment}} </div>
+                        @if($Bonds->catch_type=='نقدآ')
+                            <div class="col-md-1 text-right">{{$Bonds->bonds_total}} </div>
+                            <div class="col-md-1 text-right">0 </div>
+                        @else
+                            <div class="col-md-1 text-right"> 0</div>
+                            <div class="col-md-1 text-right">{{$Bonds->bonds_total}}</div>
+                        @endif
+
+
+                    </li>
+                </div>
+
+
+
+
+        </div>
+        @endforeach
+        <div class="card card-secondary">
+            <div class="card-header pb-0">
+
+            </div>
+
+            <div class="card-body text-secondary" style="background-color: darkslategray;">
+                <li class="row title nohover">
+                    <div class="col-md-1" style="font-weight: bold;color: white"></div>
+                    <div class="col-md-2 text-left" style="font-weight: bold;color: white"> </div>
+                    <div class="col-md-5 " style="font-weight: bold;color: white"></div>
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: white"> الايرادات</div>
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: white"> المنصرفات</div>
+
+                </li>
+            </div>
+
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header pb-0">
+
+            </div>
+            <div class="card-body text-secondary" style="background-color: darkslategray;">
+                <li class="row title nohover">
+                    <div class="col-md-1" style="font-weight: bold;color: white"></div>
+                    <div class="col-md-2 text-left" style="font-weight: bold;color: white"> </div>
+                    <div class="col-md-5 " style="font-weight: bold;color: white"></div>
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: white"> {{$income}} ريال </div>
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: orangered"> {{$outcome}} ريال</div>
+
+                </li>
+            </div>
+
+        </div>
+    </div>
 
 
     <!--  نهاية كرت العرض-->
