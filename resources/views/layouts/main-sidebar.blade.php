@@ -83,8 +83,12 @@
                             <li><a class="slide-item" href="{{ url('/' . $page='nationality') }}">	الجنسيات  </a></li>
                                 @endcan
                                     @can('الجنسيات')
+                                        <li><a class="slide-item" href="{{ url('/' . $page='citys') }}"> المدن  </a></li>
+                                    @endcan
+                                    @can('الجنسيات')
                                         <li><a class="slide-item" href="{{ url('/' . $page='Durations') }}">مدة التشغيل  </a></li>
                                     @endcan
+
                             <li class="sub-slide">
                                 @can('الموظفين')
                                 <a class="sub-side-menu__item" data-toggle="sub-slide" href="{{ url('/' . $page='#') }}"><span class="sub-side-menu__label">الموظفين</span><i class="sub-angle fe fe-chevron-down"></i></a>
@@ -156,7 +160,7 @@
                             <ul class="slide-menu">
 
                                 @can('العملاء')
-                                    <li><a class="slide-item" href="{{ url('/' . $page='rent') }}"> عقود التوسط </a></li>
+                                    <li><a class="slide-item" href="{{ url('/' . $page='recruitment') }}"> عقود التوسط </a></li>
                                 @endcan
                                 @can('العملاء')
                                     <li><a class="slide-item" href="{{ url('/' . $page='offers') }}">عروض واسعار التوسط </a></li>

@@ -58,10 +58,18 @@ Route::resource('avavailable_maid', 'AvavailableMaidController');
 
 Route::resource('change_emp', 'MaidMovmoentController');
 // عقود التشغيل
+
+// عقود الاستقدام
 //*************************************************************************************************************
+Route::get('/recruitmentcont/{id}', 'RecruitmentContractController@create');
+Route::resource('recruitment', 'RecruitmentContractController');
 
 
 
+
+
+//*************************************************************************************************************
+// عقود الاستقدام
 
 
 Route::get('/agent_details/{id}', 'AgentsController@agent_details');
@@ -74,6 +82,8 @@ Route::post('delete_file_att', 'ContractController@destroy')->name('delete_file'
 Route::get('View_file_att/{company_number}/{file_name}', 'ContractController@open_file');
 Route::resource('contractAttachments', 'ContractAttachmentsController');
 Route::resource('maids', 'MaidsController');
+
+
 Route::post('Search_maids', 'MaidsController@Search_maids');
 
 Route::get('/nash/{id}', 'ContractController@getoffer');
@@ -118,6 +128,7 @@ Route::resource('report_agents', 'AgentsReportController');
 Route::post('Search_report', 'AgentsReportController@Search_report');
 Route::post('Search_agents', 'AgentsController@Search_agents');
 
+Route::resource('citys', 'CitysController');
 Route::resource('groups', 'GroupsController');
 Route::resource('careers', 'CareersController');
 Route::resource('sections', 'SectionsController');

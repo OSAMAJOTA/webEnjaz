@@ -449,7 +449,7 @@
                                                                             <div class="col-sm-2">
                                                                                 <div class="col">
                                                                                     <p><button class="btn-primary-gradient" >   إضــافة شكوي </button></p>
-                                                                                    <form action="rent_cont/{{$x->id}}/{{$x->id}}/{{$x->id}}/{{$x->id}}">
+                                                                                    <form action="recruitmentcont/{{$x->id}}/">
                                                                                     <p><button class="btn-primary-gradient" >   إضــافة عقد توسط </button></p>
                                                                                     </form>
 
