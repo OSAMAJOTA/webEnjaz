@@ -10,6 +10,7 @@ use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 use Symfony\Component\HttpKernel\DependencyInjection\AddAnnotatedClassesToCachePass;
 use TCPDF;
 
@@ -37,7 +38,22 @@ class BondsController extends Controller
     public function generatePDF($id)
     {
 
-return $id;
+        $contract=contract::select('*')->where('id',$id)->first();
+        $total=$contract->tot;
+
+
+        $data = [
+            'title' => 'Invoice number: IN-123456789',
+
+            'total' => $total,
+
+        ];
+
+
+
+        $pdf = PDF::loadView('bonds.bonds-pdf', $data);
+
+        return $pdf->stream();
 
     }
 

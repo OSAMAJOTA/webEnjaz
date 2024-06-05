@@ -548,501 +548,504 @@
                                                 </div>
                                             </div>
 
-                                        <div class="col-xl-12">
 
-                                        @foreach($contract as $x)
 
-                                                <div class="card">
-
-
-
-                <!-- كرت العقد-->
-                    <?php
-                    $start =  Carbon\Carbon::parse($x->end_date);
-                    $now = Carbon\Carbon::now();
-
-
-                    $days_count = $start->diffInDays($now);
-
-
-                    ?>
-                @if($start<$now or $x->status=='منتهي' or $days_count < 3 )
-                    <div class="card-body" style="background-color: #ffd4d4a8">
-                        @else
-                            <div class="card-body" >
-                @endif
-
-                    <div class="panel-body table-responsive">
-                        <ul class="branchnameList">
-                            <li>
-                                <i class="fa-duotone fa-code-branch"></i>
-                                {{$x->companys_name }}
-                            </li>
-
-                            @if($start<$now or $x->status=='منتهي')
-                                <li class="bg-danger">
-                                    <i class="fa-solid fa-timer"></i>
-                                    فترة العقد انتهت
-                                </li>
-
-                                            @endif
-
-
-
-                            <li class="bg-success">
-
-                                {{$x->sadad_typ }}                </li>
-                        </ul>
-
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="text-center">
-
-                                            <p style="font-size:15px;">تم الانشاء بواسطة </p>
-                                            <h4 class="m-t-0">
-                                                {{$x->Created_by }}
-                                            </h4>
-                                            <a href="/contract_detils/{{$x->id }}">
-                                                <h1 class="text-custom font-60">   {{$x->id }}</h1>
-                                            </a>
-                                            <h6> {{$x->created_at }}</h6>
-
-
-                                            <div class="text-center">
-                                           @if($x->status=='ساري')
-                                                    <h1 class="text-success" style=" color: #075e15 !important;
-    font-weight: bold;">{{$x->status }}</h1>
-                                                @elseif($x->status=='منتهي')
-                                                <h1 class="text-success" style=" color: #5b0f0f !important; font-weight: bold;">{{$x->status }}</h1>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-7">
-                                        <a href="agent_details/{{$x->agent_id}}">
-                                            <h5 class="m-t-0 header-title-small"  style=" color:black;"><b>بيانات العميل</b> </h5>
-                                            <h4 class="m-t-0 m-b-0"> {{$x->agents_name }}    </h4>
-                                        </a>
-                                        <a href="https://web.whatsapp.com/send?phone=+966{{$x->agent_phone1 }}" target="_blank"><span class="fab fa-whatsapp text-info m-r-5 m-t-5"></span> <b>{{$x->agent_phone1 }}</b></a>
-                                        <p> <span class="fa fa-id-card-o m-r-5 m-l-5"></span>{{$x->id_num }}</p>
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <h4 class="m-t-0 header-title-small">
-                                            <b>
-                                                الجنسية          /     {{$x->typ }}
-                                            </b>
-                                        </h4>
-
-                                        <p class="m-t-5 m-b-5">{{$x->nash }} /  {{$x->WORK }} <small class="text-success m-r-15"><b>{{$x->Duration }} </b></small></p>
-
-                                        <div class="row hideApplicant">
-                                            <div class="col-md-6">
-                                                <p class="text-info">تاريخ بداية العقد</p><b>{{$x->start_date }}</b>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="text-info">تاريخ نهاية العقد</p><b>{{$x->end_date }}</b>
-                                            </div>
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <h4 class="m-t-0 header-title-small"><b>الاجمالى</b> </h4>
-                                        <h1 class="text-inverse  " style="font-size:20px; color:#0162e8;"> <b>{{$x->tot }}</b></h1>
-                                        <table class="table m-t-20 small">
-                                            <tbody><tr>
-                                                <td>العرض</td>
-                                                <td>{{$x->cost }}</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>مبلغ ضريبة القيمة المضافة</td>
-                                                <td>{{$x->vat_cost }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>القيمة المتبقية شاملة الضريبة</td>
-                                                <td class="text-danger"><b>{{$x->rest }}</b></td>
-                                            </tr>
-                                            @if($x->man_discount>0)
-                                            <tr>
-                                                <td>خصم مدير </td>
-                                                <td class="text-danger"><b>{{$x->man_discount }}</b></td>
-                                            </tr>
-                                            @endif
-                                            @if($x->rest>0)
-                                            <tr>
-
-
-                                                <td>    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                           data-id="{{ $x->id }}" data-exp_sadad="{{ $x->exp_sadad }}"
-                                                           data-toggle="modal"
-                                                           href="#chnange_exp" title="تعديل">
-                                                        <i class="fa fa-edit"></i>
-                                                        <span></span>
-                                                    </a>
-
-                                                    تاريخ السداد المتوقع
-
-
-
-                                                </td>
-                                                <td class="text-danger"><b>{{$x->exp_sadad }}</b></td>
-                                            </tr>
-                                            @endif
-                                            @if($x->status=='ساري')
-                                            <tr>
-
-                                              <td>
-                                                    <a href="#Open_ManagerDiscount" onclick="Open_ManagerDiscount(15101,5585,600.3,600.3,0);" title="اضافة خصم مدير على العقد" data-plugin="custommodal" data-animation="blur" data-overlayspeed="100" data-overlaycolor="#36404a">
-                                                        <i class="fa fa-plus m-r-5"></i>
-                                                        <span> اضافة خصم مدير</span>
-                                                    </a></td>
-
-                                            </tr>
-                                            @endif
-                                            </tbody></table>
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2 hideApplicant">
-                                <h4 class="m-t-0 header-title-small"><b>ادارة العمالة</b> </h4>
-
-                                <p> رقم العاملة : <b>
-                                        @if($x->status=='ساري')
-                                        <a href="maidsDetails/{{$x->maids_id }}">
-                                            <h5 class="text-custom font-60">      {{$x->emp_num }}</h5>
-                                        </a>
-                                        @endif
-
-
-                                    </b></p>
-                                @if($x->status=='ساري')
-                                <h4 class="m-t-0 m-b-0"><a href="maidsDetails/{{$x->maids_id }}" title="">{{$x->emp_name }}</a></h4>
-                                @endif
-                                <span class="fa fa-id-card-o m-r-5 m-l-5"></span>                    <br>
-                                <ul class="list-group control m-b-2 user-list">
-
-                                    <li class="list-group-itemm">
-                                        <a class="modal-effect  btn btn-primary btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo1"   data-id="{{ $x->id }}" data-sections_name="{{ $x->emp_name }}"> <i
-                                                class="fas fa-plus"></i>&nbsp; اضافة ملاحظه</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-sm btn-success "><a style="color: white" href="/contract_detils/{{$x->id }}/#comment">{{\App\contract_comment::where('contract_id', $x->id)->count()}}</a></span>
-                                    </li>
-                                    <li class="list-group-itemm">
-                                        <a class="modal-effect  btn btn-primary btn-sm" data-effect="effect-scale" data-toggle="modal" href="#modaldemo2"   data-id="{{ $x->id }}" data-sections_name="{{ $x->emp_name }}"> <i
-                                                class="fas fa-plus"></i>&nbsp; اضافة شكوى</a>
-                                    </li>
-
-
-
-
-                                    <!--   ***********************************************************-->
-                                    <div class="col-md-9 order-md-1">
-                                        <form method="post" action="{{route('generate-qr-image')}}">
-                                            @csrf
-                                            @if($errors->any())
-                                                <div class="alert alert-danger">
-                                                    <ul class="mb-0">
-                                                        @foreach ($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
-                                            <div id="print_vat" style="display: none">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="seller_name">Seller Name</label>
-                                                <input class="form-control form-control-lg" type="text" id="seller_name" name="seller_name" value="شركة الانجاز المعتمد للاستقدام">
-                                                <input class="form-control form-control-lg" type="text" id="con_id" name="con_id" value="{{$x->id}}">
-                                                <p class="form-text">Example: My Company</p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="vat_number">VAT Number</label>
-                                                <input class="form-control form-control-lg" type="text" id="vat_number" name="vat_number" value="300617567500003">
-                                                <p class="form-text"><small>Example: 310000000000000</small></p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="invoice_date">Date and Time</label>
-                                                <input class="form-control form-control-lg" type="datetime" id="invoice_date" name="invoice_date" value="{{ $x->created_at  }}">
-                                                <p class="form-text"><small>Example: 2022-12-15 14:41:15</small></p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="total_amount">Total Amount (with VAT)</label>
-                                                <input class="form-control form-control-lg" type="text" id="total_amount" name="total_amount" value="{{  $x->tot  }}">
-                                                <p class="form-text"><small>Example: 2000.00</small></p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="vat_amount">VAT Amount</label>
-                                                <input class="form-control form-control-lg" type="text" id="vat_amount" name="vat_amount" value="{{  $x->vat_cost }}">
-                                                <p class="form-text"><small>Example: 300.00</small></p>
-                                            </div>
-                                            <h5 class="card-title mb-3 mt-4">Options</h5>
-                                            <div class="ms-4 mb-3">
-                                                <div class="mb-3">
-                                                    <input class="form-check-input" type="checkbox" id="qr_logo" name="qr_logo" {{ old('qr_logo') == 'on' ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="qr_logo">Add an image in the center of the QR Code</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="qr_options" id="option1" value="download" >
-                                                    <label class="form-check-label" for="option1">
-                                                        Download QR Code image
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="qr_options" id="option2" value="store">
-                                                    <label class="form-check-label" for="option2">
-                                                        Save QR Code image to server
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="qr_options" id="option3" value="pdf" checked>
-                                                    <label class="form-check-label" for="option3">
-                                                        Generate PDF with QR Code image
-                                                    </label>
-                                                </div>
-                                               </div>
-                                            </div>
-                                            <ul class="list-group control m-b-2 user-list">
-                                            <li class="list-group-itemm">
-                                            <button type="submit" class="btn btn-success btn-sm"> <i class="fa fa-file-pdf"></i>
-                                                <span> طباعة الفاتورة</span></button>
-                                            </li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                    <!--   ***********************************************************-->
-
-                                    <li class="list-group-itemm"  style="border-right:2px solid #00ff21;">
-                                        <a href="/print_cont/{{$x->id }}" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
-                                            <i class="fa fa-print"></i>
-                                            <span>طباعة</span>
-                                        </a>
-                                    </li>
-
-
-
-
-                                </ul>
-
-                            </div>
-                            <!-- بداية العمود الاخير-->
-                            @if($x->status=='ساري')
-                            <div class="col-md-2 hideApplicant">
-
-                                <ul class="list-group control m-b-0 user-list">
-
-
-
-
-
-
-                                    <li class="list-group-itemm">
-                                        <a onclick="StopContract(15101);" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
-                                            <i class="fa-duotone fa-hand text-danger"></i>
-                                            <span>ايقاف العقد</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="list-group-itemm liRenewContract" style="border-right:2px solid #ff6a00;">
-                                        <a onclick="RentContract.GetRenew(15101);">
-                                            <i class="fa fa-user-plus"></i>
-                                            <span>تجديد العقد</span>
-                                        </a>
-                                    </li>
-
-
-
-
-
-
-                                    <li class="list-group-itemm">
-
-
-                                            @if($x->emp_name=='')
-                                            <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo3"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
-
-
-                                                <i class="fa fa-user-times m-r-5"></i>
-                                                <span>اضافة عاملة للعقد</span> </a>&nbsp;
-                                        @else
-                                            <a class="modal-effect  btn btn-primary btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo3"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
-
-
-                                                <i class="fa fa-user-times m-r-5"></i>
-                                                <span> انهاء خدمة العامل</span> </a>&nbsp;
-                                        @endif
-                                    </li>
-                                    <li class="list-group-itemm">
-                                        <a href="/rentupdate/{{$x->id}}" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
-                                            <i class="fa fa-edit"></i>
-                                            <span>تعديل</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="list-group-itemm">
-                                        <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#end_contract"   data-id="{{ $x->id }}" data-end_contract_date="{{ $x->end_date }}"  data-cost="{{ $x->cost }}" data-countss="{{ $x->countss }}" data-maid_id="{{ $x->maids_id }}"  >
-
-
-
-                                            <span>انهاء العقد</span> </a>&nbsp;
-                                    </li>
-
-                                </ul>
-                                <br>
-
-
-
-
-                                            <?php
-                                                 $start =  Carbon\Carbon::parse($x->end_date);
-                                            $now = Carbon\Carbon::now();
-
-
-                                                 $days_count = $start->diffInDays($now);
-
-
-                                                 ?>
-
-
-                                      @if($start>$now)
-                                    <h4 class="m-t-0 header-title-small text-danger"><b>الايام المتبقية</b> </h4><br>
-                                    <div class="d-flex justify-content-center">
-                                        <img src="assets/timer.png" width="25px" height="25px">
-                                        <h1 class="text"><b>
-                                                <span class="text-info">  {{$days_count+1}}</span>
-                                            @else
-                                                    <h4 class="m-t-0 header-title-small text-danger"><b>الايام المتأخرة</b> </h4><br>
-                                                    <div class="d-flex justify-content-center">
-                                                        <img src="assets/timer.png" width="25px" height="25px">
-                                                        <h1 class="text"><b>
-                                             <span class="text-danger">   {{$days_count}}</span>
-                                            @endif
-
-                                        </b></h1>
-
-                                </div>
-
-
-                        </div>
-                            @elseif($x->status=='منتهي')
-                                <div class="col-md-2 hideApplicant">
-
-                                    <p class="text-info font-bold">تم انهاء العقد</p>
-                                    @if($x->late_days>0 and $x->late_cost>0 )
-                                    <a class="modal-effect  btn btn-warning btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#penalty"   data-id="{{ $x->id }}" data-late_days="{{ $x->late_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}"  >
-
-
-                                        <i class="fa fa-cash-register m-r-5"></i>
-                                        <span>دفع غرامة التأخير</span> </a>&nbsp;
-                                    @endif
-                                    @if($x->remaining_days>0 and $x->return_cost>0 )
-                                        <a class="modal-effect  btn btn-info btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#return"   data-id="{{ $x->id }}" data-remaining_days="{{ $x->remaining_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}" data-return_cost="{{ $x->return_cost }}"   >
-
-
-                                            <i class="fa fa-cash-register m-r-5"></i>
-                                            <span>استرداد مبلغ للعميل</span> </a>&nbsp;
-                                    @endif
-
-
-                                    <table class="table">
-                                        <tbody><tr>
-                                            <td>بواسطة</td>
-                                            <td> {{$x->end_by}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td>سبب الانهاء</td>
-                                            <td>{{$x->end_reson}}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>تاريخ الانهاء</td>
-                                            <td>{{$x->end_contract_date}}</td>
-                                        </tr>
-                                        @if($x->late_cost>0)
-                                            <tr>
-                                                <td>عدد ايام التأخير</td>
-                                                <td>{{$x->late_days}}</td>
-                                            </tr>
-                                        @endif
-                                        @if($x->return_cost>0)
-                                            <tr>
-                                                <td>عدد الايام المتبقية </td>
-                                                <td>{{$x->remaining_days}}</td>
-                                            </tr>
-                                        @endif
-                                        <tr>
-                                            <td>ملحوظة</td>
-
-
-
-                                            <td>{{$x->end_comment}} </td>
-                                        </tr>
-                                        </tbody></table>
-                                    <!--  استرجاع  مبلغ للعميل فى  كل الحالات-->
-                                </div>
-                            @endif
-
-                            <!-- نهاية العمود الاخير-->
-                    </div>
-                </div>
-                                @if($x->status=='منتهي')
-                                <div class="btn btn-info hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: rgba(53, 184, 224, 0.15) !important;color:#35b8e0 !important;">
-                                    <i class="fa fa-window-close m-r-5"></i><span>تم انهاء العقد  </span>
-                                </div>
-                                @endif
-
-                        @if($x->late_days>0 and $x->late_cost>0)
-                            <br>
-                            <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #cba844;color:#cba844;">
-                                <i class="fa fa-window-close m-r-5"></i><span> يوجد غرامة تأخير علي العقد </span>
-                            </div>
-                        @endif
-
-                        @if($x->remaining_days>0 and $x->return_cost>0)
-                            <br>
-                            <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #527589;color:#527589;">
-                                <i class="fa fa-window-close m-r-5"></i><span> يوجد استرداد مبلغ للعميل  </span>
-                            </div>
-                        @endif
-                <!-- نهاية الكرت-->
-
-                            </div>
-                    </div>
-
-                                        @endforeach
-
-                                        <div class="card card-primary">
-
-                                            <div class="card-body text-primary ">
-                                                {{ $contract->links() }}
-                                                <div class="text-danger   text-left ">
-                                                    <h7>عدد العقود</h7>
-                                                    <h3 class="">  <b>{{$contract_count2}}</b> </h3>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
 
         <!-- row closed -->
     </div>
+
     <!-- row closed -->
     </div>
+                                <!-- كرت العقد-->
+                                <div class="col-xl-12">
+
+                                    @foreach($contract as $x)
+
+                                        <div class="card">
+
+
+
+
+                                                <?php
+                                                $start =  Carbon\Carbon::parse($x->end_date);
+                                                $now = Carbon\Carbon::now();
+
+
+                                                $days_count = $start->diffInDays($now);
+
+
+                                                ?>
+                                            @if($start<$now or $x->status=='منتهي' or $days_count < 3 )
+                                                <div class="card-body" style="background-color: #ffd4d4a8">
+                                                    @else
+                                                        <div class="card-body" >
+                                                            @endif
+
+                                                            <div class="panel-body table-responsive">
+                                                                <ul class="branchnameList">
+                                                                    <li>
+                                                                        <i class="fa-duotone fa-code-branch"></i>
+                                                                        {{$x->companys_name }}
+                                                                    </li>
+
+                                                                    @if($start<$now or $x->status=='منتهي')
+                                                                        <li class="bg-danger">
+                                                                            <i class="fa-solid fa-timer"></i>
+                                                                            فترة العقد انتهت
+                                                                        </li>
+
+                                                                    @endif
+
+
+
+                                                                    <li class="bg-success">
+
+                                                                        {{$x->sadad_typ }}                </li>
+                                                                </ul>
+
+
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-5">
+                                                                                <div class="text-center">
+
+                                                                                    <p style="font-size:15px;">تم الانشاء بواسطة </p>
+                                                                                    <h4 class="m-t-0">
+                                                                                        {{$x->Created_by }}
+                                                                                    </h4>
+                                                                                    <a href="/contract_detils/{{$x->id }}">
+                                                                                        <h1 class="text-custom font-60">   {{$x->id }}</h1>
+                                                                                    </a>
+                                                                                    <h6> {{$x->created_at }}</h6>
+
+
+                                                                                    <div class="text-center">
+                                                                                        @if($x->status=='ساري')
+                                                                                            <h1 class="text-success" style=" color: #075e15 !important;
+    font-weight: bold;">{{$x->status }}</h1>
+                                                                                        @elseif($x->status=='منتهي')
+                                                                                            <h1 class="text-success" style=" color: #5b0f0f !important; font-weight: bold;">{{$x->status }}</h1>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-7">
+                                                                                <a href="agent_details/{{$x->agent_id}}">
+                                                                                    <h5 class="m-t-0 header-title-small"  style=" color:black;"><b>بيانات العميل</b> </h5>
+                                                                                    <h4 class="m-t-0 m-b-0"> {{$x->agents_name }}    </h4>
+                                                                                </a>
+                                                                                <a href="https://web.whatsapp.com/send?phone=+966{{$x->agent_phone1 }}" target="_blank"><span class="fab fa-whatsapp text-info m-r-5 m-t-5"></span> <b>{{$x->agent_phone1 }}</b></a>
+                                                                                <p> <span class="fa fa-id-card-o m-r-5 m-l-5"></span>{{$x->id_num }}</p>
+                                                                            </div>
+
+                                                                        </div>
+
+
+                                                                    </div>
+
+                                                                    <div class="col-md-5">
+                                                                        <div class="row">
+                                                                            <div class="col-md-8">
+                                                                                <h4 class="m-t-0 header-title-small">
+                                                                                    <b>
+                                                                                        الجنسية          /     {{$x->typ }}
+                                                                                    </b>
+                                                                                </h4>
+
+                                                                                <p class="m-t-5 m-b-5">{{$x->nash }} /  {{$x->WORK }} <small class="text-success m-r-15"><b>{{$x->Duration }} </b></small></p>
+
+                                                                                <div class="row hideApplicant">
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="text-info">تاريخ بداية العقد</p><b>{{$x->start_date }}</b>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="text-info">تاريخ نهاية العقد</p><b>{{$x->end_date }}</b>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                            </div>
+
+                                                                            <div class="col-md-4">
+                                                                                <h4 class="m-t-0 header-title-small"><b>الاجمالى</b> </h4>
+                                                                                <h1 class="text-inverse  " style="font-size:20px; color:#0162e8;"> <b>{{$x->tot }}</b></h1>
+                                                                                <table class="table m-t-20 small">
+                                                                                    <tbody><tr>
+                                                                                        <td>العرض</td>
+                                                                                        <td>{{$x->cost }}</td>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                        <td>مبلغ ضريبة القيمة المضافة</td>
+                                                                                        <td>{{$x->vat_cost }}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>القيمة المتبقية شاملة الضريبة</td>
+                                                                                        <td class="text-danger"><b>{{$x->rest }}</b></td>
+                                                                                    </tr>
+                                                                                    @if($x->man_discount>0)
+                                                                                        <tr>
+                                                                                            <td>خصم مدير </td>
+                                                                                            <td class="text-danger"><b>{{$x->man_discount }}</b></td>
+                                                                                        </tr>
+                                                                                    @endif
+                                                                                    @if($x->rest>0)
+                                                                                        <tr>
+
+
+                                                                                            <td>    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                                                                       data-id="{{ $x->id }}" data-exp_sadad="{{ $x->exp_sadad }}"
+                                                                                                       data-toggle="modal"
+                                                                                                       href="#chnange_exp" title="تعديل">
+                                                                                                    <i class="fa fa-edit"></i>
+                                                                                                    <span></span>
+                                                                                                </a>
+
+                                                                                                تاريخ السداد المتوقع
+
+
+
+                                                                                            </td>
+                                                                                            <td class="text-danger"><b>{{$x->exp_sadad }}</b></td>
+                                                                                        </tr>
+                                                                                    @endif
+                                                                                    @if($x->status=='ساري')
+                                                                                        <tr>
+
+                                                                                            <td>
+                                                                                                <a href="#Open_ManagerDiscount" onclick="Open_ManagerDiscount(15101,5585,600.3,600.3,0);" title="اضافة خصم مدير على العقد" data-plugin="custommodal" data-animation="blur" data-overlayspeed="100" data-overlaycolor="#36404a">
+                                                                                                    <i class="fa fa-plus m-r-5"></i>
+                                                                                                    <span> اضافة خصم مدير</span>
+                                                                                                </a></td>
+
+                                                                                        </tr>
+                                                                                    @endif
+                                                                                    </tbody></table>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-2 hideApplicant">
+                                                                        <h4 class="m-t-0 header-title-small"><b>ادارة العمالة</b> </h4>
+
+                                                                        <p> رقم العاملة : <b>
+                                                                                @if($x->status=='ساري')
+                                                                                    <a href="maidsDetails/{{$x->maids_id }}">
+                                                                                        <h5 class="text-custom font-60">      {{$x->emp_num }}</h5>
+                                                                                    </a>
+                                                                                @endif
+
+
+                                                                            </b></p>
+                                                                        @if($x->status=='ساري')
+                                                                            <h4 class="m-t-0 m-b-0"><a href="maidsDetails/{{$x->maids_id }}" title="">{{$x->emp_name }}</a></h4>
+                                                                        @endif
+                                                                        <span class="fa fa-id-card-o m-r-5 m-l-5"></span>                    <br>
+                                                                        <ul class="list-group control m-b-2 user-list">
+
+                                                                            <li class="list-group-itemm">
+                                                                                <a class="modal-effect  btn btn-primary btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo1"   data-id="{{ $x->id }}" data-sections_name="{{ $x->emp_name }}"> <i
+                                                                                        class="fas fa-plus"></i>&nbsp; اضافة ملاحظه</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-sm btn-success "><a style="color: white" href="/contract_detils/{{$x->id }}/#comment">{{\App\contract_comment::where('contract_id', $x->id)->count()}}</a></span>
+                                                                            </li>
+                                                                            <li class="list-group-itemm">
+                                                                                <a class="modal-effect  btn btn-primary btn-sm" data-effect="effect-scale" data-toggle="modal" href="#modaldemo2"   data-id="{{ $x->id }}" data-sections_name="{{ $x->emp_name }}"> <i
+                                                                                        class="fas fa-plus"></i>&nbsp; اضافة شكوى</a>
+                                                                            </li>
+
+
+
+
+                                                                            <!--   ***********************************************************-->
+                                                                            <div class="col-md-9 order-md-1">
+                                                                                <form method="post" action="{{route('generate-qr-image')}}">
+                                                                                    @csrf
+                                                                                    @if($errors->any())
+                                                                                        <div class="alert alert-danger">
+                                                                                            <ul class="mb-0">
+                                                                                                @foreach ($errors->all() as $error)
+                                                                                                    <li>{{ $error }}</li>
+                                                                                                @endforeach
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    <div id="print_vat" style="display: none">
+                                                                                        <div class="mb-3">
+                                                                                            <label class="form-label" for="seller_name">Seller Name</label>
+                                                                                            <input class="form-control form-control-lg" type="text" id="seller_name" name="seller_name" value="شركة الانجاز المعتمد للاستقدام">
+                                                                                            <input class="form-control form-control-lg" type="text" id="con_id" name="con_id" value="{{$x->id}}">
+                                                                                            <p class="form-text">Example: My Company</p>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="form-label" for="vat_number">VAT Number</label>
+                                                                                            <input class="form-control form-control-lg" type="text" id="vat_number" name="vat_number" value="300617567500003">
+                                                                                            <p class="form-text"><small>Example: 310000000000000</small></p>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="form-label" for="invoice_date">Date and Time</label>
+                                                                                            <input class="form-control form-control-lg" type="datetime" id="invoice_date" name="invoice_date" value="{{ $x->created_at  }}">
+                                                                                            <p class="form-text"><small>Example: 2022-12-15 14:41:15</small></p>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="form-label" for="total_amount">Total Amount (with VAT)</label>
+                                                                                            <input class="form-control form-control-lg" type="text" id="total_amount" name="total_amount" value="{{  $x->tot  }}">
+                                                                                            <p class="form-text"><small>Example: 2000.00</small></p>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="form-label" for="vat_amount">VAT Amount</label>
+                                                                                            <input class="form-control form-control-lg" type="text" id="vat_amount" name="vat_amount" value="{{  $x->vat_cost }}">
+                                                                                            <p class="form-text"><small>Example: 300.00</small></p>
+                                                                                        </div>
+                                                                                        <h5 class="card-title mb-3 mt-4">Options</h5>
+                                                                                        <div class="ms-4 mb-3">
+                                                                                            <div class="mb-3">
+                                                                                                <input class="form-check-input" type="checkbox" id="qr_logo" name="qr_logo" {{ old('qr_logo') == 'on' ? 'checked' : '' }}>
+                                                                                                <label class="form-check-label" for="qr_logo">Add an image in the center of the QR Code</label>
+                                                                                            </div>
+                                                                                            <div class="form-check">
+                                                                                                <input class="form-check-input" type="radio" name="qr_options" id="option1" value="download" >
+                                                                                                <label class="form-check-label" for="option1">
+                                                                                                    Download QR Code image
+                                                                                                </label>
+                                                                                            </div>
+                                                                                            <div class="form-check">
+                                                                                                <input class="form-check-input" type="radio" name="qr_options" id="option2" value="store">
+                                                                                                <label class="form-check-label" for="option2">
+                                                                                                    Save QR Code image to server
+                                                                                                </label>
+                                                                                            </div>
+                                                                                            <div class="form-check">
+                                                                                                <input class="form-check-input" type="radio" name="qr_options" id="option3" value="pdf" checked>
+                                                                                                <label class="form-check-label" for="option3">
+                                                                                                    Generate PDF with QR Code image
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <ul class="list-group control m-b-2 user-list">
+                                                                                        <li class="list-group-itemm">
+                                                                                            <button type="submit" class="btn btn-success btn-sm"> <i class="fa fa-file-pdf"></i>
+                                                                                                <span> طباعة الفاتورة</span></button>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </form>
+                                                                            </div>
+                                                                            <!--   ***********************************************************-->
+
+                                                                            <li class="list-group-itemm"  style="border-right:2px solid #00ff21;">
+                                                                                <a href="/print_cont/{{$x->id }}" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                                                                                    <i class="fa fa-print"></i>
+                                                                                    <span>طباعة</span>
+                                                                                </a>
+                                                                            </li>
+
+
+
+
+                                                                        </ul>
+
+                                                                    </div>
+                                                                    <!-- بداية العمود الاخير-->
+                                                                    @if($x->status=='ساري')
+                                                                        <div class="col-md-2 hideApplicant">
+
+                                                                            <ul class="list-group control m-b-0 user-list">
+
+
+
+
+
+
+                                                                                <li class="list-group-itemm">
+                                                                                    <a onclick="StopContract(15101);" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                                                                                        <i class="fa-duotone fa-hand text-danger"></i>
+                                                                                        <span>ايقاف العقد</span>
+                                                                                    </a>
+                                                                                </li>
+
+                                                                                <li class="list-group-itemm liRenewContract" style="border-right:2px solid #ff6a00;">
+                                                                                    <a onclick="RentContract.GetRenew(15101);">
+                                                                                        <i class="fa fa-user-plus"></i>
+                                                                                        <span>تجديد العقد</span>
+                                                                                    </a>
+                                                                                </li>
+
+
+
+
+
+
+                                                                                <li class="list-group-itemm">
+
+
+                                                                                    @if($x->emp_name=='')
+                                                                                        <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo3"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+
+
+                                                                                            <i class="fa fa-user-times m-r-5"></i>
+                                                                                            <span>اضافة عاملة للعقد</span> </a>&nbsp;
+                                                                                    @else
+                                                                                        <a class="modal-effect  btn btn-primary btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo3"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+
+
+                                                                                            <i class="fa fa-user-times m-r-5"></i>
+                                                                                            <span> انهاء خدمة العامل</span> </a>&nbsp;
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li class="list-group-itemm">
+                                                                                    <a href="/rentupdate/{{$x->id}}" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
+                                                                                        <i class="fa fa-edit"></i>
+                                                                                        <span>تعديل</span>
+                                                                                    </a>
+                                                                                </li>
+
+                                                                                <li class="list-group-itemm">
+                                                                                    <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#end_contract"   data-id="{{ $x->id }}" data-end_contract_date="{{ $x->end_date }}"  data-cost="{{ $x->cost }}" data-countss="{{ $x->countss }}" data-maid_id="{{ $x->maids_id }}"  >
+
+
+
+                                                                                        <span>انهاء العقد</span> </a>&nbsp;
+                                                                                </li>
+
+                                                                            </ul>
+                                                                            <br>
+
+
+
+
+                                                                                <?php
+                                                                                $start =  Carbon\Carbon::parse($x->end_date);
+                                                                                $now = Carbon\Carbon::now();
+
+
+                                                                                $days_count = $start->diffInDays($now);
+
+
+                                                                                ?>
+
+
+                                                                            @if($start>$now)
+                                                                                <h4 class="m-t-0 header-title-small text-danger"><b>الايام المتبقية</b> </h4><br>
+                                                                                <div class="d-flex justify-content-center">
+                                                                                    <img src="assets/timer.png" width="25px" height="25px">
+                                                                                    <h1 class="text"><b>
+                                                                                            <span class="text-info">  {{$days_count+1}}</span>
+                                                                                            @else
+                                                                                                <h4 class="m-t-0 header-title-small text-danger"><b>الايام المتأخرة</b> </h4><br>
+                                                                                                <div class="d-flex justify-content-center">
+                                                                                                    <img src="assets/timer.png" width="25px" height="25px">
+                                                                                                    <h1 class="text"><b>
+                                                                                                            <span class="text-danger">   {{$days_count}}</span>
+                                                                                                            @endif
+
+                                                                                                        </b></h1>
+
+                                                                                                </div>
+
+
+                                                                                </div>
+                                                                            @elseif($x->status=='منتهي')
+                                                                                <div class="col-md-2 hideApplicant">
+
+                                                                                    <p class="text-info font-bold">تم انهاء العقد</p>
+                                                                                    @if($x->late_days>0 and $x->late_cost>0 )
+                                                                                        <a class="modal-effect  btn btn-warning btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#penalty"   data-id="{{ $x->id }}" data-late_days="{{ $x->late_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}"  >
+
+
+                                                                                            <i class="fa fa-cash-register m-r-5"></i>
+                                                                                            <span>دفع غرامة التأخير</span> </a>&nbsp;
+                                                                                    @endif
+                                                                                    @if($x->remaining_days>0 and $x->return_cost>0 )
+                                                                                        <a class="modal-effect  btn btn-info btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#return"   data-id="{{ $x->id }}" data-remaining_days="{{ $x->remaining_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}" data-return_cost="{{ $x->return_cost }}"   >
+
+
+                                                                                            <i class="fa fa-cash-register m-r-5"></i>
+                                                                                            <span>استرداد مبلغ للعميل</span> </a>&nbsp;
+                                                                                    @endif
+
+
+                                                                                    <table class="table">
+                                                                                        <tbody><tr>
+                                                                                            <td>بواسطة</td>
+                                                                                            <td> {{$x->end_by}} </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>سبب الانهاء</td>
+                                                                                            <td>{{$x->end_reson}}</td>
+                                                                                        </tr>
+
+                                                                                        <tr>
+                                                                                            <td>تاريخ الانهاء</td>
+                                                                                            <td>{{$x->end_contract_date}}</td>
+                                                                                        </tr>
+                                                                                        @if($x->late_cost>0)
+                                                                                            <tr>
+                                                                                                <td>عدد ايام التأخير</td>
+                                                                                                <td>{{$x->late_days}}</td>
+                                                                                            </tr>
+                                                                                        @endif
+                                                                                        @if($x->return_cost>0)
+                                                                                            <tr>
+                                                                                                <td>عدد الايام المتبقية </td>
+                                                                                                <td>{{$x->remaining_days}}</td>
+                                                                                            </tr>
+                                                                                        @endif
+                                                                                        <tr>
+                                                                                            <td>ملحوظة</td>
+
+
+
+                                                                                            <td>{{$x->end_comment}} </td>
+                                                                                        </tr>
+                                                                                        </tbody></table>
+                                                                                    <!--  استرجاع  مبلغ للعميل فى  كل الحالات-->
+                                                                                </div>
+                                                                            @endif
+
+                                                                            <!-- نهاية العمود الاخير-->
+                                                                        </div>
+                                                                </div>
+                                                                @if($x->status=='منتهي')
+                                                                    <div class="btn btn-info hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: rgba(53, 184, 224, 0.15) !important;color:#35b8e0 !important;">
+                                                                        <i class="fa fa-window-close m-r-5"></i><span>تم انهاء العقد  </span>
+                                                                    </div>
+                                                                @endif
+
+                                                                @if($x->late_days>0 and $x->late_cost>0)
+                                                                    <br>
+                                                                    <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #cba844;color:#cba844;">
+                                                                        <i class="fa fa-window-close m-r-5"></i><span> يوجد غرامة تأخير علي العقد </span>
+                                                                    </div>
+                                                                @endif
+
+                                                                @if($x->remaining_days>0 and $x->return_cost>0)
+                                                                    <br>
+                                                                    <div class="btn btn-warning hideApplicant text-center btn-fullwidth text-white btn-trans col-md-12" STYLE="background-color: #527589;color:#527589;">
+                                                                        <i class="fa fa-window-close m-r-5"></i><span> يوجد استرداد مبلغ للعميل  </span>
+                                                                    </div>
+                                                                @endif
+                                                                <!-- نهاية الكرت-->
+
+                                                            </div>
+                                                        </div>
+
+                                                        @endforeach
+                                                        <div class="card card-primary">
+
+                                                            <div class="card-body text-primary ">
+                                                                {{ $contract->links() }}
+                                                                <div class="text-danger   text-left ">
+                                                                    <h7>عدد العقود</h7>
+                                                                    <h3 class="">  <b>{{$contract_count2}}</b> </h3>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
     <!-- Container closed -->
     <div class="modal" id="modaldemo1">
         <div class="modal-dialog" role="document">
