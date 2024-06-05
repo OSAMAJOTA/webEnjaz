@@ -264,7 +264,11 @@
 
     </div>
 
+    <h1>Accounts Tree</h1>
 
+    <ul>
+
+    </ul>
 
 
     <div class="col-12 ">
@@ -275,242 +279,32 @@
             <div class="card-body text-secondary">
                 <div class="col-lg-4 mt-4 mt-lg-0">
                     <ul id="tree2" style="font-weight: bold;font-size: 15px;">
-                        <li><a href="#">Treeview1</a>
-                            <ul>
-                                <li>Company Maintenance</li>
-                                <li>Employees
+
+
+                        @foreach($accounts as $account)
+                            <li><a href="#">{{ $account->name }} -الرصيد : {{ $account->balance }}</a>
+
+                                @if(count($account->children))
                                     <ul>
-                                        <li>Reports
-                                            <ul>
-                                                <li>Report1</li>
-                                                <li>Report2</li>
-                                                <li>Report3</li>
-                                                <li>Report3</li>
-                                            </ul>
-                                        </li>
-                                        <li>Employee Maint.
-                                            <ul>
-                                                <li>Reports
-                                                    <ul>
-                                                        <li>Report1</li>
-                                                        <li>Report2</li>
-                                                        <li>Report3</li>
-                                                    </ul>
-                                                </li>
-                                                <li>Employee Maint.<ul>
-                                                        <li>Reports
-                                                            <ul>
-                                                                <li>Report1</li>
-                                                                <li>Report2</li>
-                                                                <li>Report3</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>Employee Maint.</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        @foreach($account->children as $child)
+                                            <li> {{ $child->name }} - Balance: {{ $child->balance }}</li>
+                                            @if(count($child->children))
+                                                <ul>
+                                                    @foreach($child->children as $grandChild)
+                                                        <li> {{ $grandChild->name }} - Balance: {{ $grandChild->balance }}</li>
+                                                        <!-- يمكنك استمرار تضمين المزيد من الأطفال هنا -->
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        @endforeach
                                     </ul>
-                                </li>
-                                <li>Human Resources</li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Treeview2</a>
-                            <ul>
-                                <li>Company Maintenance</li>
-                                <li>Employees
-                                    <ul>
-                                        <li>Reports
-                                            <ul>
-                                                <li>Report1</li>
-                                                <li>Report2</li>
-                                                <li>Report3</li>
-                                            </ul>
-                                        </li>
-                                        <li>Employee Maint.
-                                            <ul>
-                                                <li>Reports
-                                                    <ul>
-                                                        <li>Report1</li>
-                                                        <li>Report2</li>
-                                                        <li>Report3</li>
-                                                    </ul>
-                                                </li>
-                                                <li>Employee Maint.<ul>
-                                                        <li>Reports
-                                                            <ul>
-                                                                <li>Report1</li>
-                                                                <li>Report2</li>
-                                                                <li>Report3</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>Employee Maint.</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>Human Resources</li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Treeview3</a>
-                            <ul>
-                                <li>Company Maintenance</li>
-                                <li>Employees
-                                    <ul>
-                                        <li>Reports
-                                            <ul>
-                                                <li>Report1</li>
-                                                <li>Report2</li>
-                                                <li>Report3</li>
-                                            </ul>
-                                        </li>
-                                        <li>Employee Maint.
-                                            <ul>
-                                                <li>Reports
-                                                    <ul>
-                                                        <li>Report1</li>
-                                                        <li>Report2</li>
-                                                        <li>Report3</li>
-                                                    </ul>
-                                                </li>
-                                                <li>Employee Maint.<ul>
-                                                        <li>Reports
-                                                            <ul>
-                                                                <li>Report1</li>
-                                                                <li>Report2</li>
-                                                                <li>Report3</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>Employee Maint.</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>Human Resources</li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Treeview4</a>
-                            <ul>
-                                <li>Company Maintenance</li>
-                                <li>Employees
-                                    <ul>
-                                        <li>Reports
-                                            <ul>
-                                                <li>Report1</li>
-                                                <li>Report2</li>
-                                                <li>Report3</li>
-                                            </ul>
-                                        </li>
-                                        <li>Employee Maint.
-                                            <ul>
-                                                <li>Reports
-                                                    <ul>
-                                                        <li>Report1</li>
-                                                        <li>Report2</li>
-                                                        <li>Report3</li>
-                                                    </ul>
-                                                </li>
-                                                <li>Employee Maint.<ul>
-                                                        <li>Reports
-                                                            <ul>
-                                                                <li>Report1</li>
-                                                                <li>Report2</li>
-                                                                <li>Report3</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>Employee Maint.</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>Human Resources</li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Treeview5</a>
-                            <ul>
-                                <li>Company Maintenance</li>
-                                <li>Employees
-                                    <ul>
-                                        <li>Reports
-                                            <ul>
-                                                <li>Report1</li>
-                                                <li>Report2</li>
-                                                <li>Report3</li>
-                                            </ul>
-                                        </li>
-                                        <li>Employee Maint.
-                                            <ul>
-                                                <li>Reports
-                                                    <ul>
-                                                        <li>Report1</li>
-                                                        <li>Report2</li>
-                                                        <li>Report3</li>
-                                                    </ul>
-                                                </li>
-                                                <li>Employee Maint.<ul>
-                                                        <li>Reports
-                                                            <ul>
-                                                                <li>Report1</li>
-                                                                <li>Report2</li>
-                                                                <li>Report3</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>Employee Maint.</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>Human Resources</li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Treeview6</a>
-                            <ul>
-                                <li>Company Maintenance</li>
-                                <li>Employees
-                                    <ul>
-                                        <li>Reports
-                                            <ul>
-                                                <li>Report1</li>
-                                                <li>Report2</li>
-                                                <li>Report3</li>
-                                            </ul>
-                                        </li>
-                                        <li>Employee Maint.
-                                            <ul>
-                                                <li>Reports
-                                                    <ul>
-                                                        <li>Report1</li>
-                                                        <li>Report2</li>
-                                                        <li>Report3</li>
-                                                    </ul>
-                                                </li>
-                                                <li>Employee Maint.<ul>
-                                                        <li>Reports
-                                                            <ul>
-                                                                <li>Report1</li>
-                                                                <li>Report2</li>
-                                                                <li>Report3</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>Employee Maint.</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>Human Resources</li>
-                            </ul>
-                        </li>
+                            @endif
+                        @endforeach
+
+
+
                     </ul>
+
                 </div>
             </div>
 

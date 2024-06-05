@@ -14,8 +14,9 @@
 					</div>
                   <h1>osama</h1>
 					<div class="main-header-right">
-                        <?php $users=\App\user_treasure::where('user_id',Auth::user()->id)->first()  ?>
-                        <a href="" class=" btn btn-outline-primary btn-sm" style="font-weight: bold;font-size: 12PX" title="رصيد الخزينة">{{$users->treasure}} ريال</a>
+                        <?php $users=\App\user_treasure::where('user_id',Auth::user()->id)->latest('created_at')->first()  ?>
+                        <a  class=" btn btn-outline-primary btn-sm" data-effect="effect-fall" data-toggle="modal" href="#transfer" style="font-weight: bold;font-size: 12PX" title="رصيد الخزينة">{{$users->treasure}} ريال</a>
+
 						<ul class="nav">
 							<li class="">
 								<div class="dropdown  nav-itemd-none d-md-flex">
@@ -180,4 +181,72 @@
 					</div>
 				</div>
 			</div>
+<div class="modal" id="transfer">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content modal-content-demo">
+            <div class="modal-header">
+                <h6 class="modal-title">   رصيد الخزينة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+
+            </div>
+            <div class="modal-body">
+                    <?php
+
+                    $treasures=\App\user_treasure::where('typ',1)->latest()->get()
+
+                    ?>
+                @foreach($treasures as $treasures)
+                    <a href="/contract_detils/{{$treasures->contract_id}}" class="p-3 d-flex border-bottom">
+                        <div class="  drop-img  cover-image  "
+                             data-image-src="{{ URL::asset('assets/img/faces/income.png') }}">
+                            <span class="avatar-status bg-teal"></span>
+                        </div>
+                        <div class="wd-90p">
+                            <div class="d-flex">
+
+
+                            </div>
+                            <p class="mb-0 desc">{{$treasures->comment}}</p>
+                            <p class="time mb-0 text-left float-right mr-2 mt-2">{{$treasures->created_at}}</p>
+
+                            <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$treasures->treasure}}</p>
+                            <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; {{$treasures->last_treasure}}</p>
+
+                        </div>
+                    </a>
+                @endforeach
+                <a href="#" class="p-3 d-flex border-bottom">
+                    <div class="  drop-img  cover-image  "
+                         data-image-src="{{ URL::asset('assets/img/faces/transfer.png') }}">
+                        <span class="avatar-status bg-teal"></span>
+                    </div>
+                    <div class="wd-90p">
+                        <div class="d-flex">
+
+                        </div>
+                        <p class="mb-0 desc">تحويل مبلغ 1500 ريال من الخزينة الي الحسابات </p>
+                        <p class="time mb-0 text-left float-right mr-2 mt-2">Mar 15 3:55 PM</p>
+
+                        <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; 0</p>
+                        <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; 1500</p>
+
+                    </div>
+                </a>
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+
+                <button class="btn ripple btn-info" data-dismiss="modal" type="button">عرض العمليات</button>
+                <button class="btn ripple btn-success" data-dismiss="modal" type="button">تحويل</button>
+
+                <button class="btn ripple btn-danger" data-dismiss="modal" type="button">خروج</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 <!-- /main-header -->

@@ -10,39 +10,12 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * A Laravel wrapper for Dompdf
  *
  * @package laravel-dompdf
  * @author Barry vd. Heuvel
- *
- * @method PDF setBaseHost(string $baseHost)
- * @method PDF setBasePath(string $basePath)
- * @method PDF setCanvas(\Dompdf\Canvas $canvas)
- * @method PDF setCallbacks(array $callbacks)
- * @method PDF setCss(\Dompdf\Css\Stylesheet $css)
- * @method PDF setDefaultView(string $defaultView, array $options)
- * @method PDF setDom(\DOMDocument $dom)
- * @method PDF setFontMetrics(\Dompdf\FontMetrics $fontMetrics)
- * @method PDF setHttpContext(resource|array $httpContext)
- * @method PDF setPaper(string|float[] $paper, string $orientation = 'portrait')
- * @method PDF setProtocol(string $protocol)
- * @method PDF setTree(\Dompdf\Frame\FrameTree $tree)
- * @method string getBaseHost()
- * @method string getBasePath()
- * @method \Dompdf\Canvas getCanvas()
- * @method array getCallbacks()
- * @method \Dompdf\Css\Stylesheet getCss()
- * @method \DOMDocument getDom()
- * @method \Dompdf\FontMetrics getFontMetrics()
- * @method resource getHttpContext()
- * @method Options getOptions()
- * @method \Dompdf\Frame\FrameTree getTree()
- * @method string getPaperOrientation()
- * @method float[] getPaperSize()
- * @method string getProtocol()
  */
 class PDF
 {
@@ -67,6 +40,12 @@ class PDF
     /** @var string */
     protected $public_path;
 
+    /**
+     * @param Dompdf $dompdf
+     * @param \Illuminate\Contracts\Config\Repository $config
+     * @param \Illuminate\Filesystem\Filesystem $files
+     * @param \Illuminate\Contracts\View\Factory $view
+     */
     public function __construct(Dompdf $dompdf, ConfigRepository $config, Filesystem $files, ViewFactory $view)
     {
         $this->dompdf = $dompdf;
@@ -79,10 +58,23 @@ class PDF
 
     /**
      * Get the DomPDF instance
+     *
+     * @return Dompdf
      */
     public function getDomPDF(): Dompdf
     {
         return $this->dompdf;
+    }
+
+    /**
+     * Set the paper size (default A4)
+     *
+     * @param string|array<string> $paper
+     */
+    public function setPaper($paper, string $orientation = 'portrait'): self
+    {
+        $this->dompdf->setPaper($paper, $orientation);
+        return $this;
     }
 
     /**
@@ -120,6 +112,7 @@ class PDF
     /**
      * Add metadata info
      * @param array<string, string> $info
+     * @return static
      */
     public function addInfo(array $info): self
     {
@@ -142,21 +135,8 @@ class PDF
     }
 
     /**
-     * Set/Change an option (or array of options) in Dompdf
+     * Set/Change an option in DomPdf
      *
-     * @param array<string, mixed>|string $attribute
-     * @param null|mixed $value
-     */
-    public function setOption($attribute, $value = null): self
-    {
-        $this->dompdf->getOptions()->set($attribute, $value);
-        return $this;
-    }
-
-    /**
-     * Replace all the Options from DomPDF
-     *
-     * @deprecated Use setOption to override individual options.
      * @param array<string, mixed> $options
      */
     public function setOptions(array $options): self
@@ -189,15 +169,8 @@ class PDF
     /**
      * Save the PDF to a file
      */
-    public function save(string $filename, string $disk = null): self
+    public function save(string $filename): self
     {
-        $disk = $disk ?: $this->config->get('dompdf.disk');
-
-        if (! is_null($disk)) {
-            Storage::disk($disk)->put($filename, $this->output());
-            return $this;
-        }
-
         $this->files->put($filename, $this->output());
         return $this;
     }
@@ -276,27 +249,5 @@ class PDF
             $subject = str_replace($search, $replace, $subject);
         }
         return $subject;
-    }
-
-    /**
-     * Dynamically handle calls into the dompdf instance.
-     *
-     * @param string $method
-     * @param array<mixed> $parameters
-     * @return $this|mixed
-     */
-    public function __call($method, $parameters)
-    {
-        if (method_exists($this, $method)) {
-            return $this->$method(...$parameters);
-        }
-
-        if (method_exists($this->dompdf, $method)) {
-            $return = $this->dompdf->$method(...$parameters);
-
-            return $return == $this->dompdf ? $this : $return;
-        }
-
-        throw new \UnexpectedValueException("Method [{$method}] does not exist on PDF instance.");
     }
 }

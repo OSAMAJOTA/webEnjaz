@@ -21,6 +21,32 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
     <link href="{{URL::asset('assets/plugins/accordion/accordion.css')}}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+
+
+<style>
+    .loader {
+        display: none; /* اخفاء اللودر افتراضيًا */
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 50px;
+        height: 50px;
+        margin: -25px 0 0 -25px; /* لضمان وجود اللودر في منتصف الشاشة */
+        border: 10px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 10px solid #3498db;
+        animation: spin 2s linear infinite;
+        z-index: 1000; /* لضمان ظهور اللودر فوق كل العناصر الأخرى */
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+
+
+</style>
 @endsection
 
 @section('page-header')
@@ -80,7 +106,7 @@
 
 
             <div class="col-12">
-                <form action="{{ route('rent.store') }}" method="post" enctype="multipart/form-data" id="myForm"
+                <form action="{{ route('recruitment.store') }}" method="post" enctype="multipart/form-data" id="myForm"
                       autocomplete="off">
                     {{ csrf_field() }}
                 <div class="card card-primary">
@@ -89,19 +115,7 @@
                     </div>
                     <div class="card-body text-primary">
                         <div class="row" >
-                            <div class="col-sm">
-                                <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> حدد الفرع </label>
-                                <select name="companys_name" id="companys_name" class="form-control"  required>
-                                    <!--placeholder-->
-                                    <option value="" selected>حدد الفرع</option>
-                                    @foreach($companys as $x)
-                                        <option value="{{$x->companys_name}}" >{{$x->companys_name}}</option>
-                                    @endforeach
 
-
-
-                                </select>
-                            </div>
                             <div class="col-sm">
 
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>رقم الهوية</label>
@@ -119,6 +133,38 @@
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> جوال / الهاتف</label>
                                 <input type="text" class="form-control" id="agent_phone1" name="agent_phone1" value="{{$agents->agent_phone1}}" readonly>
                             </div>
+
+
+
+                        </div>
+                        <div class="row" >
+                            <div class="col-sm">
+                                <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> حدد الفرع </label>
+                                <select name="companys_name" id="companys_name" class="form-control"  required>
+                                    <!--placeholder-->
+                                    <option value="" selected>حدد الفرع</option>
+                                    @foreach($companys as $x)
+                                        <option value="{{$x->companys_name}}" >{{$x->companys_name}}</option>
+                                    @endforeach
+
+
+
+                                </select>
+                            </div>
+                            <div class="col-sm">
+
+                                <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>رقم العقد في مساند </label>
+                                <input type="text" class="form-control" id="musaned_cont" name="musaned_cont" value=""  >
+
+
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> رقم عقد مساند التوثيق</label>
+                                <input type="text" class="form-control" id="musaned_tawthiq" name="musaned_tawthiq" value=""  >
+                            </div>
+
+
 
 
 
@@ -145,55 +191,80 @@
                         <br>
                         <div class="row mg-t-10">
                             <div class="col-lg-3">
-                                <label class="rdiobox"><input checked name="rdio" type="radio" value="1" onclick="showElement(2)"> <span> معين</span></label>
+                                <label class="rdiobox"><input checked name="emp_typ"  type="radio" value="1" onclick="showElement(1)"  > <span> معين</span></label>
                             </div>
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                                <label class="rdiobox"><input  name="rdio" type="radio" value="2" onclick="showElement(1)"> <span>غير معين </span></label>
+                                <label class="rdiobox"><input  name="emp_typ" type="radio" value="2" onclick="showElement(2)" > <span>غير معين </span></label>
                             </div>
                             <div class="col-lg-3">
-                                <label class="rdiobox"><input name="rdio" type="radio"  value="3" onclick="showElement(3)"> <span> تفويض</span></label>
+                                <label class="rdiobox"><input name="emp_typ" type="radio"   value="3" onclick="showElement(3)" > <span> تفويض</span></label>
                             </div>
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                                <label class="rdiobox"><input  name="rdio" type="radio" value="4" onclick="showElement(4)"> <span> معروفة</span></label>
+                                <label class="rdiobox"><input  name="emp_typ" type="radio" value="4" onclick="showElement(4)" > <span> معروفة</span></label>
                             </div>
 
                         </div>
-
+<input type="text" name="emp_typ2" id="emp_typ2" value="1">
 <br>
                         <div id="yes" style="display:none">
                             <div class="row">
                                 <div class="col-sm">
                                     <label for="inputName" class="control-label"> <span class="text-danger font-bold">*</span>    العمر  </label>
-                                    <select name="Accommodation_type" id="Accommodation_type" class="form-control"  required>
-                                        <!--placeholder-->
-                                        <option value="" selected disabled>حدد  </option>
-
-
+                                    <select class="form-control" id="Age" name="Age"><option selected="selected" value="0">غير محدد</option>
+                                        <option value="1">من 25 الى 35</option>
+                                        <option value="10">من 50 الى 55</option>
+                                        <option value="11">من 20 الى 25</option>
+                                        <option value="12">من 20 الى 30</option>
+                                        <option value="13">من 25الى 50</option>
+                                        <option value="17">من 18 الى 30</option>
+                                        <option value="18">من 31 الى 40</option>
+                                        <option value="19">من 41 الى 50</option>
+                                        <option value="2">من 35 الى 45</option>
+                                        <option value="20">من 51 الى 60</option>
+                                        <option value="21">من 61 الى 65</option>
+                                        <option value="22">من 21 فاكثر</option>
+                                        <option value="23">من 22 الي 40</option>
+                                        <option value="24">من 22 إلى 30</option>
+                                        <option value="25">من31 إلى 40</option>
+                                        <option value="26">من 41 إلى 50</option>
+                                        <option value="27">أكبرمن 50</option>
+                                        <option value="28">25 الي 45</option>
+                                        <option value="29">من 49 الي 49 </option>
+                                        <option value="3">من 45 الى 55</option>
+                                        <option value="30">من 46 الي 49 </option>
+                                        <option value="4">اكبر من 55</option>
+                                        <option value="5">من 25 الى 30</option>
+                                        <option value="50">30 - 18</option>
+                                        <option value="51">31 - 40</option>
+                                        <option value="52">41 - 50</option>
+                                        <option value="53">51 - 60</option>
+                                        <option value="54">61 - 65</option>
+                                        <option value="6">من 30 الى 35</option>
+                                        <option value="7">من 35 الى 40</option>
+                                        <option value="8">من 40 الى 45</option>
+                                        <option value="9">من 45 الى 50</option>
                                     </select>
                                 </div>
 
                                 <div class="col-sm">
                                     <label for="inputName" class="control-label"> <span class="text-danger font-bold">*</span>  الديانة </label>
-                                    <select name="Accommodation_type" id="Accommodation_type" class="form-control"  required>
-                                        <!--placeholder-->
-                                        <option value="" selected disabled>حدد  </option>
-
-
+                                    <select class="form-control" data-val="true"  id="religion" name="religion"><option selected="selected" value="غير محدد">غير محدد</option>
+                                        <option value="مسلم">مسلم</option>
+                                        <option value="غير مسلم">غير مسلم	</option>
                                     </select>
                                 </div>
 
                                 <div class="col-sm">
                                     <label for="inputName" class="control-label"> <span class="text-danger font-bold">*</span>  سبق له العمل </label>
-                                    <select name="Accommodation_type" id="Accommodation_type" class="form-control"  required>
-                                        <!--placeholder-->
-                                        <option value="" selected disabled>حدد  </option>
-
-
+                                    <select class="form-control" id="emp_exp" name="emp_exp">
+                                        <option value="غير محدد">غير محدد</option>
+                                        <option value="سبق له العمل">سبق له العمل</option>
+                                        <option value="لم يسبق له العمل">لم يسبق له العمل</option>
                                     </select>
                                 </div>
                                 <div class="col-sm">
-                                    <label for="inputName" class="control-label"> <span class="text-danger font-bold">*</span>    مؤهلات أخرى </label>
-                                    <input type="text" class="form-control" id="home_phone" name="home_phone" required>
+                                    <label for="inputName" class="control-label">    مؤهلات أخرى </label>
+                                    <input type="text" class="form-control" id="another_exp" name="another_exp" >
                                 </div>
 
 
@@ -219,7 +290,7 @@
 
 
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> الجنسية</label>
-                                <select name="nash" id="nash" class="form-control"  required>
+                                <select name="nash" id="nash" class="form-control"  required onchange="get_offer_rec()">
                                     <!--placeholder-->
                                     <option value="" selected>حدد الجنسية</option>
                                     @foreach($nationalities as $x)
@@ -231,21 +302,21 @@
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>
 
                                     الوظيفة</label>
-                                <select name="WORK" id="WORK" class="form-control"  required>
+                                <select name="WORK" id="WORK" class="form-control"  required onchange="get_off_value()">
                                     <!--placeholder-->
-                                    @foreach($careers as $x)
-                                        <option value="{{$x->careers_name}}" selected>{{$x->careers_name}}</option>
-                                    @endforeach
+
 
                                 </select>
 
+                                <input type="text" class="form-control" id="work_emp" name="work_emp" required hidden="hidden">
                             </div>
 
                             <div class="col-sm">
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>طريقة السداد</label>
                                 <select name="sadad_typ" id="sadad_typ" class="form-control" onchange="showsadad()" required  >
                                     <!--placeholder-->
-                                    <option value="نقدآ" selected >نقدآ</option>
+                                    <option value="" selected>حدد السداد</option>
+                                    <option value="نقدآ"  >نقدآ</option>
 
                                     <option value="تحويل">تحويل</option>
 
@@ -258,6 +329,8 @@
 
                             </div>
 
+
+
                             <div class="col-md-6">
                                 <div class="m-t-0 header-title-small"><b>السعر</b></div>
                                 <div class="">
@@ -265,18 +338,19 @@
                                         <tbody>
                                         <tr>
                                             <td> تكلفة الوكيل</td>
-                                            <td> <span class="AgentCostInRiyalslbl">3639.85</span></td>
+                                            <td><input type="text" class="form-control" id="wakel_cost" name="wakel_cost" value="0" readonly></td>
                                         </tr>
 
                                         <tr>
                                             <td>الراتب الخاص بالعرض</td>
-                                            <td> <span class="OfferSalarylbl">900</span></td>
+                                            <td> <input type="text" class="form-control" id="salary_emp" name="salary_emp" value="0" readonly></td>
                                         </tr>
 
 
                                         </tbody>
                                     </table>
-                                    <h2 class="text-custom text-center  font-100 ContractOfferPrice" style="text-align:right;font-weight: bold;border: none; font-size: 55px;">2487.09</h2>
+
+                                    <input type="text" class="form-control text-center" style="text-align:right;font-weight: bold;border: none; height: auto; font-size: 75px; background-color: transparent;" id="cost1" name="cost1" value="0" readonly>
                                 </div>
                             </div>
 
@@ -305,10 +379,10 @@
                         <div class="d-flex justify-content-center">
                         <div class="row col-md-6">
                             <div class="col-lg-6">
-                                <label class="rdiobox"><input  name="rdio" type="radio" value="1" onclick="showVisa(1)"> <span>توجد تأشيرة </span></label>
+                                <label class="rdiobox"><input  name="hasVisa" type="radio" value="1" onclick="showVisa(1)"> <span>توجد تأشيرة </span></label>
                             </div>
                             <div class="col-lg-6">
-                                <label class="rdiobox"><input checked name="rdio" type="radio" value="2" onclick="showVisa(2)"> <span> اصدار تأشيرة </span></label>
+                                <label class="rdiobox"><input checked name="hasVisa" type="radio" value="2" onclick="showVisa(2)"> <span> اصدار تأشيرة </span></label>
                             </div>
                         </div>
 
@@ -320,22 +394,35 @@
 
                                 <div class="col-sm">
                                     <label for="inputName" class="control-label"> <span class="text-danger font-bold">*</span>     رقم التأشيرة </label>
-                                    <input type="text"  class="form-control" id="home_phone" name="home_phone" required>
+                                    <input type="text"  class="form-control" id="visa_number" name="visa_number" required>
                                 </div>
 
 
                                 <div class="col-sm">
+
                                     <label for="inputName" class="control-label"> <span class="text-danger font-bold">*</span>     تاريخ التأشيرة هجرى </label>
-                                    <input type="date"  class="form-control" id="home_phone" name="home_phone" required>
+                                    <input type="text" class="form-control" id="hijri_visa" name="hijri_visa" required >
                                 </div>
 
                                 <div class="col-sm">
                                     <label for="inputName" class="control-label"> <span class="text-danger font-bold">*</span>تاريخ التأشيرة  ميلادي </label>
-                                    <input type="date"  class="form-control" id="home_phone" name="home_phone" required>
+                                    <input type="date"  class="form-control" id="date_visa" name="date_visa" required>
                                 </div>
 
 
                             </div>
+                        </div>
+                        <div id="visa_pay" style="display:none">
+                        <div class="row mg-t-10">
+                            <div class="col-lg-3">
+                                <label class="rdiobox"><input  name="visa_pay"  type="radio" value="1" onclick="add_visa_cost(1)"  > <span> مدفوعة</span></label>
+                            </div>
+                            <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+                                <label class="rdiobox"><input checked name="visa_pay" type="radio" value="2" onclick="add_visa_cost(2)" > <span> غير مدفوعة </span></label>
+                            </div>
+
+
+                        </div>
                         </div>
 
                 </div>
@@ -352,12 +439,12 @@
 
 
 
-                                    <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> الجنسية</label>
-                                    <select name="nash" id="nash" class="form-control"  required>
+                                    <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> جهة الوصول </label>
+                                    <select name="destination" id="destination" class="form-control"  required>
                                         <!--placeholder-->
                                         <option value="" selected> جهة الوصول</option>
-                                        @foreach($nationalities as $x)
-                                            <option value="{{$x->nationalities_name}}" >{{$x->nationalities_name}}</option>
+                                        @foreach($citys as $x)
+                                            <option value="{{$x->citys_name}}" >{{$x->citys_name}}</option>
                                         @endforeach
                                     </select>
                                     <br>
@@ -366,7 +453,7 @@
 
                                         الراتب</label>
 
-                                    <input type="text"  class="form-control" id="home_phone" name="home_phone" required>
+                                    <input type="text"  class="form-control" id="salary" name="salary" required>
 
                                 </div>
 
@@ -377,52 +464,40 @@
                                         <div class="m-t-0 header-title-small"><b>الاجمالى</b></div>
                                         <div class="col-md-12">
                                             <table class="table   m-0">
-                                                <input data-val="true" data-val-number="The field AgentCostInRiyals must be a number." data-val-required="The AgentCostInRiyals field is required." id="AgentCostInRiyals" name="AgentCostInRiyals" type="hidden" value="3639.85">
 
-                                                <input data-val="true" data-val-number="The field VATPercent must be a number." data-val-required="The VATPercent field is required." id="VATPercent" name="VATPercent" type="hidden" value="15">
+
+
                                                 <tbody>
                                                 <tr>
                                                     <td>تكلفة الاستقدام</td>
-                                                    <td> <span class="ContractOfferPricelbl">2487.09</span>    </td>
-                                                </tr>
-                                                <tr class="DiscountOfficeCoststr" style="display: none;">
-                                                    <td> خصم على   تكلفة الاستقدام</td>
-                                                    <td> <span class="DiscountOfficeCostslbl">-0</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> تكلفة الوكيل</td>
-                                                    <td> <span class="AgentCostInRiyalslbl">3639.85</span></td>
+                                                    <td> <input type="text"  class="form-control text-center" id="istgdam_cost" name="istgdam_cost" value="0" required readonly>  </td>
                                                 </tr>
 
-                                                <tr class="Ispaidtr" style="display: none;">
-                                                    <td>تكلفة التأشيرة </td>
-                                                    <td>2000</td>
+                                                <tr>
+                                                    <td> تكلفة الوكيل</td>
+                                                    <td> <input type="text"  class="form-control text-center" id="wakell_cost" name="wakell_cost" value="0" required readonly></td>
                                                 </tr>
-                                                <tr class="otherExpencestr" style="display: none;">
-                                                    <td>تكاليف أخرى </td>
-                                                    <td> <span class="otherExpenceslbl">0</span></td>
-                                                </tr>
-                                                <tr class="ContractInsuranceAmounttr" style="display: none;">
-                                                    <td>
-                                                        تامين عقود العمالة المنزلية
-                                                    </td>
-                                                    <td> <span class="ContractInsuranceAmountlbl">0</span></td>
-                                                </tr>
+
+
+
+
+
                                                 <tr>
                                                     <td>قيمة الضريبة </td>
-                                                    <td> <span class="TaxValue">373.06</span></td>
+                                                    <td>  <input type="text"  class="form-control text-center" id="cost_vat" name="cost_vat" value="0" required readonly></td>
                                                 </tr>
-                                                <tr class="AdminDiscounttr" style="display: none;">
-                                                    <td>خصم  </td>
-                                                    <td> <span class="AdminDiscountlbl">-0</span></td>
-                                                </tr>
+
 
                                                 </tbody>
                                             </table>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="text-center">
-                                                <h2 class="text-custom   font-100 ContractOfferTotalCost" style="text-align:center;font-weight: bold;border: none; font-size: 70px;">6500.00</h2>
+                                                <h2 class="text-custom   font-100 ContractOfferTotalCost" style="text-align:center;font-weight: bold;border: none; font-size: 70px;">
+                                                    <input type="text" class="form-control text-center" style="text-align:right;font-weight: bold;border: none; height: auto; font-size: 75px; background-color: transparent;" id="total_value" name="total_value" value="0" readonlyr >
+                                                    <input type="text" class="form-control text-center" style="text-align:right;font-weight: bold;border: none; height: auto; font-size: 75px; background-color: transparent;" id="tota" name="tota" value="0" hidden>
+
+                                                </h2>
                                                <br>
                                                 <h7>تكاليف العقد</h7>
                                             </div>
@@ -433,14 +508,14 @@
                                         <div class="form-group">
                                            <label class="text-success">خصم المدير</label>
                                          <br>
-                                            <input class="form-control disableNegative" data-val="true" data-val-number="The field خصم المدير must be a number." data-val-required="The خصم المدير field is required." id="AdminDiscount" name="AdminDiscount" type="text" value="0">
+                                            <input class="form-control disableNegative"  id="man_dis" name="man_dis" type="text" value="0" onkeyup="man_disc()">
                                         </div>
 
 
                                         <div class="form-group">
                                             <label class="text-success">  خصم على التكاليف الخصم على تكاليف المكتب فقط و منها يتم تخفيض الضريبة</label>
                                             <br>
-                                            <input class="form-control disableNegative" data-val="true" data-val-number="The field DiscountOfficeCosts must be a number." data-val-required="The DiscountOfficeCosts field is required." id="DiscountOfficeCosts" name="DiscountOfficeCosts" type="text" value="0">
+                                            <input class="form-control disableNegative" id="DiscountOfficeCosts" name="DiscountOfficeCosts" type="text" value="0" onkeyup="cost_disc()">
                                         </div>
                                     </div>
 
@@ -484,7 +559,7 @@
 
 
                                     <input style="text-align:center;color: #ee335e; font-size: 60px; height: 100px; background-color: white; font-weight: bold;border: none; " type="text" name="rest2" id="rest2" value="0.00" readonly >
-
+                                    <div class="loader" id="loader"></div>
 <div class="" id="exp">
                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" id="sadad_btn"
 
@@ -601,6 +676,9 @@
     <!--Internal  Datatable js -->
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 
+
+
+
                     <script>
                         var date = $('.fc-datepicker').datepicker({
                             dateFormat: 'yy-mm-dd'
@@ -614,49 +692,91 @@
 
 
         <script>
-            $(document).ready(function() {
 
-            $('select[name="nash"]').on('change', function() {
-                var SectionId = $(this).val();
-                if (SectionId) {
+            function get_offer_rec(){
+                $('select[name="WORK"]').empty();
+                var emp_typ= document.getElementById("emp_typ2").value;
+                var nash= document.getElementById("nash").value;
+                if(emp_typ==2){
+
+                    var Age= document.getElementById("Age").value;
+                    var religion= document.getElementById("religion").value;
+                    var emp_exp= document.getElementById("emp_exp").value;
                     $.ajax({
-                        url: "{{ URL::to('nash') }}/" + SectionId,
+                        url: "{{ URL::to('get_offer_rec') }}/"+nash+"/"+emp_typ+"/"+Age+"/"+religion+"/"+emp_exp,
                         type: "GET",
+
                         dataType: "json",
+
                         success: function(data) {
+                            if (Object.keys(data).length === 0) {
 
-                            document.getElementById("emp_salary").value = "0";
-                            document.getElementById("tamin").value = "0";
-                            document.getElementById("cost").value = "0";
-                            document.getElementById("countss").value = "0";
-                            document.getElementById("vat_cost").value = "0";
-                            document.getElementById("Total").value = "0";
-                            document.getElementById("tot").value = "0";
-                            document.getElementById("tota").value = "0.00";
-                            document.getElementById("cost3").value = "0.00";
-                            document.getElementById("tamin3").value = "0.00";
-                            document.getElementById("man_discount").value = "0.00";
-                            document.getElementById("rest2").value =  "0.00";
-                            document.getElementById("sadad2").value = "0.00";
-                            document.getElementById("rest").value =  "0.00";
-                            document.getElementById("sadad").value =  "";
+                                notif({
+                                    msg: "لا يوجد عروض متاحة ",
+                                    type: "error"
+                                })
 
-                            $('select[name="Duration"]').empty();
-                            $('select[name="Duration"]').append("<option value=''>حدد المدة</option>");
-                            $.each(data, function(key, value) {
+                            } else {
 
-                                $('select[name="Duration"]').append('<option value="' +
-                                    value + '">' + value + '</option>');
-                            });
+                                $('select[name="WORK"]').empty();
+                                $('select[name="WORK"]').append("<option value=''>حدد الوظيفة</option>");
+                                $.each(data, function (key, value) {
+
+                                    $('select[name="WORK"]').append('<option value="' +
+                                        key + '">' + value + '</option>');
+                                });
+                                notif({
+                                    msg: " يوجد عروض متاحة ",
+                                    type: "success"
+                                })
+                            }
                         },
+
+
                     });
 
-                } else {
-                    console.log('AJAX load did not work');
                 }
-            });
+                else{
+                    $.ajax({
+                        url: "{{ URL::to('get_offer_rec_typ') }}/"+nash+"/"+emp_typ,
+                        type: "GET",
 
-        });
+                        dataType: "json",
+
+                        success: function(data) {
+
+                            if (Object.keys(data).length === 0) {
+
+                                    notif({
+                                        msg: "لا يوجد عروض متاحة ",
+                                        type: "error"
+                                    })
+
+                            } else {
+                            $('select[name="WORK"]').empty();
+                            $('select[name="WORK"]').append("<option value=''>حدد الوظيفة</option>");
+                            $.each(data, function (key, value) {
+
+                                $('select[name="WORK"]').append('<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                                notif({
+                                    msg: " يوجد عروض متاحة ",
+                                    type: "success"
+                                })
+                        }
+
+
+                        },
+
+
+                    });
+
+                }
+
+
+
+            }
 
 
 
@@ -665,71 +785,7 @@
 
 
 
-                    <script>
-                        function emp_numm(){
-                            var emp_num = document.getElementById("emp_num").value
-                            document.getElementById("emp_name").value = "";
-                            document.getElementById("emp_id").value ="";
-                            document.getElementById("connected").value = "";
-                            document.getElementById("alert").value = "";
-                            document.getElementById("alert2").value = "";
-                            $('#connected_con_id').hide();
-                            document.getElementById("maid_img").setAttribute("src",'');
-                                if (emp_num) {
-                                    $.ajax({
-                                        url: "{{ URL::to('getemp_name') }}/" + emp_num,
-                                        type: "GET",
 
-                                        dataType: "json",
-
-                                        success: function(data) {
-
-
-                                            document.getElementById("emp_name").value = data['emp_name_ar'];
-                                            document.getElementById("emp_id").value = data['id'];
-                                            document.getElementById("connected").value = data['connected'];
-                                            document.getElementById("connected_con_id").value = data['connected_con_id'];
-
-                                            document.getElementById("maid_img").setAttribute("src",'/Attachments_maids/'+data['id']+'/'+data['file_name']);
-
-                                            var connected = document.getElementById("connected").value
-                                            if(connected==0){
-                                                document.getElementById("alert").value = "متاحه للتأجير";
-                                                $('#alert').prop('required',false);
-                                                document.getElementById("alert2").value = "";
-                                                $('#connected_con_id').hide();
-                                            }else{
-                                                $('#alert').prop('required',true);
-
-
-                                                document.getElementById("alert2").value = " مربوطه بعقد رقم";
-                                                document.getElementById("alert").value = "";
-                                                $('#connected_con_id').show();
-                                                document.getElementById("connected_con_id").setAttribute("onclick","location.href='/ser_cont/"+data['connected_con_id']+"'");
-
-                                                notif({
-                                                    msg: " العاملة مربوطة بعقد يجب انهاء خدمتها اولا ",
-                                                    type: "error"
-                                                })
-                                            }
-
-
-
-                                        },
-
-
-                                    });
-
-                                } else {
-                                    console.log('AJAX load did not work');
-                                }
-
-
-                            }
-
-
-
-                    </script>
 
 
                     <script>
@@ -807,9 +863,25 @@
                     <script>
 
                         function  mydsadad() {
+                            const loader = document.getElementById('loader');
+                            const inputField = document.getElementById('sadad');
 
+                            function showLoader() {
+                                loader.style.display = 'block';
+                            }
 
-                            var total = parseFloat(document.getElementById("tot").value);
+                            function hideLoader() {
+                                loader.style.display = 'none';
+                            }
+
+                            // مثال: إظهار اللودر عند تغيير المدخل
+                            inputField.addEventListener('input', function() {
+                                showLoader();
+                                // محاكاة وقت تحميل (يمكنك استبدال هذا بقيمتك الخاصة)
+                                setTimeout(hideLoader, 1000);
+                            });
+
+                            var total = parseFloat(document.getElementById("total_value").value);
                             var sadad = parseFloat(document.getElementById("sadad").value);
                             var new_sadad=total-sadad;
                          if(sadad > total){
@@ -968,41 +1040,7 @@
 
 
 
-                    <script>
 
-                        function no_emp(){
-                          var btn= document.getElementById("btn_select_emp").value;
-                          if(btn=="اضافة عاملة"){
-                              $( "#emp_num" ).prop( "disabled", false );
-                              $( "#emp_id" ).prop( "required", true );
-                              $( "#btn_select_emp" ).val( "لا يوجد عامل في العقد" );
-                              $( "#btn_select_emp" ).prop( "class", 'btn btn-primary');
-
-                              document.getElementById("emp_name").value = "";
-                              document.getElementById("emp_num").value = "";
-                              document.getElementById("emp_id").value ="";
-                              document.getElementById("connected").value = "";
-                              document.getElementById("alert").value = " ";
-                              document.getElementById("alert2").value = "";
-                              $('#connected_con_id').hide();
-                              document.getElementById("maid_img").setAttribute("src",'');
-                          }else{
-                            $( "#emp_num" ).prop( "disabled", true );
-                              $( "#emp_id" ).prop( "required", false );
-                            $( "#btn_select_emp" ).val( "اضافة عاملة" );
-                            $( "#btn_select_emp" ).prop( "class", 'btn btn-danger');
-                            document.getElementById("emp_name").value = "";
-                            document.getElementById("emp_num").value = "";
-                            document.getElementById("emp_id").value ="";
-                            document.getElementById("connected").value = "";
-                            document.getElementById("alert2").value = "";
-                              document.getElementById("alert").value = "لا يوجد عاملة";
-                            $('#connected_con_id').hide();
-                            document.getElementById("maid_img").setAttribute("src",'');}
-                        }
-
-
-                    </script>
 
                     <script src="{{ URL::asset('assets/plugins/tafgeet/Tafqeet.js') }}"></script>
 
@@ -1035,31 +1073,165 @@
                     <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
                     <script src="{{ URL::asset('assets/plugins/tafgeet/Tafqeet.js') }}"></script>
 
+
+
+
                     <script>
                         function showElement(val)
                         {
-                            if(val==1)
+                            if(val==2)
                             {
+                                document.getElementById("wakel_cost").value = 0;
+                                document.getElementById("salary_emp").value = 0;
+                                document.getElementById("cost1").value = 0;
+                                document.getElementById("salary").value = 0;
+
+                                document.getElementById("istgdam_cost").value = 0;
+                                document.getElementById("wakell_cost").value = 0;
+                                document.getElementById("cost_vat").value = 0;
+                                document.getElementById("total_value").value = 0;
+                                document.getElementById('nash').value='حدد الجنسية';
+
                                 document.getElementById('yes').style.display='block';
 
+
                             }else{
+                                document.getElementById("wakel_cost").value = 0;
+                                document.getElementById("salary_emp").value = 0;
+                                document.getElementById("cost1").value = 0;
+                                document.getElementById("salary").value = 0;
+
+                                document.getElementById("istgdam_cost").value = 0;
+                                document.getElementById("wakell_cost").value = 0;
+                                document.getElementById("cost_vat").value = 0;
+                                document.getElementById("total_value").value = 0;
+                                document.getElementById('nash').value='حدد الجنسية';
+
+
                                 document.getElementById('yes').style.display='none';
+
                             }
+                            document.getElementById('emp_typ2').value=val;
 
                         }
                     </script>
+
                     <script>
                         function showVisa(val)
                         {
                             if(val==1)
                             {
+
+
                                 document.getElementById('visa').style.display='block';
+                                document.getElementById('visa_pay').style.display='none';
+                                $('#hijri_visa').hijriDatePicker({
+                                    hijri: true,
+                                    showSwitcher: true
+                                });
 
                             }else{
                                 document.getElementById('visa').style.display='none';
+                                document.getElementById('visa_pay').style.display='block';
+                                $('#hijri_visa').hijriDatePicker({
+                                    hijri: true,
+                                    showSwitcher: true
+                                });
                             }
 
                         }
                     </script>
-                    <!--Internal  Form-elements js-->
+                    <script>
+                        function get_off_value()
+                        {
+
+
+                               var offer_id=document.getElementById('WORK').value;
+
+                            $.ajax({
+                                url: "{{ URL::to('getdataoffer_value') }}/" + offer_id,
+                                type: "GET",
+
+                                dataType: "json",
+                                success: function(data) {
+
+
+                                    document.getElementById("work_emp").value = data['work'];
+                                    document.getElementById("wakel_cost").value = data['outcost2'];
+                                    document.getElementById("salary_emp").value = data['salary'];
+                                    document.getElementById("cost1").value = data['cost2'];
+                                    document.getElementById("salary").value = data['salary'];
+
+                                    document.getElementById("istgdam_cost").value = data['cost2'];
+                                    document.getElementById("wakell_cost").value = data['outcost2'];
+                                    document.getElementById("cost_vat").value = data['vat_cost'];
+                                    document.getElementById("total_value").value = data['total_offer'];
+                                    document.getElementById("tota").value = data['total_offer'];
+
+
+
+
+                                },
+
+                            });
+
+
+                        }
+                    </script>
+
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <!-- تضمين مكتبة Hijri Date Picker -->
+                    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.0/moment-hijri.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/@qasemzadeh/hijri-datepicker@1.1.2/dist/js/bootstrap-hijri-datepicker.min.js"></script>
+
+                    <script>
+                        function man_disc()
+                        {
+                          var total= document.getElementById("tota").value;
+
+                            var man_dis= document.getElementById("man_dis").value;
+
+                            var new_val= parseFloat(total-man_dis).toFixed(2);
+                           document.getElementById("total_value").value=new_val;
+
+                                }
+                    </script>
+                    <script>
+                        function cost_disc()
+                        {
+
+                            var cost=parseFloat(document.getElementById("cost1").value);
+
+                            var wakell_cost=parseFloat(document.getElementById("wakell_cost").value);
+
+                            var DiscountOfficeCosts=parseFloat(document.getElementById("DiscountOfficeCosts").value);
+
+
+
+                            var new_cost=parseFloat(cost-DiscountOfficeCosts);
+                            var new_vat=parseFloat(new_cost*0.15);
+
+                            var new_total=parseFloat((new_cost)+(new_vat)+(wakell_cost)).toFixed(2);
+
+                            document.getElementById("istgdam_cost").value=new_cost;
+                            document.getElementById("cost_vat").value=new_vat;
+                            document.getElementById("total_value").value=new_total;
+
+
+
+                        }
+                    </script>
+                    <script>
+                        $(document).ready(function() {
+
+                        });
+                    </script>
+
+
+
+
+                    <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+                    <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>                 <!--Internal  Form-elements js-->
 @endsection

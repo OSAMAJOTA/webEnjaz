@@ -76,10 +76,7 @@
                                 <td>اسم العميل إنجليزى</td>
                                 <td>{{$agents->agents_name_en}}</td>
                             </tr>
-                            <tr>
-                                <td class="text-success">اسم المستخدم للدخول للنظام</td>
-                                <td class="text-success">{{$agents->id_num}}</td>
-                            </tr>
+
                             <tr>
                                 <td>الجنسية</td>
                                 <td>{{$agents->nash}}</td>

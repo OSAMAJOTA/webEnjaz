@@ -184,7 +184,7 @@ if($request->cont_num &&$request->agent_name==''&&$request->cont_status==''&&$re
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //الاسم عربي اسم العميل
 
@@ -198,7 +198,7 @@ elseif ($request->cont_num=='' &&$request->agent_name&&$request->cont_status==''
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //حالة العقد
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -210,7 +210,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //جوال العميل
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -223,7 +223,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //البريد الالكتروني
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -239,7 +239,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //تاريخ الانشاء
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -251,7 +251,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //الجنسية
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -263,7 +263,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //الوظيفة
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -275,7 +275,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //تم الانشاء بواسطة
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -287,7 +287,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //ينتهي بعد
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -304,7 +304,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 
 }
 //النوع
@@ -317,7 +317,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //تاريخ نهاية العقد
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
@@ -329,7 +329,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     $careers=careers::select('*')->where('show','=',1)->get();
     $employees=employees::all();
 
-    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+    return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 }
 //الحالة المالية
 elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by==''&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status&&$request->maid_status==''&&$request->end_date==''){
@@ -343,7 +343,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
         $careers=careers::select('*')->where('show','=',1)->get();
         $employees=employees::all();
 
-        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
     }else{
         //استرداد مبلغ للعميل
         $contract=contract::select('*')->where('return_cost','>',0)->orderBy('id', 'desc')->paginate(7);
@@ -354,7 +354,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
         $careers=careers::select('*')->where('show','=',1)->get();
         $employees=employees::all();
 
-        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
     }
 }
 //حالة اختيار العاملة
@@ -370,7 +370,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
         $careers=careers::select('*')->where('show','=',1)->get();
         $employees=employees::all();
 
-        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
     }else{
         $contract=contract::select('*')->where('emp_num','<>','')->orderBy('id', 'desc')->paginate(7);
 
@@ -380,7 +380,7 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
         $careers=careers::select('*')->where('show','=',1)->get();
         $employees=employees::all();
 
-        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 
     }
 }
@@ -391,5 +391,11 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
 
 
     }
+
+
+    // ***************************************************الموظف مع البحث بالخيارات
+    //
+
+
 
 }

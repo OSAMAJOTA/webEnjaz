@@ -6,9 +6,12 @@ use App\Bonds;
 use App\contract;
 use App\contract_history;
 use App\user_treasure;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use Symfony\Component\HttpKernel\DependencyInjection\AddAnnotatedClassesToCachePass;
+use TCPDF;
 
 class BondsController extends Controller
 {
@@ -31,7 +34,16 @@ class BondsController extends Controller
 
 
 
-    /**
+    public function generatePDF($id)
+    {
+
+return $id;
+
+    }
+
+
+
+        /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -209,6 +221,25 @@ class BondsController extends Controller
         if ($request->sadad>0)
         {
             //تعديل مبلغ الخزنة
+            $con_id2=$request->id;
+
+            $treasure1 = user_treasure::where('user_id',Auth::user()->id)->latest('created_at')->first();
+            $last_treasure=$treasure1->treasure;
+
+            $sadad_to_treasure=$request->sadad;
+            $new_treasure=$last_treasure+$sadad_to_treasure;
+            $comment2= ' وارد نقدي عن غرامة العقد رقم '.$con_id2.'باجمالي مبلغ'.$sadad_to_treasure;
+
+            $treasure = new user_treasure();
+            $treasure->treasure = $new_treasure;
+            $treasure->last_treasure = $last_treasure;
+            $treasure->comment = $comment2;
+            $treasure->contract_id = $con_id2;
+            $treasure->typ =1;
+            $treasure->user_id =Auth::user()->id;
+            $treasure->save();
+
+            //تعديل الغرامة في العقد
 
             $contrcat = contract::where('id',$request->id)->first();
             $last_sadad=$contrcat->late_cost;
@@ -222,6 +253,8 @@ class BondsController extends Controller
                 'late_cost'=>$new_sadad,
 
             ]);
+
+
 
             $contract_history = new contract_history();
             $contract_history->update_reson ='تم   دفع غرامة تأخير  عقد التشغيل';

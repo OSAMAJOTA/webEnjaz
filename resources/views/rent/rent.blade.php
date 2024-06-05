@@ -48,6 +48,11 @@
             background-color: #fff;
             border: 1px solid #e7ebf3;
         }
+        .table th, .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #2e4583;
+        }
 
 
     </style>
@@ -498,14 +503,16 @@
                                                     </form>
                                                 </div>
                                                 <div class="col-sm-6 col-md-2">
+                                                   @if(@isset($contract_count))
 
-                                                    <a  href="/export_contract" class="btn btn-primary-gradient btn-block">
+                                                        <form method="POST" action="/export_contract">
+                                                            @csrf
+                                                            <input name="contract" value="{{json_encode($contract_count)}}" hidden="hidden">
+                                                            <button type="submit" class="btn btn-primary-gradient btn-block"><i class="fas fa-print"></i>&nbsp; طباعة</button>
+                                                        </form>
+                                                   @endif
 
 
-
-                                                        <i class="fas fa-print"></i>&nbsp; طباعة
-
-                                                    </a>
                                                 </div>
 
 
@@ -743,14 +750,84 @@
 
 
 
-                                    <li class="list-group-itemm" style="border-right:2px solid #00ff21;">
-                                        <a class="text-success" href="/ar-sa/RentContract/Print_RentContractInvoice?contractId=15101&amp;RepId=1" title="طباعة الفاتورة الضريبة" target="_blank">
-                                            <i class="fa fa-file-pdf"></i>
-                                            <span> طباعة الفاتورة الضريبة</span>
-                                        </a>
-                                    </li>
 
-                                    <li class="list-group-itemm">
+                                    <!--   ***********************************************************-->
+                                    <div class="col-md-9 order-md-1">
+                                        <form method="post" action="{{route('generate-qr-image')}}">
+                                            @csrf
+                                            @if($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul class="mb-0">
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                            <div id="print_vat" style="display: none">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="seller_name">Seller Name</label>
+                                                <input class="form-control form-control-lg" type="text" id="seller_name" name="seller_name" value="شركة الانجاز المعتمد للاستقدام">
+                                                <input class="form-control form-control-lg" type="text" id="con_id" name="con_id" value="{{$x->id}}">
+                                                <p class="form-text">Example: My Company</p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="vat_number">VAT Number</label>
+                                                <input class="form-control form-control-lg" type="text" id="vat_number" name="vat_number" value="300617567500003">
+                                                <p class="form-text"><small>Example: 310000000000000</small></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="invoice_date">Date and Time</label>
+                                                <input class="form-control form-control-lg" type="datetime" id="invoice_date" name="invoice_date" value="{{ $x->created_at  }}">
+                                                <p class="form-text"><small>Example: 2022-12-15 14:41:15</small></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="total_amount">Total Amount (with VAT)</label>
+                                                <input class="form-control form-control-lg" type="text" id="total_amount" name="total_amount" value="{{  $x->tot  }}">
+                                                <p class="form-text"><small>Example: 2000.00</small></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="vat_amount">VAT Amount</label>
+                                                <input class="form-control form-control-lg" type="text" id="vat_amount" name="vat_amount" value="{{  $x->vat_cost }}">
+                                                <p class="form-text"><small>Example: 300.00</small></p>
+                                            </div>
+                                            <h5 class="card-title mb-3 mt-4">Options</h5>
+                                            <div class="ms-4 mb-3">
+                                                <div class="mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="qr_logo" name="qr_logo" {{ old('qr_logo') == 'on' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="qr_logo">Add an image in the center of the QR Code</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="qr_options" id="option1" value="download" >
+                                                    <label class="form-check-label" for="option1">
+                                                        Download QR Code image
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="qr_options" id="option2" value="store">
+                                                    <label class="form-check-label" for="option2">
+                                                        Save QR Code image to server
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="qr_options" id="option3" value="pdf" checked>
+                                                    <label class="form-check-label" for="option3">
+                                                        Generate PDF with QR Code image
+                                                    </label>
+                                                </div>
+                                               </div>
+                                            </div>
+                                            <ul class="list-group control m-b-2 user-list">
+                                            <li class="list-group-itemm">
+                                            <button type="submit" class="btn btn-success btn-sm"> <i class="fa fa-file-pdf"></i>
+                                                <span> طباعة الفاتورة</span></button>
+                                            </li>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                    <!--   ***********************************************************-->
+
+                                    <li class="list-group-itemm"  style="border-right:2px solid #00ff21;">
                                         <a href="/print_cont/{{$x->id }}" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
                                             <i class="fa fa-print"></i>
                                             <span>طباعة</span>
@@ -1159,12 +1236,6 @@
                                                         </div>
 
 
-                                                        <div class="card" style="width: 18rem;">
-                                                            <img class="card-img-top" src="..." alt="Card image cap">
-                                                            <div class="card-body">
-                                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            </div>
-                                                        </div>
                                                         </form>
                                                     </div>
 

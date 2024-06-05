@@ -49,13 +49,14 @@ class RentControllerController extends Controller
         $careers=careers::select('*')->where('show','=',1)->get();
         $employees=employees::all();
 
-       return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees'));
+       return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
     }
-    public function export_contract()
+    public function export_contract(Request $request)
     {
+        $contract = json_decode($request->contract);
+        $contract = collect($contract);
 
-
-       return Excel::download(new rentExport(), 'عقود التشغيل.xlsx');
+     return Excel::download(new rentExport($contract), 'عقود التشغيل.xlsx');
     }
 
     /**
@@ -198,17 +199,22 @@ if($request->emp_num==''){
     {
         //تعديل مبلغ الخزنة
 
-        $treasure = user_treasure::where('user_id',Auth::user()->id)->first();
-        $last_treasure=$treasure->treasure;
+        $treasure1 = user_treasure::where('user_id',Auth::user()->id)->latest('created_at')->first();
+        $last_treasure=$treasure1->treasure;
 
         $sadad_to_treasure=$request->sadad;
         $new_treasure=$last_treasure+$sadad_to_treasure;
-        $treasure->update([
+        $comment2= ' وارد نقدي عن العقد رقم '.$contract_id.'باجمالي مبلغ'.$sadad_to_treasure;
 
+        $treasure = new user_treasure();
+        $treasure->treasure = $new_treasure;
+        $treasure->last_treasure = $last_treasure;
+        $treasure->comment = $comment2;
+        $treasure->contract_id = $contract_id;
+        $treasure->typ =1;
+        $treasure->user_id =Auth::user()->id;
+        $treasure->save();
 
-            'treasure' =>$new_treasure,
-
-        ]);
     }
 
     $contract_id = contract::latest()->first()->id;
@@ -457,9 +463,11 @@ if($request->emp_num==''){
         $contract=contract::select('*')->where('id',$id)->orderBy('id', 'desc')->paginate(7);
         $contract_count=contract::select('*')->where('id',$id)->get();
         $contract_count2=$contract_count->count();
+        $nationalities=nationalities::all();
+        $careers=careers::select('*')->where('show','=',1)->get();
+        $employees=employees::all();
 
-
-        return view('rent.rent',compact('contract','contract_count2'));
+        return view('rent.rent',compact('contract','contract_count2','nationalities','careers','employees','contract_count'));
 
    }
     public function upd_exp_sada(request $request )

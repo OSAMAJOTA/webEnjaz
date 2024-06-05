@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3 || ^9.0",
-        "barryvdh/laravel-dompdf": "^2.1",
+        "barryvdh/laravel-dompdf": "^1.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "fx3costa/laravelchartjs": "^3.0",
@@ -20,7 +20,11 @@
         "laravelcollective/html": "^6.4",
         "maatwebsite/excel": "^3.1",
         "maennchen/zipstream-php": "2.4",
+        "milon/barcode": "^11.0",
+        "niklasravnsborg/laravel-pdf": "^4.1",
+        "salla/zatca": "2.0",
         "spatie/laravel-permission": "^5.11",
+        "tecnickcom/tcpdf": "^6.7",
         "vonage/client": "*"
     },
     "require-dev": {

@@ -59,6 +59,7 @@ class OffersController extends Controller
         $nash =$request->nash;
         $Duration =$request->Duration;
         $work =$request->work;
+
         $nash_Duration= $nash.$Duration.$work;
         $request->request->add(['nash_Duration' => $nash_Duration]);
 

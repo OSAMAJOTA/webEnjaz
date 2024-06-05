@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\agents;
 use App\careers;
+use App\citys;
 use App\companys;
+use App\contract;
 use App\nationalities;
 use App\recruitmentContract;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecruitmentContractController extends Controller
 {
@@ -18,7 +22,11 @@ class RecruitmentContractController extends Controller
      */
     public function index()
     {
-        return view('recruitment.recruitment');
+        $recruitment= recruitmentContract::select('*')->orderBy('id', 'desc')->paginate(7);
+        $recruitment_count=contract::all();
+
+        $contract_count2=$recruitment_count->count();
+        return view('recruitment.recruitment',compact('recruitment','contract_count2'));
     }
 
     /**
@@ -31,8 +39,9 @@ class RecruitmentContractController extends Controller
         $nationalities=nationalities::all();
         $careers=careers::all();
         $companys=companys::all();
+        $citys=citys::all();
         $agents=agents::select('*')->where('id',$id)->first();
-        return view('recruitment.recruitmentcont',compact('companys','agents','nationalities','careers'));
+        return view('recruitment.recruitmentcont',compact('companys','agents','nationalities','careers','citys'));
     }
 
     /**
@@ -43,7 +52,47 @@ class RecruitmentContractController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        recruitmentContract::create([
+            'companys_name' => $request->companys_name,
+            'id_num' => $request->id_num,
+            'agent_id' => $request->agent_id,
+            'agents_name' => $request->agents_name,
+            'agent_phone1' => $request->agent_phone1,
+            'musaned_cont' => $request->musaned_cont,
+            'musaned_tawthiq' => $request->musaned_tawthiq,
+            'emp_typ2' => $request->emp_typ2,
+            'Age' => $request->Age,
+            'religion' => $request->religion,
+            'emp_exp' => $request->emp_exp,
+            'another_exp' => $request->another_exp,
+            'nash' => $request->nash,
+            'WORK' => $request->WORK,
+            'work_emp' => $request->work_emp,
+            'sadad_typ' => $request->sadad_typ,
+            'hasVisa' => $request->hasVisa,
+            'visa_number' => $request->visa_number,
+            'hijri_visa' => $request->hijri_visa,
+            'date_visa' => $request->date_visa,
+            'visa_pay' => $request->visa_pay,
+            'destination' => $request->destination,
+            'salary' => $request->salary,
+            'istgdam_cost' => $request->istgdam_cost,
+            'wakell_cost' => $request->wakell_cost,
+            'cost_vat' => $request->cost_vat,
+            'total_value' => $request->total_value,
+            'man_dis' => $request->man_dis,
+            'DiscountOfficeCosts' => $request->DiscountOfficeCosts,
+            'sadad' => $request->sadad,
+            'rest' => $request->rest,
+            'cont_date' => Carbon::now(),
+            'Status' => 'عقد جديد',
+
+            'Created_by' => (Auth::user()->name),
+
+        ]);
+        session()->flash('add_contract');
+
+        return redirect('/recruitment');
     }
 
     /**
@@ -90,4 +139,9 @@ class RecruitmentContractController extends Controller
     {
         //
     }
+    public function recruitment_detils($id)
+    {
+echo "هنا سيتم عرض تفاصيل العقد ";
+    }
+
 }

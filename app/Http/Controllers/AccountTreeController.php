@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use App\accountTree;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class AccountTreeController extends Controller
      */
     public function index()
     {
-     return view('tree.tree');
+        $accounts = Account::with('children')->whereNull('parent_id')->get();
+        return view('tree.tree', compact('accounts'));
     }
 
     /**

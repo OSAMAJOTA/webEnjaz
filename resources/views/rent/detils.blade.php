@@ -498,7 +498,7 @@
                                                                             <td colspan="2" style="font-size: 15px">
 
                                                                                 <a class="btn btn-outline-success btn-sm"
-                                                                                   href=""
+                                                                                   href="/generate-pdf/{{$bonds->id}}"
                                                                                    role="button"><i class="fas fa-eye"></i>&nbsp;
                                                                                     عرض</a>
 

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AgentsController;
+use App\Http\Controllers\QRController;
+use App\Http\Controllers\VAT;
 use App\Http\Controllers\RentControllerController;
 use App\Http\Controllers\DurationController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +31,7 @@ Route::post('pay_return', 'BondsController@pay_return');
 Route::post('pay_penalty', 'BondsController@pay_penalty');
 Route::resource('general_bonds', 'BondsController');
 Route::get('/bonds_detils/{id}', 'BondsController@edit');
+Route::get('/generate-pdf/{id}', 'BondsController@generatePDF')->name('pdf.generate');
 //السندات
 //*************************************************************************************************************
 
@@ -57,6 +60,8 @@ Route::post('/serach_rent', 'ContractController@serach_rent');
 Route::resource('avavailable_maid', 'AvavailableMaidController');
 
 Route::resource('change_emp', 'MaidMovmoentController');
+Route::get('/contract_detils/{id}', 'ContractController@contract_detils');
+Route::post('/export_contract', 'RentControllerController@export_contract');
 // عقود التشغيل
 
 // عقود الاستقدام
@@ -64,9 +69,12 @@ Route::resource('change_emp', 'MaidMovmoentController');
 Route::get('/recruitmentcont/{id}', 'RecruitmentContractController@create');
 Route::resource('recruitment', 'RecruitmentContractController');
 
-
-
-
+Route::resource('offers_recruitment', 'RecruitmentOffersController');
+Route::get('add_recruitment', 'RecruitmentOffersController@add_recruitment');
+Route::get('/get_offer_rec/{nash}/{emp_typ}/{Age}/{religion}/{emp_exp}', 'RecruitmentOffersController@get_offer_rec');
+Route::get('/get_offer_rec_typ/{nash}/{emp_typ}', 'RecruitmentOffersController@get_offer_rec_typ');
+Route::get('/getdataoffer_value/{id}', 'RecruitmentOffersController@getdataoffer_value');
+Route::get('/recruitment_detils/{id}', 'RecruitmentContractController@recruitment_detils');
 
 //*************************************************************************************************************
 // عقود الاستقدام
@@ -88,7 +96,7 @@ Route::post('Search_maids', 'MaidsController@Search_maids');
 
 Route::get('/nash/{id}', 'ContractController@getoffer');
 Route::get('/getdataoffer/{id}', 'ContractController@getdataoffer');
-Route::get('/contract_detils/{id}', 'ContractController@contract_detils');
+
 
 
 
@@ -160,7 +168,11 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('online-user', [UserController::class, 'online']);
 //Route::get('Export_agents', 'AgentsController@export');
 Route::get('/Export_agents', [AgentsController::class,'export']);
-Route::get('/export_contract', 'RentControllerController@export_contract');
 
 
+//*******************************************************************
+Route::get('/qr', [QRController::class, 'index'])->name('qr-form');
+Route::post('/generate-qr-image', [QRController::class, 'generate'])->name('generate-qr-image');
+Route::get('/generate-qr-image/{id}', [QRController::class, 'generate_vat'])->name('generate-qr-vat');
+//************************************************************************
 Route::get('/{page}', 'AdminController@index');

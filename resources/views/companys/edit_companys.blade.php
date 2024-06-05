@@ -206,7 +206,7 @@
                             <div class="col">
                                     <label class="form-label ">حالة الفرع</label>
                                     <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
-                                        <option value="{{ $companys->Status }}" selected disabled>{{ $companys->Status }}</option>
+                                        <option value="{{ $companys->Status }}" selected>{{ $companys->Status }}</option>
                                         <option value="نشط">نشط </option>
                                         <option value="غير نشط">غير نشط</option>
                                     </select>

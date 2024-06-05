@@ -135,11 +135,11 @@
 
             @endif
 
-            @if (session()->has('late_bonds'))
+            @if (session()->has('add_contract'))
                 <script>
                     window.onload = function() {
                         notif({
-                            msg: "تم سداد غرامة تأخير عقد التشغيل بنجاح",
+                            msg: "تم اضافة عقد توسط بنجاح",
                             type: "success"
                         })
                     }
@@ -522,12 +522,285 @@
                                         </div>
 
 
-
-
-        <!-- row closed -->
+                                        <!-- row closed -->
     </div>
+
     <!-- row closed -->
+                                    <div class="card card-primary">
+
+                                        <div class="card-body text-primary ">
+                                            {{ $recruitment->links() }}
+                                            <div class="text-danger   text-left ">
+                                                <h7>عدد العقود</h7>
+                                                <h3 class="">  <b>{{$contract_count2}}</b> </h3>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
     </div>
+                                @foreach($recruitment as $x)
+                                    <!-- كرت العقد-->
+                                    <div class="col-12 ">
+                                        <div class="card card-info">
+
+                                            <div class="card-body text-black">
+                                                <div class="col-md-12" name="Con_126678" data-id="126678" data-reload="/ar-sa/Contract/Partial_Contract/126678">
+                                                    <div class="panel panel-primary panel-border ">
+                                                        <div class="panel-heading">
+                                                        </div>
+                                                        <div class="panel-body table-responsive">
+                                                            <div class="row">
+                                                                <ul class="branchnameList">
+                                                                    <li>
+
+                                                                        شركة الانجاز المعتمد للاستقدام
+                                                                    </li>
+                                                                    <li class="bg-inverse">
+
+                                                                        {{$x->nash}}
+                                                                    </li>
+                                                                    <li class="bg-success">
+                                                                        @if($x->emp_typ2==1)
+                                                                            معين
+                                                                        @elseif($x->emp_typ2==2)
+                                                                            غير معين
+
+                                                                        @elseif($x->emp_typ2==3)
+                                                                            تفويض
+
+                                                                        @elseif($x->emp_typ2==4)
+                                                                            معروفة
+                                                                        @endif
+
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="col-md-2">
+                                                                    <div class="text-center">
+                                                                        <p class="text-left  pull-left ">1</p>
+                                                                        <a href="/recruitment_detils/{{$x->id}}">
+                                                                            <h1 class="text-custom font-60">  {{$x->id}}</h1>
+                                                                        </a>
+                                                                        <div class="hideApplicant">
+                                                                            <h4 class="text-primary font-bold">
+                                                                                <span>عقد مساند</span>
+                                                                            </h4>
+                                                                            <h6>  {{$x->cont_date}}</h6>
+                                                                            <table class="table small">
+                                                                                <tbody><tr>
+                                                                                    <td style="font-weight: bold">انشى منذ</td>
+                                                                                    <td style="font-weight: bold">
+
+                                                                                        0 يوم
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">أُنشأ بواسطة</td>
+                                                                                    <td style="font-weight: bold">{{$x->Created_by}} </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-weight: bold">ينتهى بعد</td>
+                                                                                    <td style="font-weight: bold">عقد جديد</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="2" class="font-bold text-success"> </td>
+                                                                                </tr>
+
+                                                                                </tbody></table>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <a href="/">
+                                                                                        <p style="font-size:12px; font-weight: bold">اسم العميل </p>
+                                                                                        <h4 class="m-t-0 m-b-0">   {{$x->agents_name}} 	  </h4>
+                                                                                    </a>
+                                                                                    <p class="hideApplicant">
+                                                                                        <a href="https://web.whatsapp.com/send?phone=+96608277238" target="_blank"><span class="fab fa-whatsapp text-info m-r-5 m-t-5"></span> <b>{{$x->agent_phone1}} </b></a>
+
+                                                                                        <span class="fa fa-id-card m-r-5 m-l-5"></span>{{$x->id_num}}
+                                                                                        <br>
+
+                                                                                        <span class="fa fa-calendar m-r-5 m-l-5"></span>{{$x->hijri_visa}}
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <p style="font-size:12px; font-weight: bold">الحالة</p>
+                                                                                    <h4 class="m-t-0">
+                                        <span class="text-primary">
+                                          {{$x->Status}}
+                                        </span>
+                                                                                    </h4>
+                                                                                    <p>{{$x->nash}} /        {{$x->work_emp}}   </p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="col-md-12 m-t-10 hideApplicant">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <p style="font-size:12px; font-weight: bold">التأشيرة </p>
+                                                                                    <h4 class="m-t-0 m-b-0">
+                                                                                        <a href="/ar-sa/Visa/Edit/156823">  {{$x->visa_number}}</a>
+
+                                                                                        |
+                                                                                        <i></i>
+                                                                                    </h4>
+                                                                                    <p>{{$x->nash}} / {{$x->work_emp}}  <small class="text-success m-r-15"><b>تم الاصدار</b></small></p>
+                                                                                    <p> وصول : <b>{{$x->destination}}</b></p>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12 m-t-10 hideApplicant">
+
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <table class="table small">
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <table class="table small">
+                                                                                        <tbody><tr>
+                                                                                            <td style="font-weight: bold">نوع العامل</td>
+
+                                                                                            <td style=" font-weight: bold">
+                                                                                                @if($x->emp_typ2==1)
+                                                                                                    معين
+                                                                                                @elseif($x->emp_typ2==2)
+                                                                                                    غير معين
+
+                                                                                                @elseif($x->emp_typ2==3)
+                                                                                                    تفويض
+
+                                                                                                @elseif($x->emp_typ2==4)
+                                                                                                    معروفة
+                                                                                                @endif
+                                                                                            </td>
+
+                                                                                        </tr>
+                                                                                        </tbody></table>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 hideApplicant">
+                                                                    <p style="font-size:9px;">الاجمالى </p>
+                                                                    <h1 class="text-inverse font-60" style="font-size:30px; font-weight: bold">{{$x->total_value}}</h1>
+                                                                    <table class="table m-t-20 small">
+                                                                        <tbody><tr>
+                                                                            <td style="font-size:12px; font-weight: bold">العرض</td>
+                                                                            <td style="font-size:12px; font-weight: bold">{{$x->istgdam_cost}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-size:12px; font-weight: bold">مبلغ ضريبة القيمة المضافة</td>
+                                                                            <td style="font-size:12px; font-weight: bold">{{$x->cost_vat}}</td>
+                                                                        </tr>
+
+                                                                        <tr style="font-size:12px; font-weight: bold">
+                                                                            <td>خصم</td>
+                                                                            <td style="font-size:12px; font-weight: bold">{{$x->man_dis}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-size:12px; font-weight: bold">الراتب</td>
+                                                                            <td><b>{{$x->salary}}</b> </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-size:12px; font-weight: bold">المتبقى</td>
+                                                                            <td class="text-danger" style="font-size:12px; font-weight: bold"><b>{{$x->rest}}</b></td>
+                                                                        </tr>
+
+                                                                        </tbody></table>
+                                                                </div>
+
+
+                                                                <div class="col-md-2 hideApplicant">
+
+
+
+                                                                    <ul class="list-group control m-b-0 user-list">
+                                                                        <li class="list-group-itemm">
+                                                                            <a class="modal-effect  btn btn-primary btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo1"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+
+
+                                                                                <i class="fa fa-user-times m-r-5"></i>
+                                                                                <span>اضافة ملاحظة </span> </a>&nbsp;
+                                                                        </li>
+                                                                        <li class="list-group-itemm">
+                                                                            <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo3"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
+
+
+                                                                                <i class="fa fa-user-times m-r-5"></i>
+                                                                                <span>اضافة شكوي </span> </a>&nbsp;
+                                                                        </li>
+
+
+                                                                        <li class="list-group-itemm">
+                                                                            <a href="#InsuranceAmount" onclick="AddInsuranceAmount(126678);" class="text-success">
+                                                                                <i class="fa fa-money-bill m-r-5"></i>
+                                                                                <span>
+                                اضافة تامين العمالة المنزلية
+                            </span>
+                                                                            </a>
+                                                                        </li>                <li class="list-group-item liSelectApplicant" style="border-right:2px solid #ff6a00;">
+                                                                            <a onclick="Contract.SelectApplicant(126678,1128,231,83)">
+                                                                                <i class="fa fa-user-plus m-r-5"></i>
+                                                                                <span>اختر عامل</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="list-group-itemm">
+                                                                            <a href="#OpenCancelContract" class="text-danger" onclick="OpenPopUp('Con_126678',CancelContract,new Array(126678,6046),this);">
+                                                                                <i class="fa fa-window-close m-r-5"></i>
+                                                                                <span>إلغاء</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="list-group-item liSelectApplicant" style="border-right:2px solid #ff6a00;">
+                                                                            <a href="#custom-modal" onclick="Contract.getFollowUpStatus(126678);OpenPopUp('Con_126678',getFollowUpStatus,126678,this);">
+                                                                                <i class="fa fa-align-justify"></i>
+                                                                                <span>       حالات المتابعة</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- نهاية كرت العقد-->
+                                @endforeach
+                                <div class="card card-primary">
+
+                                    <div class="card-body text-primary ">
+                                        {{ $recruitment->links() }}
+                                        <div class="text-danger   text-left ">
+                                            <h7>عدد العقود</h7>
+                                            <h3 class="">  <b>{{$contract_count2}}</b> </h3>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
     <!-- Container closed -->
     <div class="modal" id="modaldemo1">
         <div class="modal-dialog" role="document">
