@@ -135,7 +135,7 @@
                     </div>
                     <div class="card-body text-primary">
                         <div class="row">
-                            <div class="col-sm">
+                            <div class="col-md-3">
 
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span> نوع التشغيل</label>
                                 <select name="typ" id="typ" class="form-control"  required>
@@ -166,7 +166,7 @@
                                 <input type="date" class="form-control" id="start_date" name="start_date" value="{{ date('Y-m-d') }}"  onchange="inc_date()" required >
                             </div>
 
-                            <div class="col-sm">
+                            <div class="col-md-4">
                                 <label for="inputName" class="control-label"> <span class="text-danger font-bold"></span>طريقة السداد</label>
                                 <select name="sadad_typ" id="sadad_typ" class="form-control" onchange="showsadad()" required  >
                                     <!--placeholder-->
@@ -182,8 +182,9 @@
                                     الوظيفة</label>
                                 <select name="WORK" id="WORK" class="form-control"  required>
                                     <!--placeholder-->
+                                    <option value="">حدد الوظيفة</option>
                                     @foreach($careers as $x)
-                                    <option value="{{$x->careers_name}}" selected>{{$x->careers_name}}</option>
+                                    <option value="{{$x->careers_name}}">{{$x->careers_name}}</option>
                                     @endforeach
 
                                 </select>
@@ -201,11 +202,11 @@
 
                                 <div class="m-t-0 header-title-small"><b>السعر الخاص بالعرض</b></div>
 
-                                    <div class="col-md-3">
-                                    <input style="text-align:right;color:  #2c7ecd;padding-right: 150px; font-size: 88px; height: 100px; background-color: white; font-weight: bold;border: none; " type="text" name="tota" id="tota" value="0.00" readonly>
+
+                                    <input style="text-align:center;color:  #2c7ecd; font-size: 100px; height: 100px;width: 120%; background-color: white; font-weight: bold;border: none; " type="text" name="tota" id="tota" value="0.00" readonly>
 
 
-                                </div>
+
                                 <table class="table  m-b-0 p-b-0 VisaCost">
                                     <tbody><tr>
                                         <td></td>

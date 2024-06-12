@@ -503,7 +503,7 @@
                                                                                     عرض</a>
 
                                                                                 <a class="btn btn-outline-info btn-sm"
-                                                                                   href=""
+                                                                                   href="/generate-pdf-download/{{$bonds->id}}"
                                                                                    role="button"><i
                                                                                         class="fas fa-download"></i>&nbsp;
                                                                                     تحميل</a>

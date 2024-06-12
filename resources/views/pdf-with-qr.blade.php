@@ -192,23 +192,20 @@ hr
 
                         <td>
 
-                            العميل :       {!! $agents_name!!} <br>
-                             رقم هوية:     {!! $id_num!!}<br>
-                              رقم جوال :    {!! $agent_phone1!!}<br>
 
                         </td>
                         <td>
                             التاريخ : {!! $date !!}<br>
 
+                            العميل :       {!! $agents_name!!} <br>
+                            رقم هوية:     {!! $id_num!!}<br>
+                            رقم جوال :    {!! $agent_phone1!!}<br>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr>
-            <td class="text-center">رقم الفاتورة </td>
 
-        </tr>
 
         <tr class="heading item " >
             <td style="text-align: center">الوصف : عقد تشغيل لمدة {!! $Duration !!} </td>
@@ -252,9 +249,9 @@ hr
     <br>
     <hr>
     <br>
-    <br>
-    <br>
 
+
+    <h4 style="text-align: center;color: grey">يشمل الضريبة المضافة</h4>
     <h3 style="text-align: center">الموظف</h3>
     <h4 style="  content: '';
     display: block;
@@ -264,7 +261,7 @@ hr
     margin-top: 5px; /* Adjust the distance between the text and the line as needed */
     position: relative;
     left: 0;
-    right: 0;">اسامه فتحي عبدالله </h4>
+    right: 0;">  {!! $Created_by !!} </h4>
 </div>
 
 

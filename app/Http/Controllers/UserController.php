@@ -72,6 +72,13 @@ class UserController extends Controller
         $user_id = User::latest()->first()->id;
         $user_tr = new user_treasure();
         $user_tr->treasure =0;
+        $user_tr->last_treasure =0;
+        $user_tr->last_treasure =0;
+
+
+        $user_tr->comment ='افتتاح رصيد ';
+        $user_tr->amount =0;
+        $user_tr->typ =1;
         $user_tr->user_id = $user_id;
 
         $user_tr->save();

@@ -1,4 +1,30 @@
 <!-- main-header opened -->
+@if (session()->has('transfer_done'))
+    <script>
+        window.onload = function() {
+            notif({
+                msg: "تم تحويل المبلغ ",
+                type: "success"
+            })
+        }
+
+    </script>
+@endif
+
+    @if (session()->has('transfer_error'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "لا يوجد رصيد كافي ",
+                    type: "error"
+                })
+            }
+
+        </script>
+
+
+
+@endif
 			<div class="main-header sticky side-header nav nav-item">
 				<div class="container-fluid">
 					<div class="main-header-left ">
@@ -157,11 +183,10 @@
 											</div>
 										</div>
 									</div>
-									<a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>Profile</a>
-									<a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
-									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
-									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
-									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
+									<a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>الصفحة الشخصية</a>
+									<a class="dropdown-item" href=""><i class="bx bx-cog"></i> تعديل البيانات </a>
+									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>الرسائل</a>
+									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i>  اعدادات الحساب</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
                                             class="bx bx-log-out"></i>تسجيل خروج</a>
@@ -192,10 +217,11 @@
             <div class="modal-body">
                     <?php
 
-                    $treasures=\App\user_treasure::where('typ',1)->latest()->get()
+                    $treasures=\App\user_treasure::where('user_id',Auth::user()->id)->latest()->get()
 
                     ?>
                 @foreach($treasures as $treasures)
+                    @if($treasures->typ==1)
                     <a href="/contract_detils/{{$treasures->contract_id}}" class="p-3 d-flex border-bottom">
                         <div class="  drop-img  cover-image  "
                              data-image-src="{{ URL::asset('assets/img/faces/income.png') }}">
@@ -210,42 +236,134 @@
                             <p class="time mb-0 text-left float-right mr-2 mt-2">{{$treasures->created_at}}</p>
 
                             <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$treasures->treasure}}</p>
+                            <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الوارد</span>&nbsp;&nbsp; {{$treasures->amount}}</p>
                             <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; {{$treasures->last_treasure}}</p>
 
                         </div>
                     </a>
+                    @elseif($treasures->typ==2)
+                        <!-- التحويل تصميم-->
+
+                        <a href="#" class="p-3 d-flex border-bottom">
+                            <div class="  drop-img  cover-image  "
+                                 data-image-src="{{ URL::asset('assets/img/faces/transfer.png') }}">
+                                <span class="avatar-status bg-teal"></span>
+                            </div>
+                            <div class="wd-90p">
+                                <div class="d-flex">
+
+                                </div>
+
+                                <p class="mb-0 desc">{{$treasures->comment}}</p>
+                                <p class="time mb-0 text-left float-right mr-2 mt-2">{{$treasures->created_at}}</p>
+
+                                <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$treasures->treasure}}</p>
+                                <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الوارد</span>&nbsp;&nbsp; {{$treasures->amount}}</p>
+                                <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; {{$treasures->last_treasure}}</p>
+
+
+                            </div>
+                        </a>
+                    @elseif($treasures->typ==3)
+
+                        <!-- التحويل الصادر-->
+
+                        <a href="#" class="p-3 d-flex border-bottom">
+                            <div class="  drop-img  cover-image  "
+                                 data-image-src="{{ URL::asset('assets/img/faces/transfer2.jpg') }}">
+                                <span class="avatar-status bg-teal"></span>
+                            </div>
+                            <div class="wd-90p">
+                                <div class="d-flex">
+
+                                </div>
+
+                                <p class="mb-0 desc">{{$treasures->comment}}</p>
+                                <p class="time mb-0 text-left float-right mr-2 mt-2">{{$treasures->created_at}}</p>
+
+                                <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$treasures->treasure}}</p>
+                                <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد الصادر</span>&nbsp;&nbsp; {{$treasures->amount}}-</p>
+                                <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; {{$treasures->last_treasure}}</p>
+
+
+                            </div>
+                        </a>
+
+                    @endif
                 @endforeach
-                <a href="#" class="p-3 d-flex border-bottom">
-                    <div class="  drop-img  cover-image  "
-                         data-image-src="{{ URL::asset('assets/img/faces/transfer.png') }}">
-                        <span class="avatar-status bg-teal"></span>
-                    </div>
-                    <div class="wd-90p">
-                        <div class="d-flex">
-
-                        </div>
-                        <p class="mb-0 desc">تحويل مبلغ 1500 ريال من الخزينة الي الحسابات </p>
-                        <p class="time mb-0 text-left float-right mr-2 mt-2">Mar 15 3:55 PM</p>
-
-                        <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; 0</p>
-                        <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; 1500</p>
-
-                    </div>
-                </a>
 
 
+                <!-- التحويل تصميم-->
 
 
 
             </div>
             <div class="modal-footer">
 
-                <button class="btn ripple btn-info" data-dismiss="modal" type="button">عرض العمليات</button>
-                <button class="btn ripple btn-success" data-dismiss="modal" type="button">تحويل</button>
+                <a href="/All_treasures/{{Auth::user()->id}}" class="btn ripple btn-info" >عرض العمليات</a>
+                <a class="btn ripple btn-success" data-effect="effect-fall" data-toggle="modal" href="#send_mony"  data-dismiss="modal">تحويل</a>
 
                 <button class="btn ripple btn-danger" data-dismiss="modal" type="button">خروج</button>
 
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="send_mony">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-content-demo">
+
+            <form action="{{ route('tranfer_mony') }}" method="post" autocomplete="off">
+                {{ method_field('post') }}
+                {{ csrf_field() }}
+            <div class="modal-header">
+                <h6 class="modal-title"> تحويل</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <p class="time mb-0  right-right mr-2 mt-2 text-success " style="font-weight: bold;font-size:22px"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$users->treasure}}</p>
+                <hr>
+                <?php $all_users=\App\User::all();  ?>
+<div class="card-info">
+    <label class="label">تحويل الي حساب :</label>
+    <select class="form-control" name="user_id" id="user_id" required>
+        <option value="" >اختار الحساب</option>
+        <@foreach($all_users as $all_users)
+             @if($all_users->id==Auth::user()->id)
+            @else
+                <option value="{{$all_users->id}}">{{$all_users->name}} </option>
+            @endif
+
+        @endforeach
+    </select>
+
+</div>
+                <hr>
+                <div class="text-black">ادخل المبلغ</div>
+                <hr>
+                <input class="form-control" type="number" name="user_balance" id="user_balance" value="{{$users->treasure}}" required hidden>
+                <input class="form-control" type="number" name="balance" id="balance" value="0.00" required onkeyup="Check_balance()">
+                <hr>
+                <input class="form-control" type="number" name="sender_id" id="sender_id" value="{{Auth::user()->id}}" required hidden>
+
+                <select class="form-control" name="transaction_reson" id="transaction_reson" required>
+                    <option value=""> سبب التحويل</option>
+
+                            <option value="تحصيل"> تحصيل</option>
+                    <option value="تحويل لموظف اخر"> تحويل لموظف اخر</option>
+
+
+
+                </select>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn ripple btn-primary" type="submit">تحويل </button>
+                <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>

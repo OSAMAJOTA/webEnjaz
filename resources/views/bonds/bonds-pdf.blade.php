@@ -3,7 +3,7 @@
 <html lang="ar">
 
 <head>
-    <title>فاتورة ضريبة  </title>
+    <title> سند قبض  </title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -175,7 +175,7 @@ hr
 
             <td style="text-align: center;font-weight: bold ;font-size: 20px;color: #dc3545">
 
-             1111
+                {!! $id  !!}
 
 
             </td>
@@ -192,48 +192,48 @@ hr
 
                     <td>
 
-                        العميل :       1414141414<br>
-                        رقم هوية:     14141414141<br>
-                        رقم جوال :    1414114<br>
+
 
                     </td>
                     <td>
-                        التاريخ : 144141<br>
-
+                        التاريخ : {!! $created_at !!}<br>
+                        نوع القبض : {!! $catch_type !!}<br>
+                        البيان : {!! $comment !!}<br>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
-    <tr>
-        <td class="text-center">رقم الفاتورة </td>
 
-    </tr>
 
     <tr class="heading item " >
-        <td style="text-align: center">الوصف : عقد تشغيل لمدة 1414141 </td>
+        <td style="text-align: center">رقم الخدمة :  {!! $contract_id  !!} </td>
         <td style="text-align: center">خدمة     : عقد تشغيل</td>
     </tr>
     <tr class="item">
-        <td style="text-align: center">144141</td>
+        <td style="text-align: center">{!! $bonds_cost  !!}</td>
         <td>رسوم الخدمة</td>
     </tr>
     <tr class="item">
-        <td style="text-align: center"> 1414</td>
+        <td style="text-align: center"> 0.00</td>
         <td> الخصم</td>
     </tr>
     <tr class="item">
-        <td style="text-align: center"> 14141    (غير خاضع للضريبة )</td>
+        <td style="text-align: center"> {!! $bonds_total  !!}  </td>
         <td> المجموع</td>
     </tr>
     <tr class="item last">
-        <td style="text-align: center"> 11414</td>
+        <td style="text-align: center"> {!! $bonds_vat !!}</td>
         <td>الضريبة المضافة </td>
     </tr>
 
     <tr class="item last">
-        <td style="text-align: center"> 14141</td>
+        <td style="text-align: center">  {!! $bonds_total  !!} </td>
         <td>المطلوب من العميل</td>
+    </tr>
+    <tr class="item last">
+        <td style="text-align: center">  {!! $bonds_total_ar  !!} </td>
+        <td>  المبلغ مكتوب</td>
     </tr>
 
 
@@ -254,7 +254,7 @@ hr
     margin-top: 5px; /* Adjust the distance between the text and the line as needed */
     position: relative;
     left: 0;
-    right: 0;">اسامه فتحي عبدالله </h4>
+    right: 0;font-size:22px"> {!! $Created_by  !!}  </h4>
 </div>
 
 

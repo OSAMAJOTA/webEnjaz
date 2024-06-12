@@ -33,19 +33,72 @@ class BondsController extends Controller
     }
 
 
+    public function generatePDFDownload($id)
+    {
+
+        $contract=Bonds::select('*')->where('id',$id)->first();
+        $catch_type=$contract->catch_type;
+        $bonds_total=$contract->bonds_total;
+        $bonds_vat=$contract->bonds_vat;
+        $contract_id=$contract->contract_id;
+        $comment=$contract->comment;
+        $Created_by=$contract->Created_by;
+        $created_at=$contract->created_at;
+        $bonds_total_ar=$contract->bonds_total_ar;
+        $bonds_cost=$contract->bonds_cost;
+
+        $data = [
+
+            'catch_type' => $catch_type,
+            'bonds_total' => $bonds_total,
+            'bonds_vat' => $bonds_vat,
+            'bonds_cost' => $bonds_cost,
+            'contract_id' => $contract_id,
+            'comment' => $comment,
+            'Created_by' => $Created_by,
+            'created_at' => $created_at,
+            'bonds_total_ar' => $bonds_total_ar,
+            'id' => $id,
+
+
+        ];
+
+
+
+        $pdf = PDF::loadView('bonds.bonds-pdf', $data);
+
+        return $pdf->download();
+
+    }
 
 
     public function generatePDF($id)
     {
 
-        $contract=contract::select('*')->where('id',$id)->first();
-        $total=$contract->tot;
-
+        $contract=Bonds::select('*')->where('id',$id)->first();
+        $catch_type=$contract->catch_type;
+        $bonds_total=$contract->bonds_total;
+        $bonds_vat=$contract->bonds_vat;
+        $contract_id=$contract->contract_id;
+        $comment=$contract->comment;
+        $Created_by=$contract->Created_by;
+        $created_at=$contract->created_at;
+        $bonds_total_ar=$contract->bonds_total_ar;
+        $bonds_cost=$contract->bonds_cost;
 
         $data = [
-            'title' => 'Invoice number: IN-123456789',
 
-            'total' => $total,
+            'catch_type' => $catch_type,
+            'bonds_total' => $bonds_total,
+            'bonds_vat' => $bonds_vat,
+            'bonds_cost' => $bonds_cost,
+            'contract_id' => $contract_id,
+            'comment' => $comment,
+            'Created_by' => $Created_by,
+            'created_at' => $created_at,
+            'bonds_total_ar' => $bonds_total_ar,
+            'id' => $id,
+
 
         ];
 
@@ -250,6 +303,7 @@ class BondsController extends Controller
             $treasure->treasure = $new_treasure;
             $treasure->last_treasure = $last_treasure;
             $treasure->comment = $comment2;
+            $treasure->amount = $sadad_to_treasure;
             $treasure->contract_id = $con_id2;
             $treasure->typ =1;
             $treasure->user_id =Auth::user()->id;
@@ -355,7 +409,7 @@ class BondsController extends Controller
 
     public function revenues()
     {
-        $Bonds=Bonds::all();
+        $Bonds=Bonds::select('*')->orderBy('id', 'desc')->get();
         $income=Bonds::select('*')->where('bonds_type_id','=','1')->get()->sum('bonds_total');
         $outcome=Bonds::select('*')->where('bonds_type_id','=','2')->get()->sum('bonds_total');
      return view('bonds.revenues',compact('Bonds','income','outcome'));

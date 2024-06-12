@@ -389,12 +389,58 @@ elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status
     echo "تاريخ نهاية العقد";
 }
 
+        // ***************************************************الموظف مع البحث بالخيارات
+        //
+
+
+        //
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
+
+//الموظف وحاالة العقد منتهي او ساري
+            echo "الموظف وحاالة العقد منتهي او ساري";
+        }
+
+        //
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date&&$request->nash==''&&$request->work==''&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
+
+//الموظف    تاريخ الانشاء
+            echo "//الموظف    تاريخ الانشاء";
+        }
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash&&$request->work==''&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
+
+//الموظف و الجنسية
+            echo "//الموظف و الجنسية";
+        }
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
+
+//الموظف    و الوظيفة
+            echo "//الموظف    و الوظيفة";
+        }
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by&&$request->end_after&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
+
+//الموظف  وينتهي بعد
+            echo "//الموظف  وينتهي بعد";
+        }
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ&&$request->mony_status==''&&$request->maid_status==''&&$request->end_date==''){
+
+//الموظف تاريخ نهاية العقد
+            echo "//الموظف تاريخ نهاية العقد";
+        }
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status&&$request->maid_status==''&&$request->end_date==''){
+
+//الموظف  و الحالة المالية
+            echo "//الموظف  و الحالة المالية";
+        }
+        elseif ($request->cont_num=='' &&$request->agent_name==''&&$request->cont_status==''&&$request->agent_phone==''&&$request->agent_email==''&&$request->agent_id==''&&$request->create_date==''&&$request->nash==''&&$request->work==''&&$request->create_by&&$request->end_after==''&&$request->typ==''&&$request->end_typ==''&&$request->mony_status==''&&$request->maid_status&&$request->end_date==''){
+
+//الموظف  و الحالة اختيار العمال هل العقد فيه عاملة او لا
+            echo "//الموظف  و الحالة اختيار العمال هل العقد فيه عاملة او لا ";
+        }
+
+
 
     }
 
-
-    // ***************************************************الموظف مع البحث بالخيارات
-    //
 
 
 

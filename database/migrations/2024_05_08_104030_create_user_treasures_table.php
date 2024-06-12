@@ -18,6 +18,7 @@ class CreateUserTreasuresTable extends Migration
             $table->decimal('treasure')->nullable();
             $table->decimal('last_treasure')->nullable();
             $table->text('comment')->nullable();
+            $table->text('amount')->nullable();
             $table->text('contract_id')->nullable();
             $table->text('typ')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();

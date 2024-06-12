@@ -32,6 +32,9 @@ Route::post('pay_penalty', 'BondsController@pay_penalty');
 Route::resource('general_bonds', 'BondsController');
 Route::get('/bonds_detils/{id}', 'BondsController@edit');
 Route::get('/generate-pdf/{id}', 'BondsController@generatePDF')->name('pdf.generate');
+Route::get('/generate-pdf-download/{id}', 'BondsController@generatePDFDownload')->name('pdf.generate');
+
+
 //السندات
 //*************************************************************************************************************
 
@@ -42,6 +45,9 @@ Route::resource('tree', 'AccountTreeController');
 //*************************************************************************************************************
 //الصناديق
 Route::resource('treasures', 'UserTreasureController');
+Route::get('/All_treasures/{id}', 'UserTreasureController@All_treasures');
+Route::post('/tranfer_mony', 'UserTreasureController@tranfer_mony')->name('tranfer_mony');
+
 //الصناديق
 //*************************************************************************************************************
 
@@ -98,7 +104,7 @@ Route::get('/nash/{id}', 'ContractController@getoffer');
 Route::get('/getdataoffer/{id}', 'ContractController@getdataoffer');
 
 
-
+Route::post('/maids_upload_img', 'MaidsAttachmentsController@update');
 
 Route::get('/maidsDetails/{id}', 'MaidsController@showDetails');
 Route::resource('wakel', 'WakelController');

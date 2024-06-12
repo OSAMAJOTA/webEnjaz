@@ -210,6 +210,7 @@ if($request->emp_num==''){
         $treasure->treasure = $new_treasure;
         $treasure->last_treasure = $last_treasure;
         $treasure->comment = $comment2;
+        $treasure->amount = $sadad_to_treasure;
         $treasure->contract_id = $contract_id;
         $treasure->typ =1;
         $treasure->user_id =Auth::user()->id;
@@ -292,6 +293,35 @@ if($request->emp_num==''){
         $bonds->Created_by = Auth::user()->name;
 
         $bonds->save();
+    }
+
+
+    // في حالة كان سند القبض نقدآ
+
+
+
+    if ($request->sadad_typ=='نقدآ')
+    {
+        //تعديل مبلغ الخزنة
+
+        $treasure1 = user_treasure::where('user_id',Auth::user()->id)->latest('created_at')->first();
+        $last_treasure=$treasure1->treasure;
+
+        $sadad_to_treasure=$request->sadad;
+        $new_treasure=$last_treasure+$sadad_to_treasure;
+        $comment2= ' وارد نقدي عن العقد رقم '.$contract_id.'باجمالي مبلغ'.$sadad_to_treasure;
+
+        $treasure = new user_treasure();
+        $treasure->treasure = $new_treasure;
+        $treasure->last_treasure = $last_treasure;
+        $treasure->comment = $comment2;
+        $treasure->amount = $sadad_to_treasure;
+
+        $treasure->contract_id = $contract_id;
+        $treasure->typ =1;
+        $treasure->user_id =Auth::user()->id;
+        $treasure->save();
+
     }
     //اذا يوجد خصم مدير
     if($request->man_discount>0){

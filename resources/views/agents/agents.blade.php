@@ -336,6 +336,14 @@
 
                                         </div>
                                     </div>
+                                    <div class="card card-primary">
+
+                                        <div class="card-body text-primary ">
+                                            {{ $agents->links() }}
+
+
+                                        </div>
+                                    </div>
                                     @foreach($agents as $x)
 
                             <!-- عميل 3 -->
@@ -553,10 +561,24 @@
                         </div>
                         <!-- نهاية كرت العميييييل  -->
                                 @endforeach
+
+
                         </div>
+                            <div class="card card-primary">
+
+                                <div class="card-body text-primary ">
+                                    {{ $agents->links() }}
+                                    <div class="text-danger   text-left ">
+
+
+                                    </div>
+
+                                </div>
+                            </div>
                     </div>
                     <!-- row closed -->
                 </div>
+
             </div>
 
 
@@ -566,6 +588,8 @@
     </div>
     <!-- main-content closed -->
     </div>
+
+
     <div class="modal" id="modaldemo5">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content tx-size-sm">

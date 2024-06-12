@@ -10,6 +10,16 @@
     <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!--- Internal Select2 css-->
+    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+    <!---Internal Fancy uploader css-->
+    <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+    <!--Internal Sumoselect css-->
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
+    <!--Internal  TelephoneInput css-->
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
     <style>
 
         .branchname {
@@ -752,7 +762,7 @@
                 <div class="row">
                     <ul class="branchnameList">
                         <li>
-                            {{$x->emp_num}}   /  شركة الانجاز المعتمد للاستقدام</li>
+                           <a class="btn-danger btn-sm disabled "> {{$x->emp_num}}</a>   /  شركة الانجاز المعتمد للاستقدام</li>
                         <li class="bg-inverse">
                             {{$x->emp_wakel}}
                         </li>
@@ -881,7 +891,7 @@
 
 
                             <li class="list-group-itemm">
-                                <a href="#custom-UploadApplicantImage" onclick="UploadApplicantImage(131546,'83',56);">
+                                <a class="btn ripple btn-primary btn-sm" data-target="#upload_img" data-toggle="modal" href=""  data-id="{{ $x->id }}"   ">
                                     <i class="fa fa-eject m-r-5"></i>
                                     <span> رفع صور العامل</span>
                                 </a>
@@ -1012,25 +1022,47 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="upload_img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">تعديل القسم</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">رفع صور العمالة </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
-                    <form action="sections/update" method="post" autocomplete="off">
-                        {{ method_field('patch') }}
+                    <form action="maids_upload_img" method="post" autocomplete="off"  enctype="multipart/form-data">
+                        {{ method_field('POST') }}
                         {{ csrf_field() }}
-                        <div class="form-group">
-                            <input type="hidden" name="id" id="id" value="">
-                            <label for="recipient-name" class="col-form-label">اسم القسم:</label>
-                            <input class="form-control" name="sections_name" id="sections_name" type="text">
+                        <div class="row">
+                            <p class="text-danger">* صورة من جواز السفر </p><br>
+                            <input type="text" name="id"  id="id"
+                                   data-height="70" hidden />
+
+                            <div class="col-sm-12 col-md-12">
+                                <input type="file" name="passport_pic" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                       data-height="70" />
+                            </div>
+
+                            <p class="text-danger">*  صورة شخصية   </p>
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <input type="file" name="profile" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                       data-height="70" />
+                            </div>
+                            <p class="text-danger">* صورة  كاملة للجسم </p>
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <input type="file" name="full_pic" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                       data-height="70" />
+                            </div>
+
+
                         </div>
 
                 </div>
@@ -1048,67 +1080,56 @@
 
         </div>
     </div>
-    <!-- delete -->
-    <div class="modal" id="modaldemo9">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">حذف القسم</h6><button aria-label="Close" class="close" data-dismiss="modal"
-                                                                  type="button"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <form action="sections/destroy" method="post">
-                    {{ method_field('delete') }}
-                    {{ csrf_field() }}
-                    <div class="modal-body">
-                        <p>هل انت متاكد من عملية الحذف ؟</p><br>
-                        <input type="hidden" name="id" id="id" value="">
-                        <input class="form-control" name="sections_name" id="sections_name" type="text" readonly>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                        <button type="submit" class="btn btn-danger">تاكيد</button>
-                    </div>
-            </div>
-            </form>
-        </div>
-    </div>
+
 
     <!-- main-content closed -->
 @endsection
 
 @section('js')
     <!-- Internal Data tables -->
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-    <!--Internal  Datatable js -->
-    <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+    <!--Internal Fileuploads js-->
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+    <!--Internal Fancy uploader js-->
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+    <!--Internal  Form-elements js-->
+    <script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/select2.js') }}"></script>
+    <!--Internal Sumoselect js-->
+    <script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+    <!--Internal  Datepicker js -->
+    <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+    <!--Internal  jquery.maskedinput js -->
+    <script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+    <!--Internal  spectrum-colorpicker js -->
+    <script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+    <!-- Internal form-elements js -->
+    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+    <!--Internal  Datepicker js -->
+    <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+    <!-- Internal Select2 js-->
+    <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+    <!--- Internal Accordion Js -->
+    <script src="{{URL::asset('assets/plugins/accordion/accordion.min.js')}}"></script>
+    <script src="{{URL::asset('assets/js/accordion.js')}}"></script>
 
 
 
 
     <script>
-        $('#exampleModal2').on('show.bs.modal', function(event) {
+        $('#upload_img').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
-            var sections_name = button.data('sections_name')
+
 
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
-            modal.find('.modal-body #sections_name').val(sections_name);
+
 
         })
     </script>

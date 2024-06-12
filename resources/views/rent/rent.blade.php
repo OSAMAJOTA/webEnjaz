@@ -575,8 +575,10 @@
 
 
                                                 ?>
-                                            @if($start<$now or $x->status=='منتهي' or $days_count < 3 )
+                                            @if($start<$now or $x->status=='منتهي' )
                                                 <div class="card-body" style="background-color: #ffd4d4a8">
+                                            @elseif($days_count <= 3 )
+                                                <div class="card-body" style="background-color: #f5ebcfa8">
                                                     @else
                                                         <div class="card-body" >
                                                             @endif
@@ -829,7 +831,7 @@
                                                                                     <ul class="list-group control m-b-2 user-list">
                                                                                         <li class="list-group-itemm">
                                                                                             <button type="submit" class="btn btn-success btn-sm"> <i class="fa fa-file-pdf"></i>
-                                                                                                <span> طباعة الفاتورة</span></button>
+                                                                                                <span> طباعة الفاتورة </span></button>
                                                                                         </li>
                                                                                     </ul>
                                                                                 </form>
@@ -839,7 +841,7 @@
                                                                             <li class="list-group-itemm"  style="border-right:2px solid #00ff21;">
                                                                                 <a href="/print_cont/{{$x->id }}" class="on-default edit-row" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">
                                                                                     <i class="fa fa-print"></i>
-                                                                                    <span>طباعة</span>
+                                                                                    <span>طباعة العقد</span>
                                                                                 </a>
                                                                             </li>
 
@@ -960,7 +962,7 @@
                                                                                             <span>دفع غرامة التأخير</span> </a>&nbsp;
                                                                                     @endif
                                                                                     @if($x->remaining_days>0 and $x->return_cost>0 )
-                                                                                        <a class="modal-effect  btn btn-info btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#return"   data-id="{{ $x->id }}" data-remaining_days="{{ $x->remaining_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}" data-return_cost="{{ $x->return_cost }}"   >
+                                                                                        <a class="modal-effect  btn btn-info btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#return"   data-id="{{ $x->id }}" data-remaining_days="{{ $x->remaining_days }}" data-tot="{{ $x->tot }}" data-countss="{{ $x->countss }}"  data-late_cost="{{ $x->late_cost }}" data-day_cost="{{ $x->day_cost }} " data-agents_name="{{ $x->agents_name }}" data-return_cost="{{ $x->return_cost }}" data-agent_rest="{{ $x->rest }}" data-agent_sadad="{{ $x->sadad }}  "   >
 
 
                                                                                             <i class="fa fa-cash-register m-r-5"></i>
@@ -1333,6 +1335,9 @@
                                                                     <div class="form-group">
                                                                         <div class="col-md-12">
                                                                         <div class="row">
+                                                                            <label for="exampleInputEmail1" class="text-danger">يتم حساب اليوم ب150 ريال عن كل يوم تأخير !!! </label>
+
+                                                                            <hr>
                                                                             <div class="col-md-6">
                                                                                 <label for="exampleInputEmail1">اجمالي العقد</label>
                                                                                 <input type="text" class="form-control text-center" id="tot" name="tot" readonly>
@@ -1407,34 +1412,42 @@
                                                                     <div class="form-group">
                                                                         <div class="col-md-12">
                                                                             <div class="row">
+                                                                                <label for="exampleInputEmail1" class="text-danger">اذا كان عدد ايام  العقد المنقضية 1 يوم يتم حساب اليوم بي 250 ريال !! </label>
+                                                                                <label for="exampleInputEmail1" class="text-danger">اذا كان عدد ايام  العقد المنقضية  2-7 ايام يتم حساب اليوم بي 150 ريال !! </label>
+                                                                                <label for="exampleInputEmail1" class="text-danger">اذا كان عدد ايام  العقد المنقضية  8-30 يوم يتم حساب اليوم بي 100 ريال !! </label>
                                                                                 <div class="col-md-6">
                                                                                     <label for="exampleInputEmail1">اجمالي العقد</label>
                                                                                     <input type="text" class="form-control text-center" id="tot" name="tot" readonly>
+                                                                                    <label for="exampleInputEmail1"> مبلغ السداد</label>
+                                                                                    <input type="text" class="form-control text-center" id="agent_sadad" name="agent_sadad" readonly>
+                                                                                    <input type="text" name="id" id="id" value="" hidden="hidden">
+                                                                                    <label for="exampleInputEmail1">عدد الايام المتبقية</label>
+                                                                                    <input type="text" class="form-control text-center" id="remaining_days" name="remaining_days" readonly>
+
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <label for="exampleInputEmail1">المتبقي علي العميل</label>
+                                                                                    <input type="text" class="form-control text-center" id="agent_rest" name="agent_rest" readonly>
                                                                                     <label for="exampleInputEmail1">عدد ايام العقد</label>
                                                                                     <input type="text" class="form-control text-center" id="countss" name="countss" readonly>
                                                                                     <input type="text" name="id" id="id" value="" hidden="hidden">
-
+                                                                                    <label for="exampleInputEmail1">عدد الايام المنقضية   </label>
+                                                                                    <input type="text" class="form-control text-center" id="work_days" name="work_days" readonly>
                                                                                 </div>
 
-                                                                                <div class="col-md-6">
-                                                                                    <label for="exampleInputEmail1">عدد الايام المتبقية</label>
-                                                                                    <input type="text" class="form-control text-center" id="remaining_days" name="remaining_days" readonly>
-                                                                                    <label for="exampleInputEmail1">تكلفة اليوم</label>
-                                                                                    <input type="text" class="form-control text-center" id="day_cost" name="day_cost" readonly>
-                                                                                    <input type="text" name="id" id="id" value="" hidden="hidden">
-                                                                                    <input type="text" name="agents_name" id="agents_name" value="" hidden>
+                                                                                <label for="exampleInputEmail1">تكلفة اليوم</label>
+                                                                                <input type="text" class="form-control text-center" id="day_cost" name="day_cost" readonly>
 
-
-                                                                                </div>
+                                                                                <input type="text" name="agents_name" id="agents_name" value="" hidden>
 
 
                                                                             </div>
                                                                             <label for="exampleInputEmail1">مبلغ الاسترداد</label>
                                                                             <input type="number" class="form-control text-center" id="return_cost" name="return_cost" readonly >
-                                                                            <label for="exampleInputEmail1"> مبلغ السداد </label>
+                                                                            <label for="exampleInputEmail1"> مبلغ الصرف </label>
                                                                             <input type="number" class="form-control text-center" id="sadad1" name="sadad1" onkeyup="mysarf()" required >
 
-                                                                            <label for="exampleInputEmail1"> طريقة السداد  </label>
+                                                                            <label for="exampleInputEmail1"> طريقة الصرف  </label>
                                                                             <select class="form-control" name="catch_type1" id="catch_type1" required>
                                                                                 <option value=""> حدد طريقة الاسترداد</option>
                                                                                 <option value="نقدآ">نقدآ</option>
@@ -1504,9 +1517,26 @@
                                                             var tot = button.data('tot')
                                                             var countss = button.data('countss')
                                                             var late_cost = button.data('late_cost')
-                                                            var day_cost = button.data('day_cost')
+
                                                             var agents_name = button.data('agents_name')
-                                                            var return_cost = button.data('return_cost')
+
+                                                            var agent_rest = button.data('agent_rest')
+                                                            var agent_sadad = button.data('agent_sadad')
+                                                            var work_days=countss-remaining_days;
+                                                            if(work_days==1){
+                                                                var day_cost =250
+                                                                var return_cost =agent_sadad-(day_cost*work_days);
+                                                            }
+                                                            if(work_days==2 || work_days==3 || work_days==4 ||work_days==5 ||work_days==6 || work_days==7){
+                                                                var day_cost =150
+                                                                var return_cost =agent_sadad-(day_cost*work_days);
+                                                            }
+                                                            if(work_days>7){
+                                                                var day_cost =100
+                                                                var return_cost =agent_sadad-(day_cost*work_days);
+                                                            }
+
+
 
 
                                                             var modal = $(this)
@@ -1518,7 +1548,9 @@
                                                             modal.find('.modal-body #day_cost').val(day_cost);
                                                             modal.find('.modal-body #agents_name').val(agents_name);
                                                             modal.find('.modal-body #return_cost').val(return_cost);
-
+                                                            modal.find('.modal-body #agent_rest').val(agent_rest);
+                                                            modal.find('.modal-body #agent_sadad').val(agent_sadad);
+                                                            modal.find('.modal-body #work_days').val(work_days);
 
                                                         })
                                                     </script>

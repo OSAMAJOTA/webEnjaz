@@ -23,7 +23,7 @@ class RecruitmentContractController extends Controller
     public function index()
     {
         $recruitment= recruitmentContract::select('*')->orderBy('id', 'desc')->paginate(7);
-        $recruitment_count=contract::all();
+        $recruitment_count=recruitmentContract::all();
 
         $contract_count2=$recruitment_count->count();
         return view('recruitment.recruitment',compact('recruitment','contract_count2'));
@@ -141,7 +141,12 @@ class RecruitmentContractController extends Controller
     }
     public function recruitment_detils($id)
     {
-echo "هنا سيتم عرض تفاصيل العقد ";
+
+    $recruitment= recruitmentContract::select('*')->where('id',$id)->first();
+
+
+
+        return view('recruitment.recruitment_detils',compact('recruitment'));
     }
 
 }

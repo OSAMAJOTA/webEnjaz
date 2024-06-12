@@ -93,6 +93,7 @@ class QRController extends Controller
         $agents_name=$contract->agents_name;
         $agent_phone1=$contract->agent_phone1;
         $id_num=$contract->id_num;
+        $Created_by=$contract->Created_by;
 
         $data = [
             'title' => 'Invoice number: IN-123456789',
@@ -109,6 +110,7 @@ class QRController extends Controller
             'agent_phone1' => $agent_phone1,
             'id_num' => $id_num,
             'con_id' => $con_id,
+            'Created_by' => $Created_by,
         ];
 
 

@@ -45,21 +45,28 @@
                             </thead>
                             <tbody>
 
-@foreach($user_treasures as $x)
+@foreach($users_id as $x)
                             <tr>
                                 <td>
                                     <img alt="avatar" class="rounded-circle avatar-md mr-2" src="{{URL::asset('assets/img/6.jpg')}}">
                                 </td>
-                                <td>{{$x->User->name}}</td>
+                                <td>{{$x->name}}</td>
+                                    <?php $treasures=\App\user_treasure::where('user_id',$x->id)->latest('created_at')->first()  ?>
                                 <td>
-                                    {{$x->updated_at}}
+                                    {{$treasures->updated_at}}
                                 </td>
                                 <td class="text-center">
-                                    <span class="label text-black d-flex"><div class="dot-label bg-success ml-1"></div> <b>{{$x->treasure}}</b> </span>
+                                    <span class="label text-black d-flex"><div class="dot-label bg-success ml-1"></div> <b>
+
+
+
+                                            {{$treasures->treasure}}
+
+                                        </b> </span>
                                 </td>
 
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary">
+                                    <a href="/All_treasures/{{$x->id}}" class="btn btn-sm btn-primary">
                          عرض
                                     </a>
                                     <a href="#" class="btn btn-sm btn-info">

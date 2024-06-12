@@ -45,11 +45,19 @@ class EndContractController extends Controller
         $end_contract = contract::where('id',$request->id);
         $cost=$request->cost;
             $countss=$request->countss;
-        $day_cost= $cost/$countss;
+
         $late_days=$request->late_days;
-        $late_cost=ceil($late_days*$day_cost);
+       if($late_days>1){
+           $late_cost=ceil($late_days*150);
+           $day_cost= 150;
+
+       }else{
+           $late_cost=0;
+           $day_cost=0;
+       }
+
         $remin=$request->remaining_days;
-        $retur_cost=ceil($remin*$day_cost);
+        $retur_cost=ceil($remin*$cost);
 
 
         $end_contract->update([
@@ -108,7 +116,7 @@ class EndContractController extends Controller
 
        session()->flash('end_contract');
 
-        return redirect('/rent');
+        return redirect()->back();
 
     }
 

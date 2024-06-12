@@ -38,11 +38,14 @@ class AgentsController extends Controller
         $res= Auth::user()->roles_name;
         $adm=$res[0];
 
-        $agents=agents::all()->sortByDesc("id");
+
+        $agents=agents::select('*')->orderBy('id', 'desc')->paginate(7);
+        $agents_count=agents::all();
+
+        $agents_count2=$agents_count->count();
 
 
-
-            return  view('agents.agents',compact('agents'));
+            return  view('agents.agents',compact('agents','agents_count2'));
 
 
 
@@ -51,14 +54,15 @@ class AgentsController extends Controller
     {
 
 
+        $res= Auth::user()->roles_name;
+        $adm=$res[0];
 
-        $agents = agents::select('*')->where('id_num', '=', $request->id_num)->get();
-        if($agents==true){
-            session()->flash('Add', 'عميل موجود');
 
-        }else{
-            session()->flash('delete', 'عميل غير موجود');
-        }
+
+        $agents = agents::select('*')->where('id_num', '=', $request->id_num)->paginate(7);
+        $agents_count=agents::all();
+
+        $agents_count2=$agents_count->count();
         return  view('agents.agents',compact('agents'));
 
     }

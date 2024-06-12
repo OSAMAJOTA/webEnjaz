@@ -301,7 +301,11 @@
                     <div class="col-md-5 " style="font-weight: bold;color: white"></div>
                     <div class="col-md-1 text-right" style="font-weight: bold;color: white"> الايرادات</div>
                     <div class="col-md-1 text-right" style="font-weight: bold;color: white"> المنصرفات</div>
-
+                    @if($outcome>$income)
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: white"> صافي الخسارة</div>
+                    @else
+                        <div class="col-md-1 text-right" style="font-weight: bold;color: white"> صافي الدخـــل </div>
+                    @endif
                 </li>
             </div>
 
@@ -315,9 +319,13 @@
                     <div class="col-md-1" style="font-weight: bold;color: white"></div>
                     <div class="col-md-2 text-left" style="font-weight: bold;color: white"> </div>
                     <div class="col-md-5 " style="font-weight: bold;color: white"></div>
-                    <div class="col-md-1 text-right" style="font-weight: bold;color: white"> {{$income}} ريال </div>
-                    <div class="col-md-1 text-right" style="font-weight: bold;color: orangered"> {{$outcome}} ريال</div>
-
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: white"> {{number_format($income,2)}} ريال </div>
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: orangered"> {{number_format($outcome,2)}} ريال</div>
+                    @if($outcome>$income)
+                    <div class="col-md-1 text-right" style="font-weight: bold;color: darkred"> {{number_format($income-$outcome,2)}} ريال </div>
+                    @else
+                        <div class="col-md-1 text-right" style="font-weight: bold;color: white"> {{number_format($income-$outcome,2)}} </div>
+                    @endif
                 </li>
             </div>
 
