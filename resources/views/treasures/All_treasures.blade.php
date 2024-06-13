@@ -50,6 +50,27 @@
 
                                 </div>
                             </a>
+                        @elseif($procsess->typ==11)
+                            <a href="/recruitment_detils/{{$procsess->contract_id}}" class="p-3 d-flex border-bottom">
+                                <div class="  drop-img  cover-image  "
+                                     data-image-src="{{ URL::asset('assets/img/faces/income.png') }}">
+                                    <span class="avatar-status bg-teal"></span>
+                                </div>
+                                <div class="wd-90p">
+                                    <div class="d-flex">
+
+
+                                    </div>
+                                    <p class="mb-0 desc">{{$procsess->comment}}</p>
+                                    <p class="time mb-0 text-left float-right mr-2 mt-2">{{$procsess->created_at}}</p>
+
+                                    <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$procsess->treasure}}</p>
+                                    <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الوارد</span>&nbsp;&nbsp; {{$procsess->amount}}</p>
+                                    <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; {{$procsess->last_treasure}}</p>
+
+                                </div>
+                            </a>
+
                         @elseif($procsess->typ==2)
                             <!-- التحويل تصميم-->
 
@@ -67,6 +88,7 @@
                                     <p class="time mb-0 text-left float-right mr-2 mt-2">{{$procsess->created_at}}</p>
 
                                     <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$procsess->treasure}}</p>
+                                    <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الوارد</span>&nbsp;&nbsp; {{$procsess->amount}}</p>
                                     <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; {{$procsess->last_treasure}}</p>
 
 
@@ -90,6 +112,7 @@
                                     <p class="time mb-0 text-left float-right mr-2 mt-2">{{$procsess->created_at}}</p>
 
                                     <p class="time mb-0 text-left right-right mr-2 mt-2 text-success " style="font-weight: bold"> <span class="text-info">الرصيد الحالي</span>&nbsp;&nbsp; {{$procsess->treasure}}</p>
+                                    <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد الصادر</span>&nbsp;&nbsp; {{$procsess->amount}}-</p>
                                     <p class="time mb-0 text-left right-right mr-2 mt-2 text-danger " style="font-weight: bold"> <span class="text-info">الرصيد السابق</span>&nbsp;&nbsp; {{$procsess->last_treasure}}</p>
 
 

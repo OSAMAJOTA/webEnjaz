@@ -120,6 +120,7 @@ return array(
     'App\\offers' => $baseDir . '/app/offers.php',
     'App\\recruitmentContract' => $baseDir . '/app/recruitmentContract.php',
     'App\\recruitmentOffers' => $baseDir . '/app/recruitmentOffers.php',
+    'App\\recruitment_comment' => $baseDir . '/app/recruitment_comment.php',
     'App\\sections' => $baseDir . '/app/sections.php',
     'App\\user_treasure' => $baseDir . '/app/user_treasure.php',
     'App\\wakel' => $baseDir . '/app/wakel.php',

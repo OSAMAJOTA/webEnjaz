@@ -42,7 +42,9 @@ class EndContractController extends Controller
      */
     public function store(Request $request)
     {
-        $end_contract = contract::where('id',$request->id);
+        $end_contract = contract::where('id',$request->id)->first();
+        $agent_sadad=$end_contract->sadad;
+
         $cost=$request->cost;
             $countss=$request->countss;
 
@@ -56,8 +58,25 @@ class EndContractController extends Controller
            $day_cost=0;
        }
 
+
+
+
         $remin=$request->remaining_days;
-        $retur_cost=ceil($remin*$cost);
+
+        $work_days=$countss-$remin;
+        if($work_days==1){
+         $day_cost=250;
+            $retur_cost=$agent_sadad-($day_cost*$work_days);
+        }
+        if($work_days==2 || $work_days==3 || $work_days==4 ||$work_days==5 ||$work_days==6 || $work_days==7){
+            $day_cost=250;
+            $retur_cost=$agent_sadad-($day_cost*$work_days);
+        }
+        if($work_days>7){
+            $day_cost=250;
+            $retur_cost=$agent_sadad-($day_cost*$work_days);
+        }
+
 
 
         $end_contract->update([

@@ -348,7 +348,12 @@
                                                     <td><b>{{$x->bonds_total}} </b></td>
                                                     <td><b>{{$x->bonds_total_ar}} </b></td>
                                                     <td><b>{{$x->created_at}}  </b></td>
+                                                    @if( $x->contract_id=='')
+                                                        <td><b><a href="/recruitment_detils/{{$x->contract_id_rec }}"> {{$x->contract_id_rec }}</a> </b></td>
+
+                                                    @else
                                                     <td><b><a href="/contract_detils/{{$x->contract_id }}"> {{$x->contract_id }}</a> </b></td>
+                                                    @endif
                                                     <td><b>{{$x->comment}} </b></td>
                                                     <td><b>{{$x->Created_by}} </b></td>
                                                     <td><b>--</b></td>

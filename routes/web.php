@@ -30,6 +30,7 @@ Route::get('/revenues', 'BondsController@revenues');
 Route::post('pay_return', 'BondsController@pay_return');
 Route::post('pay_penalty', 'BondsController@pay_penalty');
 Route::resource('general_bonds', 'BondsController');
+Route::post('/general_bonds_rec', 'BondsController@general_bonds_rec');
 Route::get('/bonds_detils/{id}', 'BondsController@edit');
 Route::get('/generate-pdf/{id}', 'BondsController@generatePDF')->name('pdf.generate');
 Route::get('/generate-pdf-download/{id}', 'BondsController@generatePDFDownload')->name('pdf.generate');
@@ -81,7 +82,7 @@ Route::get('/get_offer_rec/{nash}/{emp_typ}/{Age}/{religion}/{emp_exp}', 'Recrui
 Route::get('/get_offer_rec_typ/{nash}/{emp_typ}', 'RecruitmentOffersController@get_offer_rec_typ');
 Route::get('/getdataoffer_value/{id}', 'RecruitmentOffersController@getdataoffer_value');
 Route::get('/recruitment_detils/{id}', 'RecruitmentContractController@recruitment_detils');
-
+Route::post('recruitment_comment', 'RecruitmentContractController@recruitment_comment');
 //*************************************************************************************************************
 // عقود الاستقدام
 

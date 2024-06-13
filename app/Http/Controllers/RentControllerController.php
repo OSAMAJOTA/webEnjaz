@@ -161,8 +161,6 @@ if($request->emp_num==''){
     }
 
     if($request->sadad>0){
-
-
         $contract_id = contract::latest()->first()->id;
         $name_agent=$request->agents_name;
         $total=$request->sadad;
@@ -184,6 +182,7 @@ if($request->emp_num==''){
         $bonds->comment  = $comment_bonds;
 
         $bonds->contract_id  = $contract_id;
+        $bonds->contract_typ  = 'تشغيل';
         $bonds->Created_by = Auth::user()->name;
 
         $bonds->save();
@@ -271,7 +270,7 @@ if($request->emp_num==''){
         $name_agent=$request->agents_name;
         $total=$request->sadad;
         $typ=$request->sadad_typ;
-        $comment_bonds='عقد تشغيل رقم'.$contract_id.'عن العميل'.$name_agent.'باجمالي مبلغ'.$total.'طريقة السداد'.$typ;
+        $comment_bonds='عقد تشغيل رقم'.' '.$contract_id.' '.'عن العميل'.' '.$name_agent.' '.'باجمالي مبلغ'.' '.$total.' '.'طريقة السداد'.' '.$typ;
         $bonds = new Bonds();
         $bonds->bonds_type = 'سند قبض عقد';
         $bonds->bonds_type_id = 1;
@@ -290,6 +289,7 @@ if($request->emp_num==''){
 
         $bonds->comment = $comment_bonds;
         $bonds->contract_id  = $contract_id;
+        $bonds->contract_typ = 'تشغيل';
         $bonds->Created_by = Auth::user()->name;
 
         $bonds->save();
@@ -309,7 +309,7 @@ if($request->emp_num==''){
 
         $sadad_to_treasure=$request->sadad;
         $new_treasure=$last_treasure+$sadad_to_treasure;
-        $comment2= ' وارد نقدي عن العقد رقم '.$contract_id.'باجمالي مبلغ'.$sadad_to_treasure;
+        $comment2= ' وارد نقدي عن العقد تشغيل رقم '.$contract_id.'باجمالي مبلغ'.$sadad_to_treasure;
 
         $treasure = new user_treasure();
         $treasure->treasure = $new_treasure;

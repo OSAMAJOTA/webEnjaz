@@ -794,6 +794,7 @@ class ComposerStaticInit2152a30de2e0bca4ff0fc74942e6681e
         'App\\offers' => __DIR__ . '/../..' . '/app/offers.php',
         'App\\recruitmentContract' => __DIR__ . '/../..' . '/app/recruitmentContract.php',
         'App\\recruitmentOffers' => __DIR__ . '/../..' . '/app/recruitmentOffers.php',
+        'App\\recruitment_comment' => __DIR__ . '/../..' . '/app/recruitment_comment.php',
         'App\\sections' => __DIR__ . '/../..' . '/app/sections.php',
         'App\\user_treasure' => __DIR__ . '/../..' . '/app/user_treasure.php',
         'App\\wakel' => __DIR__ . '/../..' . '/app/wakel.php',

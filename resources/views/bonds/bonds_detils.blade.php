@@ -194,6 +194,99 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+@if($bonds->catch_type=='تحويل' and $bonds->bonds_type_id==1)
+
+    <div class="card card-primary">
+
+        <div class="card-body text-primary">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+                <div class="col-md-12">
+                    <h4 class="m-t-0 header-title-small"><b> ايصال التحول  </b></h4>
+                    <div class="card card-statistics">
+
+
+                        <div class="table-responsive mt-15">
+                            <table class="table center-aligned-table mb-0 table table-hover"
+                                   style="text-align:center">
+                                <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">م</th>
+                                    <th scope="col">اسم الملف</th>
+                                    <th scope="col">قام بالاضافة</th>
+                                    <th scope="col">تاريخ الاضافة</th>
+                                    <th scope="col">العمليات</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php $i = 0; ?>
+                                @foreach ($attachments as $attachment)
+                                        <?php $i++; ?>
+                                    <tr>
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $attachment->file_name }}</td>
+                                        <td>{{ $attachment->Created_by }}</td>
+                                        <td>{{ $attachment->created_at }}</td>
+                                        <td colspan="2">
+
+                                            <a class="btn btn-outline-success btn-sm"
+                                               href="{{ url('View_file_att') }}/{{ $bonds->contract_id  }}/{{ $attachment->file_name }}"
+                                               role="button"><i class="fas fa-eye"></i>&nbsp;
+                                                عرض</a>
+
+                                            <a class="btn btn-outline-info btn-sm"
+                                               href="{{ url('download_att') }}/{{ $bonds->contract_id  }}/{{ $attachment->file_name }}"
+                                               role="button"><i
+                                                    class="fas fa-download"></i>&nbsp;
+                                                تحميل</a>
+
+
+
+
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+@endif
+
+
+
+
+
+
+
+
+
     <!--  نهاية كرت العرض-->
 
 

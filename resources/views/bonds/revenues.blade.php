@@ -263,7 +263,7 @@
             <div class="card-header pb-0">
 
             </div>
-@if($Bonds->bonds_type_id==1)
+@if($Bonds->bonds_type_id==1 or $Bonds->bonds_type_id==11)
                 <div class="card-body text-secondary" >
                     @else
                 <div class="card-body text-secondary" style="background-color: #fdc1c1a8;">

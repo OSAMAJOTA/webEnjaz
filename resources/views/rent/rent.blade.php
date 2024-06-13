@@ -1514,6 +1514,8 @@
                                                             var button = $(event.relatedTarget)
                                                             var id = button.data('id')
                                                             var remaining_days = button.data('remaining_days')
+                                                            var return_cost = button.data('return_cost')
+
                                                             var tot = button.data('tot')
                                                             var countss = button.data('countss')
                                                             var late_cost = button.data('late_cost')
@@ -1523,17 +1525,18 @@
                                                             var agent_rest = button.data('agent_rest')
                                                             var agent_sadad = button.data('agent_sadad')
                                                             var work_days=countss-remaining_days;
+
                                                             if(work_days==1){
                                                                 var day_cost =250
-                                                                var return_cost =agent_sadad-(day_cost*work_days);
+
                                                             }
                                                             if(work_days==2 || work_days==3 || work_days==4 ||work_days==5 ||work_days==6 || work_days==7){
                                                                 var day_cost =150
-                                                                var return_cost =agent_sadad-(day_cost*work_days);
+
                                                             }
                                                             if(work_days>7){
                                                                 var day_cost =100
-                                                                var return_cost =agent_sadad-(day_cost*work_days);
+                                                        
                                                             }
 
 

@@ -735,7 +735,7 @@
 
 
                                                                                 <i class="fa fa-user-times m-r-5"></i>
-                                                                                <span>اضافة ملاحظة </span> </a>&nbsp;
+                                                                                <span>اضافة ملاحظة </span> </a>&nbsp;&nbsp; <span class="btn btn-sm btn-success "><a style="color: white" href="/recruitment_detils/{{$x->id }}">{{\App\recruitment_comment::where('contract_id', $x->id)->count()}}</a></span>
                                                                         </li>
                                                                         <li class="list-group-itemm">
                                                                             <a class="modal-effect  btn btn-danger btn-sm"   data-effect="effect-scale" data-toggle="modal" href="#modaldemo3"   data-id="{{ $x->id }}" data-emp_name="{{ $x->emp_name }}" data-emp_num="{{ $x->emp_num }}" data-maids_id="{{ $x->maids_id }}"   >
@@ -810,7 +810,7 @@
                                                                   type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/rent_comment" method="post">
+                    <form action="/recruitment_comment" method="post">
                         {{ csrf_field() }}
 
                         <div class="form-group">

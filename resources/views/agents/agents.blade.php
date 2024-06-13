@@ -502,12 +502,35 @@
                                                         </div>
 
                                                         <div class="tab-pane" id="tab{{$x->id+600002}}">
-                                                            <div class="alert alert-danger mg-b-0" role="alert">
-                                                                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                                <strong>لا يوجد</strong> عقود توسط
-                                                            </div>
+                                                                <?php
+                                                                $contract=\App\recruitmentContract::select('*')->where('agent_id',$x->id)->get()
+                                                                ?>
+
+                                                            <table class="table">
+                                                                <tbody><tr>
+                                                                    <td><b> رقم العقد </b></td>
+                                                                    <td><b>تاريخ التوقيع </b></td>
+                                                                    <td><b>وصول </b></td>
+                                                                    <td><b> التأشيرة</b></td>
+                                                                    <td><b>حالة العقد</b></td>
+                                                                    <td><b>التكلفة</b> </td>
+                                                                    <td><b>المتبقي علي العميل</b> </td>
+
+                                                                </tr>
+                                                                @foreach ($contract as $a)
+
+                                                                    <td><b><a href="/recruitment_detils/{{$a->id }}"> {{$a->id}}</a></b></td>
+                                                                    <td><b>{{$a->created_at}}</b></td>
+                                                                    <td><b>{{$a->destination}} </b></td>
+                                                                    <td><b>{{$a->visa_number}} </b></td>
+                                                                    <td><b>جديد </b></td>
+                                                                    <td><b>{{$a->istgdam_cost}} </b></td>
+                                                                    <td><b>{{$a->rest}} </b></td>
+
+
+                                                                    </tr>
+                                                                @endforeach
+                                                                </tbody></table>
                                                         </div>
                                                         <div class="tab-pane" id="tab{{$x->id+700003}}">
                                                                 <?php

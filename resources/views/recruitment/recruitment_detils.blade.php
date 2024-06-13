@@ -424,9 +424,231 @@
                             </div>
 
                             </div>
-                        </div>
 
+                        </div>
+                        <section> <br><br></section>
+                        @if($recruitment-> rest>0)
+                            <section class="row">
+
+                                <div class="col-md-12">
+                                    <div class="alert alert-info">
+                                        <strong>تنبيه! لم يتم دفع اجمالي التكلفة حتي الان </strong>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger">
+                                        <strong> تاريخ السداد المتوقع لدفع القيمة المتبقية للعقد  {{$recruitment->exp_sadad}} </strong>
+                                    </div>
+                                </div>
+                            </section>
+                        @else
+                            <section class="row">
+
+                                <div class="col-md-12">
+                                    <div class="alert alert-success">
+                                        <strong>تم سداد</strong>
+                                    </div>
+                                </div>
+                            </section>
+                        @endif
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="card card-primary">
+
+                        <div class="card-body text-primary">
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                </div>
+                                <div class="col-md-12">
+                                    <h4 class="m-t-0 header-title-small"><b> السندات  </b></h4>
+                                    <div class="example">
+                                        <div class="panel panel-primary tabs-style-2">
+                                            <div class=" tab-menu-heading">
+                                                <div class="tabs-menu1">
+                                                    <!-- Tabs -->
+                                                    <ul class="nav panel-tabs main-nav-line">
+                                                        <li><a href="#tab4" class="nav-link active" data-toggle="tab"> السندات</a></li>
+                                                        @if($recruitment-> rest>0)
+                                                            <li><a href="#tab5" class="nav-link" data-toggle="tab"> إضافة سند</a></li>
+                                                        @endif
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body tabs-menu-body main-content-body-right border">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tab4">
+                                                        <div class="table-responsive mt-15">
+                                                            <table class="table center-aligned-table mb-0 table table-hover"
+                                                                   style="text-align:center">
+                                                                <thead>
+                                                                <tr class="text-dark">
+                                                                    <th scope="col"><b>رقم السند</b></th>
+                                                                    <th scope="col"><b> نوع السند</b></th>
+                                                                    <th scope="col"><b> نوع القبض</b></th>
+                                                                    <th scope="col"><b>المبلغ</b> </th>
+                                                                    <th scope="col"> <b>المبلغ مكتوب</b></th>
+                                                                    <th scope="col"><b> تاريخ الانشاء</b></th>
+                                                                    <th scope="col"><b>ملاحظات</b> </th>
+                                                                    <th scope="col"><b>العمليات</b></th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                @foreach ($bonds as $bonds)
+
+                                                                    <tr>
+                                                                        <td style="font-size: 13px">{{  $bonds->id }}</td>
+                                                                        <td style="font-size: 13px">{{ $bonds->bonds_type }}</td>
+                                                                        <td style="font-size: 13px">{{ $bonds->catch_type }}</td>
+                                                                        <td style="font-size: 13px"> {{ $bonds->bonds_total }}</td>
+                                                                        <td style="font-size: 13px">{{ $bonds->bonds_total_ar }}</td>
+                                                                        <td style="font-size: 13px">{{ $bonds->created_at }}</td>
+                                                                        <td style="font-size: 13px">{{ $bonds->comment }}</td>
+                                                                        <td colspan="2" style="font-size: 15px">
+
+                                                                            <a class="btn btn-outline-success btn-sm"
+                                                                               href="/generate-pdf/{{$bonds->id}}"
+                                                                               role="button"><i class="fas fa-eye"></i>&nbsp;
+                                                                                عرض</a>
+
+                                                                            <a class="btn btn-outline-info btn-sm"
+                                                                               href="/generate-pdf-download/{{$bonds->id}}"
+                                                                               role="button"><i
+                                                                                    class="fas fa-download"></i>&nbsp;
+                                                                                تحميل</a>
+
+
+
+
+
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab5">
+                                                        <form action="/general_bonds_rec" method="post" enctype="multipart/form-data" id="myForm"
+                                                              autocomplete="off">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label class="text-info">بيانات السند</label>
+                                                                        <select class="form-control" name="" id="" required>
+                                                                            <option class="form-control" value="">حدد نوع السند</option>
+                                                                            <option class="form-control">سند قبض عقد</option>
+                                                                        </select>
+
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="text-black-50">المتبقي علي العقد</label>
+                                                                        <input type="number" class="form-control" name="rest_in_cont" id="rest_in_cont" value="{{ $recruitment-> rest}}" readonly/>
+                                                                        <label class="text-black-50" hidden>المتبقي علي الاساسي</label>
+                                                                        <input type="number" class="form-control" name="rest_in_cont2" id="rest_in_cont2" value="{{ $recruitment-> rest}}" hidden />
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label class="text-black-50">نوع القبض</label>
+                                                                        <select class="form-control" name="sadad_typ" id="sadad_typ" required>
+                                                                            <option class="form-control" value=""></option>
+                                                                            <option class="form-control" value="نقدآ">نقدآ</option>
+                                                                            <option class="form-control" value="تحويل">تحويل</option>
+                                                                        </select>
+
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="text-black-50">المبلغ</label>
+                                                                        <input type="number" class="form-control" value="0.00" required name="sadad_cont" id="sadad_cont" onkeyup="check_and_ar()"/>
+                                                                        <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span> ضريبة مبلغ السداد </label>
+                                                                        <input type="number" class="form-control" id="sadad_vat" name="sadad_vat" value="0"  readonly hidden >
+                                                                        <label for="inputName" class="control-label" hidden > <span class="text-danger font-bold"></span>  القيمة </label>
+                                                                        <input type="number" class="form-control" id="sadad_co" name="sadad_co" value="0"  readonly hidden>
+                                                                        <input type="number" class="form-control" id="contract_id" name="contract_id" value="{{ $recruitment->id}}"  readonly hidden>
+
+                                                                        <input type="text" class="form-control" id="sadad_ar" name="sadad_ar" value="" readonly hidden>
+                                                                        <input type="text" class="form-control" id="sadad_co_ar" name="sadad_co_ar" value=""  readonly hidden>
+                                                                        <input type="text" class="form-control" id="sadad_vat_ar" name="sadad_vat_ar" value=""  readonly hidden>
+                                                                        <input type="text" class="form-control" id="agents_name" name="agents_name" value="{{$recruitment->agents_name}}" readonly required hidden >
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+
+                                                                    <div class="col-md-6">
+
+                                                                        <button class="btn btn-success ">حفظ</button>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </form>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -492,14 +714,39 @@
                                         <div class="panel panel-default mb-0">
                                             <div class="panel-heading1  bg-primary">
                                                 <h4 class="panel-title1">
-                                                    <a class="accordion-toggle mb-0 collapsed" data-toggle="collapse" data-parent="#accordion11" href="#collapseFive2" aria-expanded="false"> المحلاحظات <i class="fe fe-arrow-left ml-2"></i></a>
+                                                    <a class="accordion-toggle mb-0 collapsed" data-toggle="collapse" data-parent="#accordion11" href="#collapseFive2" aria-expanded="false"> الملاحظات <i class="fe fe-arrow-left ml-2"></i></a>
 
                                                 </h4>
                                             </div>
                                             <div id="collapseFive2" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
                                                 <div class="panel-body border">
-                                                    <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words </p>
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+                                                    <div class="table-responsive mt-15">
+                                                        <table class="table center-aligned-table mb-0 table table-hover"
+                                                               style="text-align:center">
+                                                            <thead>
+                                                            <tr class="text-dark">
+                                                                <th scope="col">الملاحظات</th>
+                                                                <th scope="col">التاريخ</th>
+                                                                <th scope="col">بواسطة</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            @foreach ($comment as $x)
+
+                                                                <tr>
+
+                                                                    <td>{{ $x->comment }}</td>
+                                                                    <td>{{ $x->created_at }}</td>
+                                                                    <td>{{ $x->Created_by }}</td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -539,7 +786,7 @@
                                         <div class="panel panel-default  mb-4">
                                             <div class="panel-heading1 bg-primary ">
                                                 <h4 class="panel-title1">
-                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion22" href="#collapseFour3" aria-expanded="false"> الشكاوي<i class="fe fe-arrow-left ml-2"></i></a>
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion22" href="#collapseFour3" aria-expanded="false"> مرفقات العقد<i class="fe fe-arrow-left ml-2"></i></a>
                                                 </h4>
                                             </div>
                                             <div id="collapseFour3" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">

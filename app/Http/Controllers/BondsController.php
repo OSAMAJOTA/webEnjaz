@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Bonds;
 use App\contract;
 use App\contract_history;
+use App\contractAttachments;
+use App\recruitmentContract;
 use App\user_treasure;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
@@ -186,22 +188,113 @@ class BondsController extends Controller
         {
             //تعديل مبلغ الخزنة
 
-            $treasure = user_treasure::where('user_id',Auth::user()->id)->first();
-            $last_treasure=$treasure->treasure;
+            $treasure1 = user_treasure::where('user_id',Auth::user()->id)->latest('created_at')->first();
+            $last_treasure=$treasure1->treasure;
 
-            $sadad_to_treasure=$request->sadad_cont;
+            $sadad_to_treasure=$request->sadad;
             $new_treasure=$last_treasure+$sadad_to_treasure;
-            $treasure->update([
+            $comment2= ' وارد نقدي عن العقد تشغيل رقم '.$con_id.'باجمالي مبلغ'.$sadad_to_treasure;
 
+            $treasure = new user_treasure();
+            $treasure->treasure = $new_treasure;
+            $treasure->last_treasure = $last_treasure;
+            $treasure->comment = $comment2;
+            $treasure->amount = $sadad_to_treasure;
 
-                'treasure' =>$new_treasure,
+            $treasure->contract_id = $con_id;
+            $treasure->typ =1;
+            $treasure->user_id =Auth::user()->id;
+            $treasure->save();
 
-            ]);
         }
         session()->flash('add_bonds');
         return redirect('/contract_detils/'.$con_id);
 
     }
+    public function general_bonds_rec(Request $request)
+    {
+        if($request->sadad_cont>0){
+
+
+
+            $name_agent=$request->agents_name;
+            $total=$request->sadad_cont;
+            $typ=$request->sadad_typ;
+            $con_id=$request->contract_id;
+            $comment_bonds='متبقي عقد توسط رقم'.' '.$con_id.' '.'عن العميل'. ' '.$name_agent.' '.'باجمالي مبلغ'.' '.$total.' '.'طريقة السداد'.' '.$typ;
+            $bonds = new Bonds();
+            $bonds->bonds_type = 'سند قبض عقد';
+            $bonds->bonds_type_id = 11;
+            $bonds->catch_type = $request->sadad_typ;
+            $bonds->bonds_vat = $request->sadad_vat;
+            $bonds->bonds_cost = $request->sadad_co;
+            $bonds->bonds_total = $request->sadad_cont;
+
+            $bonds->bonds_vat_ar = $request->sadad_vat_ar;
+            $bonds->bonds_cost_ar = $request->sadad_co_ar;
+            $bonds->bonds_total_ar = $request->sadad_ar;
+
+
+            $bonds->comment  = $comment_bonds;
+
+            $bonds->contract_id_rec   = $request->contract_id;
+            $bonds->Created_by = Auth::user()->name;
+
+            $bonds->save();
+        }
+        //اذا كان السداد اكبر من ال0
+
+        if ($request->sadad_cont>0)
+        {
+
+            $contrcat = recruitmentContract::where('id',$con_id)->first();
+            $last_sadad=$contrcat->sadad;
+            $this_sadad=$request->sadad_cont;
+            $new_sadad=$last_sadad+$this_sadad;
+
+            $contrcat->update([
+
+
+                'rest' =>$request->rest_in_cont,
+                'sadad'=>$new_sadad,
+
+            ]);
+        }
+
+
+        // في حالة كان سند القبض نقدآ
+
+        // تعديل مبلغ الخزنة لوارد عقد التوسط
+        if ($request->sadad_typ=='نقدآ')
+        {
+            //تعديل مبلغ الخزنة
+
+            $treasure1 = user_treasure::where('user_id',Auth::user()->id)->latest('created_at')->first();
+            $last_treasure=$treasure1->treasure;
+
+            $sadad_to_treasure=$request->sadad_cont;
+            $new_treasure=$last_treasure+$sadad_to_treasure;
+            $comment2= ' وارد  نقدي   عن  متبقي عقد التوسط رقم '.$con_id.'باجمالي مبلغ'.$sadad_to_treasure;
+
+            $treasure = new user_treasure();
+            $treasure->treasure = $new_treasure;
+            $treasure->last_treasure = $last_treasure;
+            $treasure->comment = $comment2;
+            $treasure->amount = $sadad_to_treasure;
+
+            $treasure->contract_id = $con_id;
+            $treasure->typ =11;
+            $treasure->user_id =Auth::user()->id;
+            $treasure->save();
+
+        }
+
+        session()->flash('add_bonds');
+        return redirect('/recruitment_detils/'.$con_id);
+
+    }
+
+
 
     /**
      * Display the specified resource.
@@ -223,8 +316,9 @@ class BondsController extends Controller
     public function edit($id)
     {
         $bonds=Bonds::select('*')->where('id',$id)->first();
-
-      return view('bonds.bonds_detils',compact('bonds'));
+        $contract_id=$bonds->contract_id;
+        $attachments = contractAttachments::where('contract_id', $contract_id)->get();
+      return view('bonds.bonds_detils',compact('bonds','attachments'));
 
     }
 
@@ -342,6 +436,15 @@ class BondsController extends Controller
 
     public function pay_return(request $request)
     {
+
+$update_return_cost=contract::select('*')->where('id',$request->id)->first();
+        $update_return_cost->update([
+
+
+
+            'return_cost'=>$request->return_cost,
+
+        ]);
         if($request->sadad1>0){
 
 

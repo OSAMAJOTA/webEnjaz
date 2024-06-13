@@ -26,6 +26,9 @@ class CreateBondsTable extends Migration
             $table->string('bonds_total_ar', 999)->nullable();
             $table->unsignedBigInteger('contract_id')->nullable();
             $table->foreign('contract_id')->references('id')->on('contracts')->onDelete('cascade');
+            $table->unsignedBigInteger('contract_id_rec')->nullable();
+            $table->foreign('contract_id_rec')->references('id')->on('recruitment_contracts')->onDelete('cascade');
+            $table->string('contract_typ', 999)->nullable();
             $table->string('comment', 999)->nullable();
             $table->string('Created_by', 999);
             $table->timestamps();
